@@ -32,8 +32,8 @@ function useFetch(dataType) {
       setLoading(true);
 
       try {
-        // const response = await fetch(`${url}${dataType}`);
-        const response = await fetch(`${url}projects`);
+        const response = await fetch(`${url}${dataType}`);
+        // const response = await fetch(`${url}projects`);
         const data = await response.json();
         console.log(data);
         setData(data);

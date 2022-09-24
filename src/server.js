@@ -5,6 +5,7 @@ createServer({
   models: {
     projects: Model,
     users: Model,
+    relations: Model,
   },
 
   routes() {
@@ -14,10 +15,15 @@ createServer({
       return schema.projects.all();
     });
 
+    this.get("/projects/:id");
+
     this.get("/users", (schema) => {
       return schema.users.all();
     });
-    this.get("/projects/:id");
+
+    this.get("relations", (schema) => {
+      return schema.relations.all();
+    });
   },
 
   seeds(server) {
@@ -38,6 +44,17 @@ createServer({
       name: "third test",
       description: "still testing this",
       createdAt: Date.now(),
+    });
+    // relations
+    server.create("relation", {
+      id: "555",
+      projectID: "1",
+      users: ["1", "2", "3"],
+    });
+    server.create("relation", {
+      id: "121",
+      projectID: "2",
+      users: ["1", "2", "3"],
     });
   },
 

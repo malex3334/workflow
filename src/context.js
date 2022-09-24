@@ -5,7 +5,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(false);
-  const { data, loading, setLoading } = useFetch();
+  const { data, loading, setLoading } = useFetch("projects");
   // const [projects, setProjects] = useState([]);
 
   // useEffect(() => {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../../components/Loader";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
@@ -29,7 +30,7 @@ export default function DashBoard() {
   }, [id]);
 
   return loading ? (
-    <div>loading</div>
+    <Loader />
   ) : (
     <div>
       <h2>{project.name}</h2>
