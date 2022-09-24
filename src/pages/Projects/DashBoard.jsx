@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
-import { useGlobalContext } from "../../context";
-import useFetch from "../../hooks/useFetch";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -29,13 +27,22 @@ export default function DashBoard() {
     fetchProject();
   }, [id]);
 
+  const timeStamp = (timestamp) => {
+    var date = new Date(timestamp);
+    console.log(date);
+    return date.toString();
+  };
+
+  // timeStamp(1664055041907);
+
   return loading ? (
     <Loader />
   ) : (
     <div>
       <h2>{project.name}</h2>
       <p>{project.description}</p>
-      <p>Created:{project.createdAt}</p>
+      {/* <p>Created:{project.createdAt}</p> */}
+      <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
   );
 

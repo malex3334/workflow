@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
 
 const testUser = {
@@ -24,12 +25,14 @@ export default function Login() {
   const { user, setUser } = useGlobalContext();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  let navigate = useNavigate();
 
   console.log(name, email);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(name, email);
+    navigate("/");
   };
 
   return (
@@ -66,7 +69,15 @@ export default function Login() {
         className="test"
       >
         <h2 style={{ textAlign: "center" }}>testing utils</h2> <br />
-        <button onClick={() => setUser(testUser)}>login as user</button> <br />
+        <button
+          onClick={() => {
+            setUser(testUser);
+            navigate("/");
+          }}
+        >
+          login as user
+        </button>{" "}
+        <br />
         <button onClick={() => setUser(testCompany)}>login as company</button>
       </div>
     </div>

@@ -61,6 +61,9 @@ export default function ProjectList() {
             );
           })}
       </ul>
+
+      {filteredData.length === 0 && <div>No projects to show</div>}
+      {user.type === "company" && <button>Add new Project</button>}
     </div>
   );
 }

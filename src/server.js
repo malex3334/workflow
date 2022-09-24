@@ -29,8 +29,8 @@ createServer({
   seeds(server) {
     server.create("project", {
       id: "1",
-      name: "test number one",
-      description: "testing server miragejs",
+      name: "Jira clone project",
+      description: "React practice project",
       createdAt: Date.now(),
     });
     server.create("project", {
@@ -55,6 +55,11 @@ createServer({
       id: "121",
       projectID: "2",
       users: ["1", "2", "3"],
+    });
+    server.create("relation", {
+      id: "222",
+      projectID: "3",
+      users: ["2", "3"],
     });
   },
 
