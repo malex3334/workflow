@@ -10,7 +10,7 @@ const testUser = {
   img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
   type: "user",
   salary: "15000",
-  projects: [1, 2],
+  projects: [{ projectID: "1" }, { projectID: "2" }],
 };
 const testCompany = {
   name: "Dunder Mifflin",

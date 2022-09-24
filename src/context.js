@@ -5,7 +5,7 @@ const AppContext = createContext();
 
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(false);
-  const { data, loading } = useFetch();
+  const { data, loading, setLoading } = useFetch();
   // const [projects, setProjects] = useState([]);
 
   // useEffect(() => {
@@ -17,7 +17,7 @@ const AppProvider = ({ children }) => {
   // console.log(projects);
 
   return (
-    <AppContext.Provider value={{ user, setUser, data, loading }}>
+    <AppContext.Provider value={{ user, setUser, data, loading, setLoading }}>
       {children}
     </AppContext.Provider>
   );

@@ -18,7 +18,6 @@ export default function DashBoard() {
         const response = await fetch(`/api/projects/${id}`);
 
         const projects = await response.json();
-        console.log(projects);
         setProject(projects.projects);
         setLoading(false);
       } catch (error) {
@@ -28,8 +27,6 @@ export default function DashBoard() {
     };
     fetchProject();
   }, [id]);
-
-  console.log(project);
 
   return loading ? (
     <div>loading</div>
