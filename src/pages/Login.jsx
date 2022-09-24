@@ -15,6 +15,7 @@ const testUser = {
   projects: [{ projectID: "1" }, { projectID: "2" }],
 };
 const testCompany = {
+  id: "100",
   name: "Dunder Mifflin",
   img: "",
   login: "nasa_1",

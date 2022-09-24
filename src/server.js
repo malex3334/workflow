@@ -15,6 +15,18 @@ createServer({
       return schema.projects.all();
     });
 
+    this.post("/projects", (schema, request) => {
+      let attrs = JSON.parse(request.requestBody);
+      attrs.id = Math.floor(Math.random() * 100);
+      console.log("data dump: ", this.db.dump());
+      return schema.projects.create(attrs);
+    });
+
+    this.delete("/projects/:id", (schema, request) => {
+      let id = request.params.id;
+      console.log("data dump: ", this.db.dump());
+      return schema.projects.find(id).destroy();
+    });
     this.get("/projects/:id");
 
     this.get("/users", (schema) => {
@@ -49,12 +61,12 @@ createServer({
     server.create("relation", {
       id: "555",
       projectID: "1",
-      users: ["1", "2", "3"],
+      users: ["1", "2", "3", "100"],
     });
     server.create("relation", {
       id: "121",
       projectID: "2",
-      users: ["1", "2", "3"],
+      users: ["1", "2", "3", "100"],
     });
     server.create("relation", {
       id: "222",

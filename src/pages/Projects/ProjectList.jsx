@@ -1,3 +1,4 @@
+import { Server } from "miragejs";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -7,7 +8,7 @@ import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
 export default function ProjectList() {
-  const { data, user } = useGlobalContext();
+  const { setData, data, user } = useGlobalContext();
   const [filteredData, setFilteredData] = useState({});
 
   const { data: relations, loading } = useFetch("relations");
@@ -32,12 +33,42 @@ export default function ProjectList() {
     return newArray;
   };
 
-  console.log("filter(): ", filter());
-  console.log("state", filteredData);
   useEffect(() => {
     setFilteredData(filter());
   }, [loading]);
 
+  const postNewProject = async () => {
+    const newProject = {
+      id: "321",
+      name: "123",
+      description: "321",
+      users: ["1", "3"],
+    };
+    try {
+      const response = await fetch(`api/projects/`, {
+        method: "POST",
+        body: JSON.stringify(newProject),
+      });
+      // const response = await fetch(`${url}projects`);
+      const test = await response.json();
+      console.log(test);
+      setData([...data.projects, { ...newProject }]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await fetch(`api/projects/${id}`, {
+        method: "DELETE",
+      });
+      setData(data.projcets.filter((f) => f.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(data);
   return loading ? (
     <Loader />
   ) : (
@@ -57,13 +88,20 @@ export default function ProjectList() {
                   </h3>
                 </NavLink>
                 <p>{project.description}</p>
+                {user.type === "company" && (
+                  <button onClick={(e) => handleDelete(project.id)}>
+                    delete
+                  </button>
+                )}
               </div>
             );
           })}
       </ul>
 
       {filteredData.length === 0 && <div>No projects to show</div>}
-      {user.type === "company" && <button>Add new Project</button>}
+      {user.type === "company" && (
+        <button onClick={() => postNewProject()}>Add new Project</button>
+      )}
     </div>
   );
 }
