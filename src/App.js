@@ -5,7 +5,7 @@ import DashBoard from "./pages/Projects/DashBoard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useGlobalContext } from "./context";
-import { Routes, NavLink, Route, Navigate } from "react-router-dom";
+import { Routes, NavLink, Route, Navigate, useParams } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LandingPage from "./pages/LandingPage";
 import UserSettings from "./pages/UserSettings";
@@ -26,8 +26,9 @@ function App() {
           {/* TODO - REDIRECT IF LOGGED IN AND TRYING TO LOG IN */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={user && <ProjectList />} />
+          <Route path="/dashboard/projects/:id" element={<DashBoard />} />
           <Route path="/user/" element={<UserSettings user={user} />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
           {/* <main className="main">
         <div>navigation / current</div>
         <div>
