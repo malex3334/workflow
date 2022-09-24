@@ -13,7 +13,7 @@ export default function UserSettings({ user }) {
         <ul>
           <li>login:{login}</li>
           <li>type:{type}</li>
-          <li>salary: {salary}$</li>
+          {salary && <li>salary: {salary}</li>}
         </ul>
       </div>
     );

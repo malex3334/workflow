@@ -59,13 +59,15 @@ ul {
   position: fixed;
   left: 0;
   top: 0;
-  // position: relative;
   background-color: $aside-bg;
-  width: 5rem;
+  width: 30rem;
   height: 100%;
-  // translate: -20rem;
-  // transition: translate 0.5s ease-in-out;
-  // z-index: 1;
+  translate: -25rem;
+  transition: translate 0.5s ease-in-out;
+  z-index: 1;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+
+  padding: 2rem;
 
   &:hover {
     translate: 0;
@@ -89,6 +91,19 @@ ul {
   display: flex;
   align-items: center;
   gap: 2rem;
+}
+
+.navlink-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.nav-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 3px solid green;
 }
 
 .main {
@@ -139,7 +154,7 @@ ul {
   gap: 2.5rem;
   overflow-x: auto;
   padding: 2.5rem;
-  background-color: red;
+  background-color: grey;
 }
 
 .single-board {
@@ -147,6 +162,7 @@ ul {
   height: 60%;
   min-width: 25rem;
   min-height: 25rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
 }
 .board-title {
   color: $board-title;

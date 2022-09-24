@@ -1,23 +1,17 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const AppContext = createContext();
 
-const testUser = {
-  name: "Ojosław Ojutkowski",
-  img: "😎",
-  login: "ojutek",
-  type: "user",
-  salary: "15000",
-};
-const testCompany = {
-  name: "NASA",
-  img: "😎",
-  login: "nasa_1",
-  type: "company",
-};
-
 const AppProvider = ({ children }) => {
-  const [user, setUser] = useState(testUser);
+  const [user, setUser] = useState(false);
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    fetch("/api/movies")
+      .then((res) => res.json())
+      .then((json) => setMovies(json));
+  }, []);
+  console.log(movies);
 
   return (
     <AppContext.Provider value={{ user, setUser }}>
