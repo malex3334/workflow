@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
+import { v4 as uuidv4 } from "uuid";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -12,14 +13,14 @@ export default function DashBoard() {
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
 
-  const renderTaskElement = (task) => {
+  const renderTaskElement = (item) => {
     return (
-      <div className="single-task" key={task.id}>
-        <li>{task.task}</li>
+      <div draggable className="single-task" key={item.taskID}>
+        <li>{item.task}</li>
         <button
           className="del-btn"
           onClick={(e) => {
-            handleDelete(task.id);
+            handleDelete(item.taskID);
           }}
         >
           x
@@ -34,7 +35,7 @@ export default function DashBoard() {
     setLoading(true);
     try {
       const response = await fetch(`/api/tasks/${id}`, { method: "DELETE" });
-      setData((prev) => prev.filter((item) => item.id !== id));
+      setData((prev) => prev.filter((item) => item.taskID !== id));
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -44,6 +45,7 @@ export default function DashBoard() {
 
   const handleDelete = (e) => {
     deleteTask(e);
+    console.log(e);
   };
 
   // ### fetch POST tasks
@@ -67,7 +69,7 @@ export default function DashBoard() {
 
   const handleAddTask = () => {
     const newTaskObj = {
-      taskID: "94",
+      taskID: uuidv4(),
       projectID: id,
       task: "plan project",
       text: "some text etc.",
