@@ -3,30 +3,30 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 
-const tasks = [
-  {
-    taskID: "99",
-    projectID: "2",
-    task: "finish project",
-    text: "some text etc.",
-    status: "done",
-  },
-  {
-    taskID: "89",
-    projectID: "2",
-    task: "start",
-    text: "some text etc.",
-    status: "done",
-  },
-  {
-    taskID: "94",
-    projectID: "2",
-    task: "plan project",
-    text: "some text etc.",
+// const tasks = [
+//   {
+//     taskID: "99",
+//     projectID: "2",
+//     task: "finish project",
+//     text: "some text etc.",
+//     status: "done",
+//   },
+//   {
+//     taskID: "89",
+//     projectID: "2",
+//     task: "start",
+//     text: "some text etc.",
+//     status: "done",
+//   },
+//   {
+//     taskID: "94",
+//     projectID: "2",
+//     task: "plan project",
+//     text: "some text etc.",
 
-    status: "testing",
-  },
-];
+//     status: "testing",
+//   },
+// ];
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -34,19 +34,23 @@ export default function DashBoard() {
   const [project, setProject] = useState("");
   const [loading, setLoading] = useState();
   const [data, setData] = useState([]);
+  const [tasks, setTasks] = useState([]);
 
-  const test = () => {
-    let newTasks = [];
-    tasks &&
-      tasks.map((task) => {
-        if (task.projectID === id) {
-          console.log("test", task);
-          newTasks.push(task);
-          console.log(newTasks);
-        }
-      });
-    return newTasks;
-  };
+  useEffect(() => {
+    const fetchTasks = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/tasks/`);
+        const tasks = await response.json();
+
+        setTasks(tasks);
+      } catch (error) {
+        console.log(error);
+        setLoading(false);
+      }
+    };
+    fetchTasks();
+  }, []);
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -64,12 +68,23 @@ export default function DashBoard() {
     fetchProject();
   }, [id]);
 
-  console.log(test());
+  const test = () => {
+    console.log("33333", tasks.tasks);
+    let newTasks = [];
+    tasks.tasks &&
+      tasks.tasks.length > 0 &&
+      tasks.tasks.map((task) => {
+        console.log("single", task);
+        if (task.projectID === id) {
+          newTasks.push(task);
+        }
+      });
+    return newTasks;
+  };
+
   useEffect(() => {
     setData(test());
-  }, [id]);
-
-  console.log(data);
+  }, [tasks]);
 
   const timeStamp = (timestamp) => {
     var date = new Date(timestamp);
@@ -109,9 +124,14 @@ export default function DashBoard() {
           <h3 className="board-title">Done</h3>
           <ul>
             {data &&
+              data.length > 0 &&
               data.map((task) => {
                 if (task.status === "done") {
-                  return <li key={task.id}>{task.task}</li>;
+                  return (
+                    <li onClick={(e) => console.log(task)} key={task.id}>
+                      {task.task}
+                    </li>
+                  );
                 }
               })}
           </ul>

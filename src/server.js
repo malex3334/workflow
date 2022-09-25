@@ -9,6 +9,7 @@ export default function () {
       project: Model,
       user: Model,
       relation: Model,
+      task: Model,
     },
 
     seeds(server) {
@@ -51,11 +52,53 @@ export default function () {
         projectID: "10",
         users: ["1", "100", "2", "3"],
       });
+      // tasks
+      server.create("task", {
+        taskID: "99",
+        projectID: "2",
+        task: "finish project",
+        text: "somet text a co",
+        status: "done",
+      });
+      server.create("task", {
+        taskID: "89",
+        projectID: "2",
+        task: "start",
+        text: "some text etc.",
+        status: "done",
+      });
+      server.create("task", {
+        taskID: "94",
+        projectID: "2",
+        task: "plan project",
+        text: "some text etc.",
+        status: "testing",
+      });
+      server.create("task", {
+        taskID: "99",
+        projectID: "1",
+        task: "finish project",
+        text: "somet text a co",
+        status: "done",
+      });
+      server.create("task", {
+        taskID: "89",
+        projectID: "2",
+        task: "start",
+        text: "some text etc.",
+        status: "done",
+      });
+      server.create("task", {
+        taskID: "94",
+        projectID: "3",
+        task: "plan project",
+        text: "some text etc.",
+        status: "testing",
+      });
     },
 
     routes() {
-      // this.namespace = "api";
-
+      //  ############# PROJECTS
       this.get("/api/projects", (schema, request) => {
         return schema.projects.all();
       });
@@ -73,11 +116,11 @@ export default function () {
         return schema.projects.find(id).destroy();
       });
       this.get("/api/projects/:id");
-
+      //  ############# USERS
       this.get("/api/users", (schema) => {
         return schema.users.all();
       });
-
+      //  ############# RELATIONS
       this.get("/api/relations", (schema) => {
         return schema.relations.all();
       });
@@ -87,6 +130,11 @@ export default function () {
         // attrs.id = Math.floor(Math.random() * 100);
         console.log("data dump: ", this.db.dump());
         return schema.relations.create(attrs);
+      });
+
+      //  ############# TASKS
+      this.get("/api/tasks", (schema, request) => {
+        return schema.tasks.all();
       });
     },
 
