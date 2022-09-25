@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 export default function NewProjectForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [img, setImg] = useState("");
   const [submitObject, setSubmitObject] = useState({});
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
@@ -40,6 +41,7 @@ export default function NewProjectForm() {
       id: newID,
       name: name,
       description: description,
+      img: img,
       createdAt: Date.now(),
     };
 
@@ -77,6 +79,12 @@ export default function NewProjectForm() {
           }}
         />
         <input type="text" placeholder="users" />
+        <input
+          type="text"
+          placeholder="paste image link"
+          onChange={(e) => setImg(e.target.value)}
+          value={img}
+        />
         <button type="submit">submit</button>
       </form>
     </div>

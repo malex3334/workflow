@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
 import { v4 as uuidv4 } from "uuid";
+import Modal from "../../components/Modal";
+import TaskForm from "./TaskForm";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -12,6 +14,7 @@ export default function DashBoard() {
   const [loading, setLoading] = useState();
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const renderTaskElement = (item) => {
     return (
@@ -67,17 +70,17 @@ export default function DashBoard() {
     }
   };
 
-  const handleAddTask = () => {
-    const newTaskObj = {
-      taskID: uuidv4(),
-      projectID: id,
-      task: "plan project",
-      text: "some text etc.",
-      status: "testing",
-      createdAt: Date.now(),
-      updatedAt: Date.now(),
-    };
-    console.log(id);
+  const handleAddTask = (newTaskObj) => {
+    // const newTaskObj = {
+    //   taskID: uuidv4(),
+    //   projectID: id,
+    //   task: "plan project",
+    //   text: "some text etc.",
+    //   status: "testing",
+    //   createdAt: Date.now(),
+    //   updatedAt: Date.now(),
+    // };
+    console.log(newTaskObj);
     fetchNewTask(newTaskObj);
   };
 
@@ -212,7 +215,11 @@ export default function DashBoard() {
           </ul>
         </div>
       </div>
-      <button onClick={handleAddTask}>New task test</button>
+      {/* <button onClick={handleAddTask}>New task test</button> */}
+      <button onClick={() => setShowModal(true)}>New task test</button>
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <TaskForm handleAddTask={handleAddTask} id={id} />
+      </Modal>
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
   );

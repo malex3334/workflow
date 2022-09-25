@@ -166,6 +166,7 @@ ul {
   }
   h3 {
     font-weight: bold;
+    margin-bottom: 1.5rem;
   }
 
   .project-list-item {
@@ -205,6 +206,10 @@ ul {
     .navlink {
       color: white;
     }
+  }
+
+  .image {
+    width: 100%;
   }
 }
 .dashboard-container {
@@ -301,4 +306,80 @@ ul {
     font-size: 2rem;
     background: $bg-green;
   }
+}
+
+// ###################################################################
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.501);
+  padding: 0;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+.testWrapper {
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  /* max-width: 100%; */
+  width: 80%;
+  height: 80%;
+  max-height: 100%;
+  overflow-y: auto;
+  /* width: 25% !important; */
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.31);
+  background: $board-bg;
+}
+
+.modalHeader {
+  font-size: 24px;
+  font-weight: normal;
+  padding: 0.5em;
+  background: orangered;
+  color: rgb(238, 236, 236, 0.9);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid white;
+}
+
+.modalBody {
+  background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  color: rgb(238, 236, 236, 1);
+  border-bottom: 2px solid white;
+}
+
+.modalFooter {
+  background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  padding: 1em 0.5em;
+  text-align: end;
+}
+.modalFooter button {
+  border-color: white;
+  border: 2px solid;
+  border-radius: 8px;
+  padding: 0.25em 0.5em;
+}
+
+.modal ul {
+  padding: 1em;
+  margin: 0;
+}
+
+.modal h5 {
+  margin: 1em auto 0.5em auto;
+  letter-spacing: 1.2px;
+  font-size: 21px;
+  color: rgb(238, 236, 236, 1);
+}
+
+.modal span {
+  color: rgb(203, 203, 203);
+  line-height: 1.2;
+  letter-spacing: 1px;
 }

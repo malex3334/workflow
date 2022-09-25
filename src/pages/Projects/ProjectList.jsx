@@ -127,6 +127,11 @@ export default function ProjectList() {
                     {index + 1} {project.name}
                   </h3>
                 </NavLink>
+                <img
+                  className="image"
+                  src={project.img ? project.img : ""}
+                  alt=""
+                />
                 <p>{project.description}</p>
 
                 <ul className="project-users">
