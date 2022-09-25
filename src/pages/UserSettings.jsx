@@ -9,7 +9,7 @@ export default function UserSettings({ user }) {
     return (
       <div>
         <h2>{name}</h2>
-        <img src={img} alt={name} />
+        <img className="user-img" src={img} alt={name} />
         <ul>
           <li>login:{login}</li>
           <li>type:{type}</li>

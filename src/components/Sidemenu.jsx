@@ -3,7 +3,6 @@ import { useGlobalContext } from "../context";
 
 export default function Sidemenu() {
   const { user, setUser } = useGlobalContext();
-  console.log(user);
   const { name, id, login, type } = user;
 
   return (

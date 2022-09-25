@@ -40,7 +40,6 @@ export default function ProjectList() {
       try {
         const response = await fetch(`/api/relations`);
         const data = await response.json();
-        console.log("data", data);
         setRelations(data);
         setLoading(false);
       } catch (error) {
@@ -61,7 +60,6 @@ export default function ProjectList() {
           data.projects.map((project) => {
             if (project.id === item.projectID) {
               newArray.push(project);
-              console.log("newarray:", newArray);
               return newArray;
             }
           });
@@ -71,26 +69,27 @@ export default function ProjectList() {
     return newArray;
   };
 
-  const postNewProject = async () => {
-    const newProject = {
-      id: "10",
-      name: "Jira clone project",
-      description: "React practice project",
-      createdAt: Date.now(),
-    };
-    try {
-      const response = await fetch(`/api/projects/`, {
-        method: "POST",
-        body: JSON.stringify(newProject),
-      });
-      const test = await response.json();
-      console.log(test);
-      console.log([...filteredData, { ...newProject }]);
-      setFilteredData([...filteredData, { ...newProject }]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // moved to new project form
+  // const postNewProject = async () => {
+  //   const newProject = {
+  //     id: "10",
+  //     name: "Jira clone project",
+  //     description: "React practice project",
+  //     createdAt: Date.now(),
+  //   };
+  //   try {
+  //     const response = await fetch(`/api/projects/`, {
+  //       method: "POST",
+  //       body: JSON.stringify(newProject),
+  //     });
+  //     const test = await response.json();
+  //     console.log(test);
+  //     console.log([...filteredData, { ...newProject }]);
+  //     setFilteredData([...filteredData, { ...newProject }]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const handleDelete = async (id) => {
     try {
@@ -126,8 +125,20 @@ export default function ProjectList() {
                   </h3>
                 </NavLink>
                 <p>{project.description}</p>
+
+                <ul className="project-users">
+                  Users IDs:
+                  {/* {relations.relations !== "undefined" &&
+                    relations.relations.length > 0 &&
+                    relations.relations[project.id].users.map((user) => {
+                      return <li>{user}, </li>;
+                    })} */}
+                </ul>
                 {user.type === "company" && (
-                  <button onClick={(e) => handleDelete(project.id)}>
+                  <button
+                    className="del-btn"
+                    onClick={(e) => handleDelete(project.id)}
+                  >
                     delete
                   </button>
                 )}
@@ -138,7 +149,12 @@ export default function ProjectList() {
 
       {filteredData.length === 0 && <div>No projects to show</div>}
       {user.type === "company" && (
-        <button onClick={() => postNewProject()}>Add new Project</button>
+        // <button onClick={() => postNewProject()}>Add new Project</button>
+        <button className="add-btn">
+          <NavLink className="navlink" to="/newproject">
+            Add new Project
+          </NavLink>
+        </button>
       )}
     </div>
   );

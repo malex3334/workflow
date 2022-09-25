@@ -17,7 +17,7 @@ const testUser = {
 const testCompany = {
   id: "100",
   name: "Dunder Mifflin",
-  img: "",
+  img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
   login: "nasa_1",
   type: "company",
 };

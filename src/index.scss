@@ -36,6 +36,8 @@ li {
 
 button {
   cursor: pointer;
+  padding: 0.5em;
+  border-radius: 6px;
 }
 ul {
   list-style: none;
@@ -92,27 +94,26 @@ ul {
   justify-content: space-between;
   align-items: center;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.178);
-}
 
-.nav-list {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-}
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
 
-.navlink-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  .navlink-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  .nav-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 3px solid green;
+  }
 }
-.nav-avatar {
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  border: 3px solid green;
-}
-
 .main {
   background-color: $board-bg;
   // width: 100%;
@@ -135,22 +136,25 @@ ul {
     font-weight: bold;
     margin: 2rem auto 5rem auto;
   }
-}
 
-.landing-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: flex-start;
-  justify-items: center;
-  gap: 2rem;
-  img {
-    max-width: 45rem;
-    border-radius: 12px;
+  .landing-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: flex-start;
+    justify-items: center;
+    gap: 2rem;
+    img {
+      max-width: 45rem;
+      border-radius: 12px;
+    }
   }
-
   .paragraph {
     width: 50rem;
   }
+}
+
+.user-img {
+  width: 50rem;
 }
 
 .project-list-container {
@@ -161,24 +165,46 @@ ul {
   h3 {
     font-weight: bold;
   }
-}
 
-.project-list-item {
-  padding: 2rem;
-  min-height: 20rem;
-  min-width: 20rem;
-  max-width: 30rem;
-  border: 1px solid black;
-  border-radius: 12px;
-}
+  .project-list-item {
+    padding: 2rem;
+    min-height: 20rem;
+    min-width: 20rem;
+    max-width: 30rem;
+    border-radius: 12px;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+    background: $project-card-bg;
+  }
 
-.project-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
+  .project-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 
+  .project-users {
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .del-btn {
+    color: white;
+    background: red;
+    margin: 1rem 0;
+  }
+
+  .add-btn {
+    color: white;
+    background: green;
+    margin: 1rem 0;
+
+    .navlink {
+      color: white;
+    }
+  }
+}
 .dashboard {
   min-width: 100%;
   min-height: 50rem;
@@ -188,20 +214,19 @@ ul {
   overflow-x: auto;
   padding: 2.5rem;
   background-color: grey;
-}
 
-.single-board {
-  background-color: $board-bg;
-  height: 60%;
-  min-width: 25rem;
-  min-height: 25rem;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
+  .single-board {
+    background-color: $board-bg;
+    height: 60%;
+    min-width: 25rem;
+    min-height: 25rem;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
+  }
+  .board-title {
+    color: $board-title;
+    padding: 1rem 2.5rem;
+  }
 }
-.board-title {
-  color: $board-title;
-  padding: 1rem 2.5rem;
-}
-
 // forms
 .form-container {
   display: flex;
@@ -217,4 +242,36 @@ ul {
   gap: 2rem;
   background: $board-bg;
   box-shadow: $shadow-normal;
+}
+
+.new-project-container {
+  margin: 0 auto;
+  width: 100rem;
+
+  h2 {
+    text-align: center;
+    margin: 2rem auto;
+  }
+
+  form {
+    margin: 0 auto;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    font-size: 2rem;
+    padding: 0.5rem;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  button {
+    color: white;
+    font-size: 2rem;
+    background: $bg-green;
+  }
 }

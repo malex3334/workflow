@@ -15,7 +15,6 @@ export default function DashBoard() {
       try {
         const response = await fetch(`/api/projects/${id}`);
         const projects = await response.json();
-        console.log(projects);
         setProject(projects.project);
         setLoading(false);
       } catch (error) {
@@ -28,7 +27,6 @@ export default function DashBoard() {
 
   const timeStamp = (timestamp) => {
     var date = new Date(timestamp);
-    console.log(date);
     return date.toString();
   };
 
@@ -43,7 +41,7 @@ export default function DashBoard() {
   );
 
   return (
-    <div className="dashboard">
+    <div className="dashboard-container">
       <div className="single-board">
         <h3 className="board-title">Backlog</h3>
       </div>
