@@ -6,6 +6,7 @@ export default function NewProjectForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [submitObject, setSubmitObject] = useState({});
+  const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
 
   const postNewProject = async (newProjectObject) => {
@@ -22,16 +23,34 @@ export default function NewProjectForm() {
     }
   };
 
+  const postNewRelation = async (mewRelationObject) => {
+    try {
+      const response = await fetch(`/api/relations/`, {
+        method: "POST",
+        body: JSON.stringify(mewRelationObject),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleSumbit = (e) => {
     e.preventDefault();
     const newObject = {
-      id: "10",
+      id: newID,
       name: name,
       description: description,
       createdAt: Date.now(),
     };
 
+    const newRelation = {
+      id: uuidv4(),
+      projectID: newID,
+      users: ["1", "2", "3", "100"],
+    };
+
     postNewProject(newObject);
+    postNewRelation(newRelation);
     navigate("/dashboard");
   };
 

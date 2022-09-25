@@ -81,6 +81,13 @@ export default function () {
       this.get("/api/relations", (schema) => {
         return schema.relations.all();
       });
+
+      this.post("/api/relations", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        // attrs.id = Math.floor(Math.random() * 100);
+        console.log("data dump: ", this.db.dump());
+        return schema.relations.create(attrs);
+      });
     },
 
     // seeds(server) {
