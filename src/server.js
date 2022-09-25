@@ -133,6 +133,14 @@ export default function () {
         return schema.projects.create(attrs);
       });
 
+      this.patch("api/projects/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let project = schema.projects.find(id);
+
+        return project.update(newAttrs);
+      });
+
       this.delete("/api/projects/:id", (schema, request) => {
         let id = request.params.id;
         console.log("data dump: ", this.db.dump());
@@ -158,6 +166,13 @@ export default function () {
       //  ############# TASKS
       this.get("/api/tasks", (schema, request) => {
         return schema.tasks.all();
+      });
+
+      this.post("/api/tasks", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        // attrs.id = Math.floor(Math.random() * 100);
+        console.log("data dump: ", this.db.dump());
+        return schema.tasks.create(attrs);
       });
     },
 

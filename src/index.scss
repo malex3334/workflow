@@ -155,7 +155,8 @@ ul {
 }
 
 .user-img {
-  width: 50rem;
+  max-width: 50rem;
+  max-height: 30rem;
 }
 
 .project-list-container {
@@ -223,6 +224,7 @@ ul {
     height: 60%;
     min-width: 18rem;
     min-height: 25rem;
+    max-width: 40rem;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
   }
   .board-title {

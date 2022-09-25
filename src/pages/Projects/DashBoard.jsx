@@ -12,6 +12,40 @@ export default function DashBoard() {
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
 
+  // ### fetch POST tasks
+
+  const fetchNewTask = async (newTask) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/tasks`, {
+        method: "POST",
+        body: JSON.stringify(newTask),
+      });
+      console.log(response);
+      console.log("spread", [...data]);
+      setData([...data, newTask]);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+  console.log("test", tasks);
+  const handleAddTask = () => {
+    const newTaskObj = {
+      taskID: "94",
+      projectID: id,
+      task: "plan project",
+      text: "some text etc.",
+      status: "testing",
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+    console.log(id);
+    fetchNewTask(newTaskObj);
+  };
+
+  // ### fetch tasks
   useEffect(() => {
     const fetchTasks = async () => {
       setLoading(true);
@@ -20,6 +54,7 @@ export default function DashBoard() {
         const tasks = await response.json();
 
         setTasks(tasks);
+        setLoading(false);
       } catch (error) {
         console.log(error);
         setLoading(false);
@@ -28,6 +63,7 @@ export default function DashBoard() {
     fetchTasks();
   }, []);
 
+  // ### fetch projects
   useEffect(() => {
     const fetchProject = async () => {
       setLoading(true);
@@ -45,12 +81,10 @@ export default function DashBoard() {
   }, [id]);
 
   const test = () => {
-    console.log("33333", tasks.tasks);
     let newTasks = [];
     tasks.tasks &&
       tasks.tasks.length > 0 &&
       tasks.tasks.map((task) => {
-        console.log("single", task);
         if (task.projectID === id) {
           newTasks.push(task);
         }
@@ -72,28 +106,98 @@ export default function DashBoard() {
       <div className="dashboard-container">
         <div className="single-board">
           <h3 className="board-title">Backlog</h3>
+          <ul className="tasks-list">
+            {data &&
+              data.length > 0 &&
+              data.map((task) => {
+                if (task.status === "backlog") {
+                  return (
+                    <li
+                      className="single-task"
+                      onClick={(e) => console.log(task)}
+                      key={task.id}
+                    >
+                      {task.task}
+                    </li>
+                  );
+                }
+              })}
+          </ul>
         </div>
         <div className="single-board">
           <h3 className="board-title">To do</h3>
+          <ul className="tasks-list">
+            {data &&
+              data.length > 0 &&
+              data.map((task) => {
+                if (task.status === "todo") {
+                  return (
+                    <li
+                      className="single-task"
+                      onClick={(e) => console.log(task)}
+                      key={task.id}
+                    >
+                      {task.task}
+                    </li>
+                  );
+                }
+              })}
+          </ul>
         </div>
         <div className="single-board">
-          <h3 className="board-title">In progress</h3>
+          <h3 className="board-title">Progress</h3>
+          <ul className="tasks-list">
+            {data &&
+              data.length > 0 &&
+              data.map((task) => {
+                if (task.status === "progress") {
+                  return (
+                    <li
+                      className="single-task"
+                      onClick={(e) => console.log(task)}
+                      key={task.id}
+                    >
+                      {task.task}
+                    </li>
+                  );
+                }
+              })}
+          </ul>
         </div>
         <div className="single-board">
           <h3 className="board-title">Testing</h3>
+          <ul className="tasks-list">
+            {data &&
+              data.length > 0 &&
+              data.map((task) => {
+                if (task.status === "testing") {
+                  return (
+                    <li
+                      className="single-task"
+                      onClick={(e) => console.log(task)}
+                      key={task.id}
+                    >
+                      {task.task}
+                    </li>
+                  );
+                }
+              })}
+          </ul>
         </div>
         <div className="single-board">
           <h3 className="board-title">To deploy</h3>
-          {data &&
-            data.map((task) => {
-              if (task.status === "testing") {
-                return (
-                  <li className="single-task" key={task.id}>
-                    {task.task}
-                  </li>
-                );
-              }
-            })}
+          <ul className="tasks-list">
+            {data &&
+              data.map((task) => {
+                if (task.status === "testing") {
+                  return (
+                    <li className="single-task" key={task.id}>
+                      {task.task}
+                    </li>
+                  );
+                }
+              })}
+          </ul>
         </div>
         <div className="single-board">
           <h3 className="board-title">Done</h3>
@@ -116,6 +220,7 @@ export default function DashBoard() {
           </ul>
         </div>
       </div>
+      <button onClick={handleAddTask}>New task test</button>
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
   );

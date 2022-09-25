@@ -13,6 +13,7 @@ export default function ProjectList() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [relations, setRelations] = useState([]);
+
   // const { data: relations, loading } = useFetch("relations");
 
   useEffect(() => {
@@ -91,6 +92,8 @@ export default function ProjectList() {
   //   }
   // };
 
+  const handleEdit = () => {};
+
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/projects/${id}`, {
@@ -140,6 +143,15 @@ export default function ProjectList() {
                     onClick={(e) => handleDelete(project.id)}
                   >
                     delete
+                  </button>
+                )}
+                {/* #### edit project */}
+                {user.type === "company" && (
+                  <button
+                    className="edit-btn"
+                    onClick={(e) => handleEdit(project.id)}
+                  >
+                    edit
                   </button>
                 )}
               </div>
