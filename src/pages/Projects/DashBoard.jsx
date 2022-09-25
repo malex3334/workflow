@@ -2,31 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
-
-// const tasks = [
-//   {
-//     taskID: "99",
-//     projectID: "2",
-//     task: "finish project",
-//     text: "some text etc.",
-//     status: "done",
-//   },
-//   {
-//     taskID: "89",
-//     projectID: "2",
-//     task: "start",
-//     text: "some text etc.",
-//     status: "done",
-//   },
-//   {
-//     taskID: "94",
-//     projectID: "2",
-//     task: "plan project",
-//     text: "some text etc.",
-
-//     status: "testing",
-//   },
-// ];
+import { timeStamp } from "../../utils/time";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -86,11 +62,6 @@ export default function DashBoard() {
     setData(test());
   }, [tasks]);
 
-  const timeStamp = (timestamp) => {
-    var date = new Date(timestamp);
-    return date.toString();
-  };
-
   return loading ? (
     <Loader />
   ) : (
@@ -116,19 +87,27 @@ export default function DashBoard() {
           {data &&
             data.map((task) => {
               if (task.status === "testing") {
-                return <li key={task.id}>{task.task}</li>;
+                return (
+                  <li className="single-task" key={task.id}>
+                    {task.task}
+                  </li>
+                );
               }
             })}
         </div>
         <div className="single-board">
           <h3 className="board-title">Done</h3>
-          <ul>
+          <ul className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "done") {
                   return (
-                    <li onClick={(e) => console.log(task)} key={task.id}>
+                    <li
+                      className="single-task"
+                      onClick={(e) => console.log(task)}
+                      key={task.id}
+                    >
                       {task.task}
                     </li>
                   );

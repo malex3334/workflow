@@ -59,6 +59,7 @@ export default function NewProjectForm() {
       <h2>New Project:</h2>
       <form onSubmit={(e) => handleSumbit(e)}>
         <input
+          required
           type="text"
           placeholder="name"
           value={name}
@@ -67,6 +68,7 @@ export default function NewProjectForm() {
           }}
         />
         <input
+          required
           type="text"
           placeholder="description"
           value={description}

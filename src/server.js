@@ -18,39 +18,50 @@ export default function () {
         name: "Jira clone project",
         description: "React practice project",
         createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("project", {
         id: "2",
         name: "second test",
         description: "still testing this",
         createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("project", {
         id: "3",
         name: "third test",
         description: "still testing this",
         createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       // relations
       server.create("relation", {
         id: "555",
         projectID: "1",
         users: ["1", "2", "3", "100"],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "121",
         projectID: "2",
         users: ["1", "2", "3", "100"],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "222",
         projectID: "3",
         users: ["1", "100", "2", "3"],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "1124",
         projectID: "10",
         users: ["1", "100", "2", "3"],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       // tasks
       server.create("task", {
@@ -59,6 +70,8 @@ export default function () {
         task: "finish project",
         text: "somet text a co",
         status: "done",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("task", {
         taskID: "89",
@@ -66,6 +79,8 @@ export default function () {
         task: "start",
         text: "some text etc.",
         status: "done",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("task", {
         taskID: "94",
@@ -73,6 +88,8 @@ export default function () {
         task: "plan project",
         text: "some text etc.",
         status: "testing",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("task", {
         taskID: "99",
@@ -80,6 +97,8 @@ export default function () {
         task: "finish project",
         text: "somet text a co",
         status: "done",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("task", {
         taskID: "89",
@@ -87,6 +106,8 @@ export default function () {
         task: "start",
         text: "some text etc.",
         status: "done",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
       server.create("task", {
         taskID: "94",
@@ -94,6 +115,8 @@ export default function () {
         task: "plan project",
         text: "some text etc.",
         status: "testing",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
     },
 
