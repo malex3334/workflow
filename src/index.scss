@@ -239,9 +239,19 @@ ul {
   }
 
   .single-task {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: white;
     padding: 1rem;
     box-shadow: 2px 2px 1px rgba(114, 114, 114, 0.268);
+  }
+
+  .del-btn {
+    font-size: 1rem;
+    background: red;
+    padding: 0.25em 0.5em;
+    color: white;
   }
 }
 // forms

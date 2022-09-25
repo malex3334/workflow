@@ -12,6 +12,40 @@ export default function DashBoard() {
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
 
+  const renderTaskElement = (task) => {
+    return (
+      <div className="single-task" key={task.id}>
+        <li>{task.task}</li>
+        <button
+          className="del-btn"
+          onClick={(e) => {
+            handleDelete(task.id);
+          }}
+        >
+          x
+        </button>
+      </div>
+    );
+  };
+
+  // ### DELETE TASK
+
+  const deleteTask = async (id) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`/api/tasks/${id}`, { method: "DELETE" });
+      setData((prev) => prev.filter((item) => item.id !== id));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = (e) => {
+    deleteTask(e);
+  };
+
   // ### fetch POST tasks
 
   const fetchNewTask = async (newTask) => {
@@ -30,7 +64,7 @@ export default function DashBoard() {
       setLoading(false);
     }
   };
-  console.log("test", tasks);
+
   const handleAddTask = () => {
     const newTaskObj = {
       taskID: "94",
@@ -111,15 +145,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "backlog") {
-                  return (
-                    <li
-                      className="single-task"
-                      onClick={(e) => console.log(task)}
-                      key={task.id}
-                    >
-                      {task.task}
-                    </li>
-                  );
+                  renderTaskElement(task);
                 }
               })}
           </ul>
@@ -131,15 +157,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "todo") {
-                  return (
-                    <li
-                      className="single-task"
-                      onClick={(e) => console.log(task)}
-                      key={task.id}
-                    >
-                      {task.task}
-                    </li>
-                  );
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
@@ -151,15 +169,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "progress") {
-                  return (
-                    <li
-                      className="single-task"
-                      onClick={(e) => console.log(task)}
-                      key={task.id}
-                    >
-                      {task.task}
-                    </li>
-                  );
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
@@ -171,15 +181,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "testing") {
-                  return (
-                    <li
-                      className="single-task"
-                      onClick={(e) => console.log(task)}
-                      key={task.id}
-                    >
-                      {task.task}
-                    </li>
-                  );
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
@@ -189,12 +191,8 @@ export default function DashBoard() {
           <ul className="tasks-list">
             {data &&
               data.map((task) => {
-                if (task.status === "testing") {
-                  return (
-                    <li className="single-task" key={task.id}>
-                      {task.task}
-                    </li>
-                  );
+                if (task.status === "deploy") {
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
@@ -206,15 +204,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "done") {
-                  return (
-                    <li
-                      className="single-task"
-                      onClick={(e) => console.log(task)}
-                      key={task.id}
-                    >
-                      {task.task}
-                    </li>
-                  );
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
