@@ -10,12 +10,50 @@ import useFetch from "../../hooks/useFetch";
 export default function ProjectList() {
   const { setData, data, user } = useGlobalContext();
   const [filteredData, setFilteredData] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [relations, setRelations] = useState([]);
+  // const { data: relations, loading } = useFetch("relations");
 
-  const { data: relations, loading } = useFetch("relations");
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+
+      try {
+        const response = await fetch(`/api/projects`);
+        const data = await response.json();
+        console.log("data", data);
+        setData(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+        setError(error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch(`/api/relations`);
+        const data = await response.json();
+        console.log("data", data);
+        setRelations(data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+        setError(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const filter = () => {
     let newArray = [];
-
     relations.relations &&
       relations.relations.length > 0 &&
       relations.relations.map((item) => {
@@ -33,26 +71,22 @@ export default function ProjectList() {
     return newArray;
   };
 
-  useEffect(() => {
-    setFilteredData(filter());
-  }, [loading]);
-
   const postNewProject = async () => {
     const newProject = {
-      id: "321",
-      name: "123",
-      description: "321",
-      users: ["1", "3"],
+      id: "10",
+      name: "Jira clone project",
+      description: "React practice project",
+      createdAt: Date.now(),
     };
     try {
-      const response = await fetch(`api/projects/`, {
+      const response = await fetch(`/api/projects/`, {
         method: "POST",
         body: JSON.stringify(newProject),
       });
-      // const response = await fetch(`${url}projects`);
       const test = await response.json();
       console.log(test);
-      setData([...data.projects, { ...newProject }]);
+      console.log([...filteredData, { ...newProject }]);
+      setFilteredData([...filteredData, { ...newProject }]);
     } catch (error) {
       console.log(error);
     }
@@ -60,15 +94,19 @@ export default function ProjectList() {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`api/projects/${id}`, {
+      await fetch(`/api/projects/${id}`, {
         method: "DELETE",
       });
-      setData(data.projcets.filter((f) => f.id !== id));
+      setFilteredData(filteredData.filter((project) => project.id !== id));
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(data);
+
+  useEffect(() => {
+    setFilteredData(filter());
+  }, [setData, data, relations]);
+
   return loading ? (
     <Loader />
   ) : (

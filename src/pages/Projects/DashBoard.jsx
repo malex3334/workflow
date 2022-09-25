@@ -12,12 +12,11 @@ export default function DashBoard() {
   useEffect(() => {
     const fetchProject = async () => {
       setLoading(true);
-
       try {
         const response = await fetch(`/api/projects/${id}`);
-
         const projects = await response.json();
-        setProject(projects.projects);
+        console.log(projects);
+        setProject(projects.project);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -33,15 +32,12 @@ export default function DashBoard() {
     return date.toString();
   };
 
-  // timeStamp(1664055041907);
-
   return loading ? (
     <Loader />
   ) : (
     <div>
       <h2>{project.name}</h2>
       <p>{project.description}</p>
-      {/* <p>Created:{project.createdAt}</p> */}
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
   );

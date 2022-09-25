@@ -6,15 +6,6 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const [user, setUser] = useState(false);
   const { data, setData, loading, setLoading } = useFetch("projects");
-  // const [projects, setProjects] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("/api/projects")
-  //     .then((res) => res.json())
-  //     .then((json) => setProjects(json));
-  // }, []);
-
-  // console.log(projects);
 
   return (
     <AppContext.Provider

@@ -1,91 +1,99 @@
 import { createServer, Model } from "miragejs";
 import { v4 as uuidv4 } from "uuid";
 
-createServer({
-  models: {
-    projects: Model,
-    users: Model,
-    relations: Model,
-  },
+console.log("render");
 
-  routes() {
-    this.namespace = "api";
+export default function () {
+  createServer({
+    models: {
+      project: Model,
+      user: Model,
+      relation: Model,
+    },
 
-    this.get("/projects", (schema, request) => {
-      return schema.projects.all();
-    });
+    seeds(server) {
+      server.create("project", {
+        id: "1",
+        name: "Jira clone project",
+        description: "React practice project",
+        createdAt: Date.now(),
+      });
+      server.create("project", {
+        id: "2",
+        name: "second test",
+        description: "still testing this",
+        createdAt: Date.now(),
+      });
+      server.create("project", {
+        id: "3",
+        name: "third test",
+        description: "still testing this",
+        createdAt: Date.now(),
+      });
+      // relations
+      server.create("relation", {
+        id: "555",
+        projectID: "1",
+        users: ["1", "2", "3", "100"],
+      });
+      server.create("relation", {
+        id: "121",
+        projectID: "2",
+        users: ["1", "2", "3", "100"],
+      });
+      server.create("relation", {
+        id: "222",
+        projectID: "3",
+        users: ["1", "100", "2", "3"],
+      });
+      server.create("relation", {
+        id: "1124",
+        projectID: "10",
+        users: ["1", "100", "2", "3"],
+      });
+    },
 
-    this.post("/projects", (schema, request) => {
-      let attrs = JSON.parse(request.requestBody);
-      attrs.id = Math.floor(Math.random() * 100);
-      console.log("data dump: ", this.db.dump());
-      return schema.projects.create(attrs);
-    });
+    routes() {
+      // this.namespace = "api";
 
-    this.delete("/projects/:id", (schema, request) => {
-      let id = request.params.id;
-      console.log("data dump: ", this.db.dump());
-      return schema.projects.find(id).destroy();
-    });
-    this.get("/projects/:id");
+      this.get("/api/projects", (schema, request) => {
+        return schema.projects.all();
+      });
 
-    this.get("/users", (schema) => {
-      return schema.users.all();
-    });
+      this.post("/api/projects", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        // attrs.id = Math.floor(Math.random() * 100);
+        console.log("data dump: ", this.db.dump());
+        return schema.projects.create(attrs);
+      });
 
-    this.get("relations", (schema) => {
-      return schema.relations.all();
-    });
-  },
+      this.delete("/api/projects/:id", (schema, request) => {
+        let id = request.params.id;
+        console.log("data dump: ", this.db.dump());
+        return schema.projects.find(id).destroy();
+      });
+      this.get("/api/projects/:id");
 
-  seeds(server) {
-    server.create("project", {
-      id: "1",
-      name: "Jira clone project",
-      description: "React practice project",
-      createdAt: Date.now(),
-    });
-    server.create("project", {
-      id: "2",
-      name: "second test",
-      description: "still testing this",
-      createdAt: Date.now(),
-    });
-    server.create("project", {
-      id: "3",
-      name: "third test",
-      description: "still testing this",
-      createdAt: Date.now(),
-    });
-    // relations
-    server.create("relation", {
-      id: "555",
-      projectID: "1",
-      users: ["1", "2", "3", "100"],
-    });
-    server.create("relation", {
-      id: "121",
-      projectID: "2",
-      users: ["1", "2", "3", "100"],
-    });
-    server.create("relation", {
-      id: "222",
-      projectID: "3",
-      users: ["2", "3"],
-    });
-  },
+      this.get("/api/users", (schema) => {
+        return schema.users.all();
+      });
 
-  // seeds(server) {
-  //   server.create("user", {
-  //     id: 1,
-  //     name: "Dwight Schrute",
-  //     login: "dwight",
-  //     image: "",
-  //     password: "123123",
-  //   });
-  // },
-});
+      this.get("/api/relations", (schema) => {
+        return schema.relations.all();
+      });
+    },
 
+    // seeds(server) {
+    //   server.create("user", {
+    //     id: 1,
+    //     name: "Dwight Schrute",
+    //     login: "dwight",
+    //     image: "",
+    //     password: "123123",
+    //   });
+    // },
+  });
+}
 // uuid, login, hasło, nazwa użytkownika, typ konta, pensja, created at updated at - te dwa ostatnie zawsze wszędzie się dodaje.
 
 // Projekt

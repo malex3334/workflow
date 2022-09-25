@@ -1,14 +1,12 @@
 import { useEffect } from "react";
 import { useState, useCallback } from "react";
 
-function useFetch(dataType) {
+function useFetch(dataType, trigger) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const url = "api/";
-  // const maxResults = "40";
-
+  const url = "/api/";
   // const fetchBooks = useCallback(async () => {
   //   setLoading(true);
 
@@ -27,26 +25,26 @@ function useFetch(dataType) {
   //   }
   // }, []);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      setLoading(true);
+  // useEffect(() => {
+  //   const fetchBooks = async () => {
+  //     setLoading(true);
 
-      try {
-        const response = await fetch(`${url}${dataType}`);
-        // const response = await fetch(`${url}projects`);
-        const data = await response.json();
-        console.log(data);
-        setData(data);
+  //     try {
+  //       const response = await fetch(`${url}${dataType}`);
+  //       // const response = await fetch(`${url}projects`);
+  //       const data = await response.json();
+  //       console.log(data);
+  //       setData(data);
 
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-        setError(error);
-      }
-    };
-    fetchBooks();
-  }, []);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.log(error);
+  //       setError(error);
+  //     }
+  //   };
+  //   fetchBooks();
+  // }, [trigger]);
   return { setData, data, setLoading, loading, error };
 }
 
