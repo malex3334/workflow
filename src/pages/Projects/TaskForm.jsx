@@ -27,12 +27,14 @@ export default function TaskForm({ handleAddTask, id }) {
           value={newObj.task}
           onChange={(e) => setNewObj({ ...newObj, task: e.target.value })}
         />
-        <input
+        <textarea
           type="text"
           placeholder="task description"
           value={newObj.text}
           onChange={(e) => setNewObj({ ...newObj, text: e.target.value })}
         />
+        {/* todo - select */}
+        {/* <select name="test" id=""></select> */}
         <button>submit</button>
       </form>
     </div>

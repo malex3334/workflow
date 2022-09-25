@@ -92,7 +92,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "99",
+        taskID: "51",
         projectID: "1",
         task: "finish project",
         text: "somet text a co",
@@ -101,7 +101,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "89",
+        taskID: "894",
         projectID: "2",
         task: "start",
         text: "some text etc.",
@@ -110,7 +110,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "94",
+        taskID: "924",
         projectID: "3",
         task: "plan project",
         text: "some text etc.",
@@ -177,7 +177,7 @@ export default function () {
 
       this.delete("/api/tasks/:id", (schema, request) => {
         let id = request.params.id;
-        console.log("data dump: ", this.db.dump());
+        console.log("xxxxxxxxxxxxxxxdata dump: ", this.db.dump());
         return schema.tasks.find(id).destroy();
       });
     },

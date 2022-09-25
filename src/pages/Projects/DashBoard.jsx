@@ -16,28 +16,14 @@ export default function DashBoard() {
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
 
-  const renderTaskElement = (item) => {
-    return (
-      <div draggable className="single-task" key={item.taskID}>
-        <li>{item.task}</li>
-        <button
-          className="del-btn"
-          onClick={(e) => {
-            handleDelete(item.taskID);
-          }}
-        >
-          x
-        </button>
-      </div>
-    );
-  };
-
   // ### DELETE TASK
-
   const deleteTask = async (id) => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/tasks/${id}`, { method: "DELETE" });
+      await fetch(`/api/tasks/${id}`, {
+        method: "DELETE",
+      });
+
       setData((prev) => prev.filter((item) => item.taskID !== id));
       setLoading(false);
     } catch (error) {
@@ -52,7 +38,6 @@ export default function DashBoard() {
   };
 
   // ### fetch POST tasks
-
   const fetchNewTask = async (newTask) => {
     setLoading(true);
     try {
@@ -71,17 +56,9 @@ export default function DashBoard() {
   };
 
   const handleAddTask = (newTaskObj) => {
-    // const newTaskObj = {
-    //   taskID: uuidv4(),
-    //   projectID: id,
-    //   task: "plan project",
-    //   text: "some text etc.",
-    //   status: "testing",
-    //   createdAt: Date.now(),
-    //   updatedAt: Date.now(),
-    // };
     console.log(newTaskObj);
     fetchNewTask(newTaskObj);
+    setShowModal(false);
   };
 
   // ### fetch tasks
@@ -100,7 +77,7 @@ export default function DashBoard() {
       }
     };
     fetchTasks();
-  }, []);
+  }, [setData]);
 
   // ### fetch projects
   useEffect(() => {
@@ -135,6 +112,27 @@ export default function DashBoard() {
     setData(test());
   }, [tasks]);
 
+  const renderTaskElement = (item) => {
+    return (
+      <div draggable className="single-task" key={item.taskID}>
+        <div className="task-header">
+          <h4>{item.task}</h4>
+          <button
+            className="del-btn"
+            onClick={(e) => {
+              handleDelete(item.taskID);
+            }}
+          >
+            x
+          </button>
+        </div>
+        <p>{item.text}</p>
+      </div>
+    );
+  };
+
+  console.log("data", data, "tasks", tasks);
+
   return loading ? (
     <Loader />
   ) : (
@@ -150,7 +148,7 @@ export default function DashBoard() {
               data.length > 0 &&
               data.map((task) => {
                 if (task.status === "backlog") {
-                  renderTaskElement(task);
+                  return renderTaskElement(task);
                 }
               })}
           </ul>
