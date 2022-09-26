@@ -7,13 +7,14 @@ export default function TaskForm({ handleAddTask, id }) {
     projectID: id,
     task: "plan project",
     text: "some text etc.",
-    status: "testing",
+    status: "backlog",
     createdAt: Date.now(),
     updatedAt: Date.now(),
   });
 
   const handleAdd = (e) => {
     e.preventDefault();
+    // console.log(newObj);
     handleAddTask(newObj);
   };
 
@@ -33,8 +34,22 @@ export default function TaskForm({ handleAddTask, id }) {
           value={newObj.text}
           onChange={(e) => setNewObj({ ...newObj, text: e.target.value })}
         />
-        {/* todo - select */}
-        {/* <select name="test" id=""></select> */}
+        <div className="select">
+          <label htmlFor="">Status:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => setNewObj({ ...newObj, status: e.target.value })}
+          >
+            <option value="backlog">Backlog</option>
+            <option value="todo">To do</option>
+            <option value="progress">Progress</option>
+            <option value="testing">Testing</option>
+            <option value="deploy">To deploy</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+
         <button>submit</button>
       </form>
     </div>
