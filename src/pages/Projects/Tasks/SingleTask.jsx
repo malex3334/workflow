@@ -2,36 +2,50 @@ import React, { useEffect, useState } from "react";
 import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
 
-export default function SingleTask({ task, user }) {
-  console.log(user);
-  // const [task, setTask] = useState();
-  // const [loading, setLoading] = useState(false);
+export default function SingleTask({
+  task,
+  user,
+  setShowModal,
+  data,
+  setData,
+}) {
+  const [loading, setLoading] = useState(false);
+  const [edit, setEdit] = useState(false);
 
-  // useEffect(() => {
-  //   const fetchTask = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch(`/api/tasks/${taskID}`);
-  //       const task = await response.json();
-  //       setTask(task);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchTask();
-  // }, []);
+  const deleteTask = async (id) => {
+    setLoading(true);
+    try {
+      await fetch(`/api/tasks/${id}`, {
+        method: "DELETE",
+      });
+      setData((prev) => prev.filter((item) => item.id !== id));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = (id) => {
+    deleteTask(id);
+    setShowModal(false);
+    console.log(id);
+  };
 
   return (
     <div className="singletask-container">
       <header className="header">
         <h2 className="title">{task.task}</h2>
         <nav className="navigation">
-          <button className="nav-btn">
+          <button
+            className="nav-btn"
+            onClick={(e) => {
+              handleDelete(task.id);
+            }}
+          >
             <FaTrash />
           </button>
-          <button className="nav-btn">
+          <button className="nav-btn" onClick={() => setShowModal(false)}>
             <FaWindowClose />
           </button>
         </nav>

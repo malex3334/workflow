@@ -22,27 +22,6 @@ export default function DashBoard() {
   const [taskID, setTaskID] = useState({});
   const { user } = useGlobalContext();
 
-  // ### DELETE TASK
-  const deleteTask = async (id) => {
-    setLoading(true);
-    try {
-      await fetch(`/api/tasks/${id}`, {
-        method: "DELETE",
-      });
-
-      setData((prev) => prev.filter((item) => item.id !== id));
-
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
-
-  const handleDelete = (e) => {
-    deleteTask(e);
-  };
-
   // ### fetch POST tasks
   const fetchNewTask = async (newTask) => {
     setLoading(true);
@@ -147,15 +126,6 @@ export default function DashBoard() {
           >
             {item.task}
           </h4>
-
-          <button
-            className="del-btn"
-            onClick={(e) => {
-              handleDelete(item.id);
-            }}
-          >
-            x
-          </button>
         </div>
         <p>{item.text}</p>
       </div>
@@ -252,7 +222,14 @@ export default function DashBoard() {
         <TaskForm handleAddTask={handleAddTask} id={id} />
       </Modal>
       <Modal showModal={showTask} setShowModal={setShowTask}>
-        <SingleTask task={taskID} user={user} />
+        <SingleTask
+          task={taskID}
+          user={user}
+          showModal={showTask}
+          setShowModal={setShowTask}
+          data={data}
+          setData={setData}
+        />
       </Modal>
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>

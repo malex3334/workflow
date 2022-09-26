@@ -123,15 +123,17 @@ export default function ProjectList() {
             return (
               <div key={project.id} className="project-list-item">
                 <NavLink to={`projects/${project.id}`}>
-                  <h3>
-                    {index + 1} {project.name}
-                  </h3>
+                  <h3>{project.name}</h3>
+                  {project.img ? (
+                    <img
+                      className="image"
+                      src={project.img ? project.img : ""}
+                      alt=""
+                    />
+                  ) : (
+                    <div className="noimage"></div>
+                  )}
                 </NavLink>
-                <img
-                  className="image"
-                  src={project.img ? project.img : ""}
-                  alt=""
-                />
                 <p>{project.description}</p>
 
                 <ul className="project-users">

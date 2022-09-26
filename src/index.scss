@@ -212,6 +212,11 @@ ul {
   .image {
     width: 100%;
   }
+  // .noimage {
+  //   background-color: red;
+  //   width: 100%;
+  //   height: 20rem;
+  // }
 }
 .dashboard-container {
   // min-width: 100%;
@@ -402,6 +407,19 @@ ul {
     color: white;
     font-size: 2rem;
     background: $bg-green;
+  }
+
+  .select {
+    margin: 2rem 0;
+    label {
+      margin: 0 1rem;
+    }
+  }
+
+  select {
+    // margin: 1rem 0;
+    height: 4rem;
+    padding: 0 1rem;
   }
 }
 
