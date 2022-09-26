@@ -16,14 +16,17 @@ export default function () {
       server.create("project", {
         id: "1",
         name: "Jira clone project",
-        description: "React practice project",
+        description:
+          "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
       server.create("project", {
         id: "2",
-        name: "second test",
-        description: "still testing this",
+        name: "Project",
+        description:
+          "aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -77,7 +80,7 @@ export default function () {
         id: "89",
         projectID: "2",
         task: "start",
-        text: "some text etc.",
+        text: "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         status: "done",
         createdAt: Date.now(),
         updatedAt: Date.now(),

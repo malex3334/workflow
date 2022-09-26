@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { timeStamp } from "../../../utils/time";
+import { FaTrash, FaWindowClose } from "react-icons/fa";
 
-export default function SingleTask({ task }) {
-  console.log(task);
+export default function SingleTask({ task, user }) {
+  console.log(user);
   // const [task, setTask] = useState();
   // const [loading, setLoading] = useState(false);
 
@@ -24,17 +25,46 @@ export default function SingleTask({ task }) {
 
   return (
     <div className="singletask-container">
-      <h2 className="title">{task.task}</h2>
-      <div className="description">
-        <h3 className="subtitle">description</h3>
-        <p className="paragraph">{task.text}</p>
+      <header className="header">
+        <h2 className="title">{task.task}</h2>
+        <nav className="navigation">
+          <button className="nav-btn">
+            <FaTrash />
+          </button>
+          <button className="nav-btn">
+            <FaWindowClose />
+          </button>
+        </nav>
+      </header>
+      <div className="body">
+        <div className="left">
+          <div className="description">
+            <h3 className="subtitle">description</h3>
+            <p className="paragraph">{task.text}</p>
+          </div>
+          <p className="status">
+            status:
+            <span> {task.status}</span>
+          </p>
+          <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
+          <p className="timestamp">last updated: {timeStamp(task.updatedAt)}</p>
+        </div>
+        <div className="right"></div>
       </div>
-      <p className="status">
-        status:
-        <span> {task.status}</span>
-      </p>
-      <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
-      <p className="timestamp">last updated: {timeStamp(task.updatedAt)}</p>
+      <div className="comments">
+        <label htmlFor="comments">comments:</label>
+        <div className="comment-input-container">
+          <img className="user-avatar" src={user.img} alt="" />
+          <textarea
+            name=""
+            id=""
+            cols="30"
+            rows="2"
+            placeholder="enter comment"
+          />
+        </div>
+        <button className="submit">submit</button>
+      </div>
     </div>
   );
 }

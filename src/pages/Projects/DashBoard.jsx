@@ -7,6 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import Modal from "../../components/Modal";
 import TaskForm from "./Tasks/TaskForm";
 import SingleTask from "./Tasks/SingleTask";
+import { useGlobalContext } from "../../context";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -19,6 +20,7 @@ export default function DashBoard() {
   const [showTask, setShowTask] = useState(false);
   const [editTask, setEditTask] = useState(false);
   const [taskID, setTaskID] = useState({});
+  const { user } = useGlobalContext();
 
   // ### DELETE TASK
   const deleteTask = async (id) => {
@@ -124,7 +126,16 @@ export default function DashBoard() {
 
   const renderTaskElement = (item) => {
     return (
-      <div draggable className="single-task" key={item.id}>
+      <div
+        draggable
+        className="single-task"
+        key={item.id}
+        onClick={(e) => {
+          // setShowTask(true);
+          handleOpenTask(item);
+          console.log(item);
+        }}
+      >
         <div className="task-header">
           <h4
             style={{ cursor: "pointer" }}
@@ -241,7 +252,7 @@ export default function DashBoard() {
         <TaskForm handleAddTask={handleAddTask} id={id} />
       </Modal>
       <Modal showModal={showTask} setShowModal={setShowTask}>
-        <SingleTask task={taskID} />
+        <SingleTask task={taskID} user={user} />
       </Modal>
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
