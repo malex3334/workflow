@@ -218,6 +218,12 @@ ul {
   //   height: 20rem;
   // }
 }
+
+.users-list {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .dashboard-container {
   // min-width: 100%;
   min-height: 50rem;
@@ -284,6 +290,7 @@ ul {
 }
 
 .singletask-container {
+  width: 80rem;
   font-size: 1.6rem;
   padding: 3rem;
 
@@ -338,6 +345,7 @@ ul {
   textarea {
     width: 100%;
     padding: 0.5rem 1rem;
+    border-radius: 6px;
   }
 
   .user-avatar {

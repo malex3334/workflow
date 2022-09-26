@@ -16,6 +16,7 @@ export default function ProjectList() {
 
   // const { data: relations, loading } = useFetch("relations");
 
+  // fetch all projects
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -35,8 +36,9 @@ export default function ProjectList() {
     fetchData();
   }, []);
 
+  // fetch relations
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchRelations = async () => {
       setLoading(true);
       try {
         const response = await fetch(`/api/relations`);
@@ -49,9 +51,10 @@ export default function ProjectList() {
         setError(error);
       }
     };
-    fetchData();
+    fetchRelations();
   }, []);
 
+  // check users projects
   const filter = () => {
     let newArray = [];
     relations.relations &&
@@ -94,6 +97,7 @@ export default function ProjectList() {
 
   const handleEdit = () => {};
 
+  // delete project
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/projects/${id}`, {
