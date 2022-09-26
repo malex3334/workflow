@@ -5,8 +5,8 @@ export default function TaskForm({ handleAddTask, id }) {
   const [newObj, setNewObj] = useState({
     taskID: uuidv4(),
     projectID: id,
-    task: "plan project",
-    text: "some text etc.",
+    task: "",
+    text: "",
     status: "backlog",
     createdAt: Date.now(),
     updatedAt: Date.now(),

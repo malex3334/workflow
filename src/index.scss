@@ -266,6 +266,29 @@ ul {
     color: white;
   }
 }
+.add-btn {
+  color: white;
+  background: green;
+}
+
+.singletask-container {
+  font-size: 1.6rem;
+  padding: 3rem;
+
+  .title {
+    margin: 2rem 0;
+    font-weight: bold;
+  }
+
+  .description {
+  }
+
+  .status {
+    span {
+      color: green;
+    }
+  }
+}
 // forms
 .form-container {
   display: flex;

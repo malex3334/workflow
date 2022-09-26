@@ -5,7 +5,8 @@ import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
 import { v4 as uuidv4 } from "uuid";
 import Modal from "../../components/Modal";
-import TaskForm from "./TaskForm";
+import TaskForm from "./Tasks/TaskForm";
+import SingleTask from "./Tasks/SingleTask";
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -15,6 +16,9 @@ export default function DashBoard() {
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showTask, setShowTask] = useState(false);
+  const [editTask, setEditTask] = useState(false);
+  const [taskID, setTaskID] = useState({});
 
   // ### DELETE TASK
   const deleteTask = async (id) => {
@@ -25,7 +29,7 @@ export default function DashBoard() {
       });
 
       setData((prev) => prev.filter((item) => item.id !== id));
-      console.log(data);
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -35,7 +39,6 @@ export default function DashBoard() {
 
   const handleDelete = (e) => {
     deleteTask(e);
-    console.log(e);
   };
 
   // ### fetch POST tasks
@@ -46,8 +49,7 @@ export default function DashBoard() {
         method: "POST",
         body: JSON.stringify(newTask),
       });
-      console.log(response);
-      console.log("spread", [...data]);
+
       setData([...data, newTask]);
       setLoading(false);
     } catch (error) {
@@ -57,7 +59,6 @@ export default function DashBoard() {
   };
 
   const handleAddTask = (newTaskObj) => {
-    console.log(newTaskObj);
     fetchNewTask(newTaskObj);
     setShowModal(false);
   };
@@ -109,15 +110,33 @@ export default function DashBoard() {
     return newTasks;
   };
 
-  useEffect(() => {
-    setData(test());
-  }, [tasks]);
+  const handleOpenTask = async (item) => {
+    setTaskID(item);
+    setShowTask(true);
+    console.log(item);
+
+    // return (
+    //   <Modal showModal={showTask} setShowModal={setShowTask}>
+    //     <div>123</div>
+    //   </Modal>
+    // );
+  };
 
   const renderTaskElement = (item) => {
     return (
       <div draggable className="single-task" key={item.id}>
         <div className="task-header">
-          <h4>{item.task}</h4>
+          <h4
+            style={{ cursor: "pointer" }}
+            onClick={(e) => {
+              // setShowTask(true);
+              handleOpenTask(item);
+              console.log(item);
+            }}
+          >
+            {item.task}
+          </h4>
+
           <button
             className="del-btn"
             onClick={(e) => {
@@ -131,8 +150,9 @@ export default function DashBoard() {
       </div>
     );
   };
-
-  console.log("data", data, "tasks", tasks);
+  useEffect(() => {
+    setData(test());
+  }, [tasks]);
 
   return loading ? (
     <Loader />
@@ -140,7 +160,6 @@ export default function DashBoard() {
     <div>
       <h2>{project.name}</h2>
       <p>{project.description}</p>
-
       <div className="dashboard-container">
         <div className="single-board">
           <h3 className="board-title">Backlog</h3>
@@ -159,9 +178,9 @@ export default function DashBoard() {
           <ul className="tasks-list">
             {data &&
               data.length > 0 &&
-              data.map((task) => {
+              data.map((task, index) => {
                 if (task.status === "todo") {
-                  return renderTaskElement(task);
+                  return renderTaskElement(task, index);
                 }
               })}
           </ul>
@@ -215,9 +234,14 @@ export default function DashBoard() {
         </div>
       </div>
       {/* <button onClick={handleAddTask}>New task test</button> */}
-      <button onClick={() => setShowModal(true)}>New task test</button>
+      <button className="add-btn" onClick={() => setShowModal(true)}>
+        New task test
+      </button>
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <TaskForm handleAddTask={handleAddTask} id={id} />
+      </Modal>
+      <Modal showModal={showTask} setShowModal={setShowTask}>
+        <SingleTask task={taskID} />
       </Modal>
       <p>Created: {timeStamp(project.createdAt)}</p>
     </div>
