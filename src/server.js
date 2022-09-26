@@ -65,7 +65,7 @@ export default function () {
       });
       // tasks
       server.create("task", {
-        taskID: "99",
+        id: "99",
         projectID: "2",
         task: "finish project",
         text: "somet text a co",
@@ -74,7 +74,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "89",
+        id: "89",
         projectID: "2",
         task: "start",
         text: "some text etc.",
@@ -83,7 +83,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "94",
+        id: "94",
         projectID: "2",
         task: "plan project",
         text: "some text etc.",
@@ -92,7 +92,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "51",
+        id: "51",
         projectID: "1",
         task: "finish project",
         text: "somet text a co",
@@ -101,7 +101,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "894",
+        id: "894",
         projectID: "2",
         task: "start",
         text: "some text etc.",
@@ -110,7 +110,7 @@ export default function () {
         updatedAt: Date.now(),
       });
       server.create("task", {
-        taskID: "924",
+        id: "924",
         projectID: "3",
         task: "plan project",
         text: "some text etc.",

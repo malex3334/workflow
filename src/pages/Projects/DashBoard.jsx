@@ -24,7 +24,8 @@ export default function DashBoard() {
         method: "DELETE",
       });
 
-      setData((prev) => prev.filter((item) => item.taskID !== id));
+      setData((prev) => prev.filter((item) => item.id !== id));
+      console.log(data);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -114,13 +115,13 @@ export default function DashBoard() {
 
   const renderTaskElement = (item) => {
     return (
-      <div draggable className="single-task" key={item.taskID}>
+      <div draggable className="single-task" key={item.id}>
         <div className="task-header">
           <h4>{item.task}</h4>
           <button
             className="del-btn"
             onClick={(e) => {
-              handleDelete(item.taskID);
+              handleDelete(item.id);
             }}
           >
             x
