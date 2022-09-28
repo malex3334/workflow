@@ -29,8 +29,6 @@ export default function NewProjectForm() {
       users: ["1", "2", "3", "100"],
     };
 
-    // postNewProject(newObject);
-    // postNewRelation(newRelation);
     // new version
     postData("projects/", newObject);
     postData("relations/", newRelation);

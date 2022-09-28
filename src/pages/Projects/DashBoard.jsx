@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useFetcher, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
 import { v4 as uuidv4 } from "uuid";
@@ -11,17 +11,11 @@ import useFetch from "../../hooks/useFetch";
 
 export default function DashBoard() {
   const { id } = useParams();
-  // const { data, loading } = useGlobalContext();
-  const [project, setProject] = useState("");
-  // const [loading, setLoading] = useState();
   const [data, setData] = useState([]);
-  // const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showTask, setShowTask] = useState(false);
-  const [editTask, setEditTask] = useState(false);
   const [taskID, setTaskID] = useState({});
   const { user } = useGlobalContext();
-  const [relations, setRelations] = useState([]);
   const [usersList, setUsersList] = useState([]);
   const { postData } = useFetch();
   const { data: fetching, loading, setLoading } = useFetch("relations");
@@ -32,23 +26,6 @@ export default function DashBoard() {
     rerender,
     setRerender,
   } = useFetch("tasks/");
-
-  // fetch relations
-  // useEffect(() => {
-  //   const fetchRelations = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch(`/api/relations`);
-  //       const data = await response.json();
-  //       setRelations(data.relations);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       setLoading(false);
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchRelations();
-  // }, []);
 
   const getUsers = (data) => {
     const filter = data.filter((relation) => relation.projectID === id);
@@ -64,27 +41,6 @@ export default function DashBoard() {
     }
   }, [loading]);
 
-  // useEffect(() => {
-  //   setUsersList(getUsers(fetching.relations));
-  // }, [setUsersList, fetching]);
-
-  // // ### fetch POST tasks
-  // const fetchNewTask = async (newTask) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await fetch(`/api/tasks`, {
-  //       method: "POST",
-  //       body: JSON.stringify(newTask),
-  //     });
-
-  //     setData([...data, newTask]);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     console.log(error);
-  //     setLoading(false);
-  //   }
-  // };
-
   const handleAddTask = (newTaskObj) => {
     // fetchNewTask(newTaskObj);
     postData("tasks/", newTaskObj);
@@ -92,40 +48,11 @@ export default function DashBoard() {
     setShowModal(false);
   };
 
-  // ### fetch tasks
-  // useEffect(() => {
-  //   const fetchTasks = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const response = await fetch(`/api/tasks/`);
-  //       const tasks = await response.json();
-
-  //       setTasks(tasks);
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchTasks();
-  // }, [setData]);
-
-  // ### fetch projects
-  useEffect(() => {
-    const fetchProject = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/projects/${id}`);
-        const projects = await response.json();
-        setProject(projects.project);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    };
-    fetchProject();
-  }, [id]);
+  const {
+    data: projects,
+    setData: setProjects,
+    loading: projectsLoader,
+  } = useFetch(`projects/${id}`);
 
   const test = () => {
     let newTasks = [];
@@ -142,13 +69,6 @@ export default function DashBoard() {
   const handleOpenTask = async (item) => {
     setTaskID(item);
     setShowTask(true);
-    console.log(item);
-
-    // return (
-    //   <Modal showModal={showTask} setShowModal={setShowTask}>
-    //     <div>123</div>
-    //   </Modal>
-    // );
   };
 
   const renderTaskElement = (item) => {
@@ -189,8 +109,8 @@ export default function DashBoard() {
 
   return (
     <div>
-      <h2>{project.name}</h2>
-      <p>{project.description}</p>
+      <h2>{projects.project.name}</h2>
+      <p>{projects.project.description}</p>
 
       <ul className="users-list" key={user}>
         <span>Users IDs:</span>
@@ -290,7 +210,7 @@ export default function DashBoard() {
           setData={setData}
         />
       </Modal>
-      <p>Created: {timeStamp(project.createdAt)}</p>
+      <p>Created: {timeStamp(projects.project.createdAt)}</p>
     </div>
   );
 }

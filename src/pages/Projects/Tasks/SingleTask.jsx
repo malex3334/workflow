@@ -11,6 +11,7 @@ export default function SingleTask({
 }) {
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(false);
+  const [title, setTitle] = useState(task.task);
 
   const deleteTask = async (id) => {
     setLoading(true);
@@ -29,13 +30,18 @@ export default function SingleTask({
   const handleDelete = (id) => {
     deleteTask(id);
     setShowModal(false);
-    console.log(id);
   };
 
   return (
     <div className="singletask-container">
       <header className="header">
-        <h2 className="title">{task.task}</h2>
+        {edit ? (
+          <input type="text"></input>
+        ) : (
+          <h2 className="title" onClick={(e) => console.log(task.task)}>
+            {task.task}
+          </h2>
+        )}
         <nav className="navigation">
           <button
             className="nav-btn"
