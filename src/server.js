@@ -182,6 +182,14 @@ export default function () {
         console.log("xxxxxxxxxxxxxxxdata dump: ", this.db.dump());
         return schema.tasks.find(id).destroy();
       });
+
+      this.patch("/api/tasks/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let task = schema.tasks.find(id);
+
+        return task.update(newAttrs);
+      });
     },
 
     // seeds(server) {

@@ -2,16 +2,21 @@ import React, { useEffect, useState } from "react";
 import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
 
+const descr = { description: false, title: false };
+
 export default function SingleTask({
   task,
   user,
   setShowModal,
   data,
   setData,
+  rerender,
+  setRerender,
 }) {
   const [loading, setLoading] = useState(false);
-  const [edit, setEdit] = useState(false);
+  const [edit, setEdit] = useState(descr);
   const [title, setTitle] = useState(task.task);
+  const [description, setDescription] = useState(task.text);
 
   const deleteTask = async (id) => {
     setLoading(true);
@@ -27,6 +32,21 @@ export default function SingleTask({
     }
   };
 
+  const updateTask = async (id, updatedValue) => {
+    setLoading(true);
+    try {
+      await fetch(`/api/tasks/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updatedValue),
+      });
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+    setRerender(!rerender);
+  };
+
   const handleDelete = (id) => {
     deleteTask(id);
     setShowModal(false);
@@ -35,11 +55,34 @@ export default function SingleTask({
   return (
     <div className="singletask-container">
       <header className="header">
-        {edit ? (
-          <input type="text"></input>
+        {edit.title ? (
+          <>
+            <input
+              className="title"
+              type="text"
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+              }}
+            ></input>
+            <button
+              onClick={(prev) => {
+                updateTask(task.id, { task: title, updatedAt: Date.now() });
+                setEdit({ ...prev, title: false });
+              }}
+            >
+              save
+            </button>
+          </>
         ) : (
-          <h2 className="title" onClick={(e) => console.log(task.task)}>
-            {task.task}
+          <h2
+            className="title"
+            onClick={(prev) => {
+              setEdit({ ...prev, title: true });
+            }}
+          >
+            {/* {task.task} */}
+            {title}
           </h2>
         )}
         <nav className="navigation">
@@ -60,7 +103,38 @@ export default function SingleTask({
         <div className="left">
           <div className="description">
             <h3 className="subtitle">description</h3>
-            <p className="paragraph">{task.text}</p>
+            {edit.description ? (
+              <>
+                <textarea
+                  className="paragraph"
+                  type="text"
+                  value={description}
+                  onChange={(e) => {
+                    setDescription(e.target.value);
+                  }}
+                ></textarea>
+                <button
+                  onClick={(prev) => {
+                    setEdit({ ...prev, description: false });
+                    updateTask(task.id, {
+                      text: description,
+                      updatedAt: Date.now(),
+                    });
+                  }}
+                >
+                  save
+                </button>
+              </>
+            ) : (
+              <p
+                className="paragraph"
+                onClick={(prev) => {
+                  setEdit({ ...prev, description: true });
+                }}
+              >
+                {description}
+              </p>
+            )}
           </div>
           <p className="status">
             status:

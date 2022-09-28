@@ -2,12 +2,29 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
-import { v4 as uuidv4 } from "uuid";
 import Modal from "../../components/Modal";
 import TaskForm from "./Tasks/TaskForm";
 import SingleTask from "./Tasks/SingleTask";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
+
+const getUsers = (data, id) => {
+  const filter = data.filter((relation) => relation.projectID === id);
+  const users = filter[0]?.users;
+  return users;
+};
+
+const filter = (tasks, id) => {
+  let newTasks = [];
+  tasks.tasks &&
+    tasks.tasks.length > 0 &&
+    tasks.tasks.map((task) => {
+      if (task.projectID === id) {
+        newTasks.push(task);
+      }
+    });
+  return newTasks;
+};
 
 export default function DashBoard() {
   const { id } = useParams();
@@ -19,51 +36,21 @@ export default function DashBoard() {
   const [usersList, setUsersList] = useState([]);
   const { postData } = useFetch();
   const { data: fetching, loading, setLoading } = useFetch("relations");
-  const {
-    data: tasks,
-    setData: setTasks,
-    loading: loadingTasks,
-    rerender,
-    setRerender,
-  } = useFetch("tasks/");
-
-  const getUsers = (data) => {
-    const filter = data.filter((relation) => relation.projectID === id);
-    const users = filter[0]?.users;
-    return users;
-  };
+  const { data: tasks, rerender, setRerender } = useFetch("tasks/");
+  const { data: projects } = useFetch(`projects/${id}`);
 
   useEffect(() => {
     if (loading === false) {
       console.log("123", fetching.relations);
-      const newUsersList = getUsers(fetching.relations);
+      const newUsersList = getUsers(fetching.relations, id);
       setUsersList(newUsersList);
     }
   }, [loading]);
 
   const handleAddTask = (newTaskObj) => {
-    // fetchNewTask(newTaskObj);
     postData("tasks/", newTaskObj);
     setRerender(!rerender);
     setShowModal(false);
-  };
-
-  const {
-    data: projects,
-    setData: setProjects,
-    loading: projectsLoader,
-  } = useFetch(`projects/${id}`);
-
-  const test = () => {
-    let newTasks = [];
-    tasks.tasks &&
-      tasks.tasks.length > 0 &&
-      tasks.tasks.map((task) => {
-        if (task.projectID === id) {
-          newTasks.push(task);
-        }
-      });
-    return newTasks;
   };
 
   const handleOpenTask = async (item) => {
@@ -78,7 +65,6 @@ export default function DashBoard() {
         className="single-task"
         key={item.id}
         onClick={(e) => {
-          // setShowTask(true);
           handleOpenTask(item);
           console.log(item);
         }}
@@ -87,7 +73,6 @@ export default function DashBoard() {
           <h4
             style={{ cursor: "pointer" }}
             onClick={(e) => {
-              // setShowTask(true);
               handleOpenTask(item);
               console.log(item);
             }}
@@ -100,7 +85,7 @@ export default function DashBoard() {
     );
   };
   useEffect(() => {
-    setData(test());
+    setData(filter(tasks, id));
   }, [tasks]);
 
   if (loading) {
@@ -204,6 +189,8 @@ export default function DashBoard() {
         <SingleTask
           task={taskID}
           user={user}
+          rerender={rerender}
+          setRerender={setRerender}
           showModal={showTask}
           setShowModal={setShowTask}
           data={data}
