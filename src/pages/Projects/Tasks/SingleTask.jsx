@@ -39,11 +39,10 @@ export default function SingleTask({
         method: "PATCH",
         body: JSON.stringify(updatedValue),
       });
-      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false);
     }
+    setLoading(false);
     setRerender(!rerender);
   };
 
@@ -65,9 +64,9 @@ export default function SingleTask({
                 setTitle(e.target.value);
               }}
               onBlur={(prev) => {
-                setEdit({ ...prev, description: false });
+                setEdit({ ...prev, title: false });
                 updateTask(task.id, {
-                  text: description,
+                  task: title,
                   updatedAt: Date.now(),
                 });
               }}
