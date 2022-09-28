@@ -15,7 +15,7 @@ export default function DashBoard() {
   const [project, setProject] = useState("");
   // const [loading, setLoading] = useState();
   const [data, setData] = useState([]);
-  const [tasks, setTasks] = useState([]);
+  // const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showTask, setShowTask] = useState(false);
   const [editTask, setEditTask] = useState(false);
@@ -25,7 +25,13 @@ export default function DashBoard() {
   const [usersList, setUsersList] = useState([]);
   const { postData } = useFetch();
   const { data: fetching, loading, setLoading } = useFetch("relations");
-  console.log("test", fetching);
+  const {
+    data: tasks,
+    setData: setTasks,
+    loading: loadingTasks,
+    rerender,
+    setRerender,
+  } = useFetch("tasks/");
 
   // fetch relations
   // useEffect(() => {
@@ -49,11 +55,14 @@ export default function DashBoard() {
     const users = filter[0]?.users;
     return users;
   };
-  console.log("outside", getUsers(fetching.relations));
 
   useEffect(() => {
-    // setUsersList(getUsers(fetching?.relations));
-  }, []);
+    if (loading === false) {
+      console.log("123", fetching.relations);
+      const newUsersList = getUsers(fetching.relations);
+      setUsersList(newUsersList);
+    }
+  }, [loading]);
 
   // useEffect(() => {
   //   setUsersList(getUsers(fetching.relations));
@@ -79,26 +88,27 @@ export default function DashBoard() {
   const handleAddTask = (newTaskObj) => {
     // fetchNewTask(newTaskObj);
     postData("tasks/", newTaskObj);
+    setRerender(!rerender);
     setShowModal(false);
   };
 
   // ### fetch tasks
-  useEffect(() => {
-    const fetchTasks = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/tasks/`);
-        const tasks = await response.json();
+  // useEffect(() => {
+  //   const fetchTasks = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch(`/api/tasks/`);
+  //       const tasks = await response.json();
 
-        setTasks(tasks);
-        setLoading(false);
-      } catch (error) {
-        console.log(error);
-        setLoading(false);
-      }
-    };
-    fetchTasks();
-  }, [setData]);
+  //       setTasks(tasks);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchTasks();
+  // }, [setData]);
 
   // ### fetch projects
   useEffect(() => {

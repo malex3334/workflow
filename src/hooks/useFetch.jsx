@@ -41,7 +41,7 @@ function useFetch(dataFrom) {
       }
     };
     fetchBooks();
-  }, []);
+  }, [rerender]);
 
   return {
     setData,
