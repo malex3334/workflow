@@ -7,6 +7,7 @@ import TaskForm from "./Tasks/TaskForm";
 import SingleTask from "./Tasks/SingleTask";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
+import NotLoggedIn from "../../components/NotLoggedIn";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.projectID === id);
@@ -41,7 +42,6 @@ export default function DashBoard() {
 
   useEffect(() => {
     if (loading === false) {
-      console.log("123", fetching.relations);
       const newUsersList = getUsers(fetching.relations, id);
       setUsersList(newUsersList);
     }
@@ -66,7 +66,6 @@ export default function DashBoard() {
         key={item.id}
         onClick={(e) => {
           handleOpenTask(item);
-          console.log(item);
         }}
       >
         <div className="task-header">
@@ -74,7 +73,6 @@ export default function DashBoard() {
             style={{ cursor: "pointer" }}
             onClick={(e) => {
               handleOpenTask(item);
-              console.log(item);
             }}
           >
             {item.task}
@@ -90,6 +88,10 @@ export default function DashBoard() {
 
   if (loading) {
     return <Loader />;
+  }
+
+  if (!user) {
+    return <NotLoggedIn />;
   }
 
   return (

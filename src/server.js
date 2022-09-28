@@ -36,6 +36,13 @@ export default function () {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
+      server.create("project", {
+        id: "4",
+        name: "secret project",
+        description: "you cant see it dwight",
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
       // relations
       server.create("relation", {
         id: "555",
@@ -62,6 +69,13 @@ export default function () {
         id: "1124",
         projectID: "10",
         users: ["1", "100", "2", "3"],
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
+      server.create("relation", {
+        id: "1124",
+        projectID: "4",
+        users: ["100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });

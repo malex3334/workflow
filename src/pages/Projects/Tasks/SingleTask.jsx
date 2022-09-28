@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
+import NotLoggedIn from "../../../components/NotLoggedIn";
 
 const descr = { description: false, title: false };
 
@@ -17,6 +18,7 @@ export default function SingleTask({
   const [edit, setEdit] = useState(descr);
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
+  const [select, setSelect] = useState(task.status);
 
   const deleteTask = async (id) => {
     setLoading(true);
@@ -50,6 +52,10 @@ export default function SingleTask({
     deleteTask(id);
     setShowModal(false);
   };
+
+  if (!user) {
+    return <NotLoggedIn />;
+  }
 
   return (
     <div className="singletask-container">
@@ -167,10 +173,24 @@ export default function SingleTask({
               </p>
             )}
           </div>
-          <p className="status">
-            status:
-            <span> {task.status}</span>
-          </p>
+          <div className="status">
+            <label htmlFor="">Status:</label>
+            {/* <select onChange={updateTask(task.id, {})}> */}
+            <select
+              value={select}
+              onChange={(e) => {
+                updateTask(task.id, { status: e.target.value });
+                setSelect(e.target.value);
+              }}
+            >
+              <option value="backlog">Backlog</option>
+              <option value="todo">To do</option>
+              <option value="progress">Progress</option>
+              <option value="testing">Testing</option>
+              <option value="deploy">To deploy</option>
+              <option value="done">Done</option>
+            </select>
+          </div>
           <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
           <p className="timestamp">last updated: {timeStamp(task.updatedAt)}</p>
         </div>
