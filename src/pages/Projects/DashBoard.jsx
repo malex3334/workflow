@@ -27,7 +27,7 @@ const filter = (tasks, id) => {
   return newTasks;
 };
 
-export default function DashBoard() {
+export default function Dashboard() {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -39,13 +39,23 @@ export default function DashBoard() {
   const { data: fetching, loading, setLoading } = useFetch("relations");
   const { data: tasks, rerender, setRerender } = useFetch("tasks/");
   const { data: projects } = useFetch(`projects/${id}`);
+  const { data: users } = useFetch("users/");
 
   useEffect(() => {
     if (loading === false) {
       const newUsersList = getUsers(fetching.relations, id);
-      setUsersList(newUsersList);
+      const assignedUsers = users.users.map((user) => {
+        if (newUsersList.includes(user.id)) {
+          return user;
+        }
+      });
+
+      setUsersList(assignedUsers);
     }
   }, [loading]);
+
+  console.log(usersList);
+  console.log(usersList);
 
   const handleAddTask = (newTaskObj) => {
     postData("tasks/", newTaskObj);
@@ -100,10 +110,19 @@ export default function DashBoard() {
       <p>{projects.project.description}</p>
 
       <ul className="users-list" key={user}>
-        <span>Users IDs:</span>
+        <span>Assigned users:</span>
+        {console.log("usersmap", usersList)}
         {usersList &&
           usersList.map((user) => {
-            return <li>{user},</li>;
+            const { nick, img } = user;
+            if (user !== "undefined") {
+              return (
+                <div className="user-mini">
+                  <img className="user-img" src={img} alt="" />
+                  <h5 className="user-nick">{nick}</h5>
+                </div>
+              );
+            }
           })}
       </ul>
 

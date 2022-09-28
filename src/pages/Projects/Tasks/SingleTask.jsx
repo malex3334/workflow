@@ -191,8 +191,10 @@ export default function SingleTask({
               <option value="done">Done</option>
             </select>
           </div>
-          <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
-          <p className="timestamp">last updated: {timeStamp(task.updatedAt)}</p>
+          <div className="timestamps">
+            <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
+            <p className="timestamp">modified: {timeStamp(task.updatedAt)}</p>
+          </div>
         </div>
         <div className="right"></div>
       </div>

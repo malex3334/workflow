@@ -12,6 +12,7 @@ export default function () {
     },
 
     seeds(server) {
+      // PROJECTS
       server.create("project", {
         id: "1",
         name: "Jira clone project",
@@ -47,7 +48,7 @@ export default function () {
       server.create("relation", {
         id: "555",
         projectID: "1",
-        users: ["1", "2", "3", "100"],
+        users: ["1", "2", "3", "5", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -75,7 +76,7 @@ export default function () {
       server.create("relation", {
         id: "1124",
         projectID: "4",
-        users: ["100"],
+        users: ["100", "1"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -133,6 +134,35 @@ export default function () {
         status: "testing",
         createdAt: Date.now(),
         updatedAt: Date.now(),
+      });
+
+      // USERS
+
+      server.create("user", {
+        id: "1",
+        nick: "michael",
+        name: "Michael Scott",
+        img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png",
+      });
+      server.create("user", {
+        id: "2",
+        nick: "tuna",
+        name: "Jim Halpert",
+        img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
+      });
+      server.create("user", {
+        id: "100",
+        name: "Dunder Mifflin",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
+        nick: "nasa_1",
+        type: "company",
+      });
+      server.create("user", {
+        id: "5",
+        name: "Pam Halpert",
+        img: "https://wallpapercave.com/wp/wp10346398.jpg",
+        nick: "pam",
+        type: "user",
       });
     },
 
@@ -203,6 +233,12 @@ export default function () {
         let task = schema.tasks.find(id);
 
         return task.update(newAttrs);
+      });
+
+      // users
+
+      this.get("/api/users", (schema, request) => {
+        return schema.users.all();
       });
     },
 

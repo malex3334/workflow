@@ -221,7 +221,29 @@ ul {
 
 .users-list {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.user-mini {
+  position: relative;
+  .user-img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: solid green 2px;
+  }
+  .user-nick {
+    position: absolute;
+    background-color: white;
+    padding: 0.5rem;
+    opacity: 0;
+    border-radius: 1px;
+  }
+
+  .user-img:hover + .user-nick {
+    opacity: 1;
+  }
 }
 
 .dashboard-container {
@@ -359,8 +381,20 @@ ul {
   }
 
   .status {
+    margin: 1rem 0;
     span {
       color: green;
+    }
+  }
+
+  select {
+    margin-left: 1rem;
+  }
+
+  .timestamps {
+    font-size: 1.2rem;
+    p {
+      margin: 0.5rem 0;
     }
   }
 

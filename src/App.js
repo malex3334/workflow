@@ -1,9 +1,9 @@
 import Sidemenu from "./components/Sidemenu";
-import DashBoard from "./pages/Projects/DashBoard";
+import Dashboard from "./pages/Projects/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useGlobalContext } from "./context";
-import { Routes, NavLink, Route, Navigate, useParams } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import LandingPage from "./pages/LandingPage";
 import UserSettings from "./pages/UserSettings";
@@ -25,21 +25,12 @@ function App() {
           {/* TODO - REDIRECT IF LOGGED IN AND TRYING TO LOG IN */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={user && <ProjectList />} />
-          <Route path="/dashboard/projects/:id" element={<DashBoard />} />
+          <Route path="/dashboard/projects/:id" element={<Dashboard />} />
           <Route path="/user/" element={<UserSettings user={user} />} />
           <Route
             path="/newproject"
             element={user.type === "company" && <NewProjectForm />}
           />
-          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
-          {/* <main className="main">
-        <div>navigation / current</div>
-        <div>
-        <h2>Board title</h2>
-        </div>
-        <div>Filters</div>
-        <DashBoard />
-      </main> */}
           <Route path="*" element={<LandingPage />} />
         </Routes>
       </div>
