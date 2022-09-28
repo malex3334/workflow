@@ -307,6 +307,24 @@ ul {
     text-align: start;
   }
 
+  input {
+    background: none;
+    border: 1px solid grey;
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+
+  textarea {
+    width: 100%;
+    background: rgba(128, 128, 128, 0.165);
+  }
+
+  .description-input {
+    margin: 2rem 0;
+    min-height: 10rem;
+    font-size: inherit;
+  }
+
   .nav-btn {
     font-size: 1.8rem;
   }
@@ -321,8 +339,23 @@ ul {
     // border: 1px solid grey;
   }
 
+  .left {
+    width: 60%;
+  }
+
   .description {
     font-style: italic;
+    min-height: 10rem;
+  }
+
+  .btn-save {
+    background-color: green;
+    color: white;
+  }
+
+  .btn-cancel {
+    background-color: none;
+    border: 1px solid grey;
   }
 
   .status {

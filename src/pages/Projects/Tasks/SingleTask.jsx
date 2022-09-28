@@ -56,7 +56,7 @@ export default function SingleTask({
     <div className="singletask-container">
       <header className="header">
         {edit.title ? (
-          <>
+          <form>
             <input
               className="title"
               type="text"
@@ -64,8 +64,16 @@ export default function SingleTask({
               onChange={(e) => {
                 setTitle(e.target.value);
               }}
+              onBlur={(prev) => {
+                setEdit({ ...prev, description: false });
+                updateTask(task.id, {
+                  text: description,
+                  updatedAt: Date.now(),
+                });
+              }}
             ></input>
             <button
+              className="btn-save"
               onClick={(prev) => {
                 updateTask(task.id, { task: title, updatedAt: Date.now() });
                 setEdit({ ...prev, title: false });
@@ -73,7 +81,15 @@ export default function SingleTask({
             >
               save
             </button>
-          </>
+            <button
+              className="btn-cancel"
+              onClick={(prev) => {
+                setEdit({ ...prev, title: false });
+              }}
+            >
+              cancel
+            </button>
+          </form>
         ) : (
           <h2
             className="title"
@@ -104,9 +120,16 @@ export default function SingleTask({
           <div className="description">
             <h3 className="subtitle">description</h3>
             {edit.description ? (
-              <>
+              <form>
                 <textarea
-                  className="paragraph"
+                  onBlur={(prev) => {
+                    setEdit({ ...prev, description: false });
+                    updateTask(task.id, {
+                      text: description,
+                      updatedAt: Date.now(),
+                    });
+                  }}
+                  className="description-input"
                   type="text"
                   value={description}
                   onChange={(e) => {
@@ -114,6 +137,7 @@ export default function SingleTask({
                   }}
                 ></textarea>
                 <button
+                  className="btn-save"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
                     updateTask(task.id, {
@@ -124,7 +148,15 @@ export default function SingleTask({
                 >
                   save
                 </button>
-              </>
+                <button
+                  className="btn-cancel"
+                  onClick={(prev) => {
+                    setEdit({ ...prev, description: false });
+                  }}
+                >
+                  cancel
+                </button>
+              </form>
             ) : (
               <p
                 className="paragraph"
@@ -132,7 +164,7 @@ export default function SingleTask({
                   setEdit({ ...prev, description: true });
                 }}
               >
-                {description}
+                {description ? `${description}` : "no description yet"}
               </p>
             )}
           </div>
