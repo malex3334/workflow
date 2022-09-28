@@ -80,6 +80,7 @@ export default function () {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
+
       // tasks
       server.create("task", {
         id: "99",
@@ -140,28 +141,37 @@ export default function () {
 
       server.create("user", {
         id: "1",
-        nick: "michael",
+        login: "michael",
         name: "Michael Scott",
         img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png",
       });
       server.create("user", {
         id: "2",
-        nick: "tuna",
+        login: "dwight",
+        name: "Dwight Schrute",
+        email: "dwight@dunder.com",
+        password: "dwight11",
+        img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
+        type: "user",
+      });
+      server.create("user", {
+        id: "3",
+        login: "tuna",
         name: "Jim Halpert",
         img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
       });
       server.create("user", {
         id: "100",
+        login: "nasa1",
         name: "Dunder Mifflin",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
-        nick: "nasa_1",
         type: "company",
       });
       server.create("user", {
         id: "5",
         name: "Pam Halpert",
         img: "https://wallpapercave.com/wp/wp10346398.jpg",
-        nick: "pam",
+        login: "pam",
         type: "user",
       });
     },

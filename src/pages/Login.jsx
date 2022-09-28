@@ -6,7 +6,7 @@ import { useGlobalContext } from "../context";
 const testUser = {
   id: "2",
   name: "Dwight Schrute",
-  login: "dwight",
+  nick: "dwight",
   email: "dwight@dunder.com",
   password: "dwight11",
   img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
@@ -18,7 +18,7 @@ const testCompany = {
   id: "100",
   name: "Dunder Mifflin",
   img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
-  login: "nasa_1",
+  nick: "nasa_1",
   type: "company",
 };
 

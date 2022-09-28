@@ -39,20 +39,40 @@ export default function Dashboard() {
   const { data: fetching, loading, setLoading } = useFetch("relations");
   const { data: tasks, rerender, setRerender } = useFetch("tasks/");
   const { data: projects } = useFetch(`projects/${id}`);
-  const { data: users } = useFetch("users/");
+  const { data: users, loading: usersLoading } = useFetch("users/");
 
   useEffect(() => {
-    if (loading === false) {
+    if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
       const assignedUsers = users.users.map((user) => {
         if (newUsersList.includes(user.id)) {
+          console.log("userlist!!!!!!!!!!", user);
           return user;
-        }
+        } else return "";
       });
 
-      setUsersList(assignedUsers);
+      // const arr = users.users.filter(function (item) {
+      //   return newUsersList.indexOf(item.id) === -1;
+      // });
+
+      // console.log(arr);
+      // setUsersList(assignedUsers);
     }
-  }, [loading]);
+  }, [loading, usersLoading]);
+
+  // useEffect(() => {
+  //   if (!loading) {
+  //     const newUsersList = getUsers(fetching.relations, id);
+  //     const result = newUsersList.filter(function (obj) {
+  //       return users.users.some(function (obj2) {
+  //         return obj === obj2.id;
+  //       });
+  //     });
+  //     console.log(result);
+  //     console.log(newUsersList);
+  //     setUsersList(result);
+  //   }
+  // }, [loading]);
 
   console.log(usersList);
   console.log(usersList);
@@ -111,18 +131,16 @@ export default function Dashboard() {
 
       <ul className="users-list" key={user}>
         <span>Assigned users:</span>
-        {console.log("usersmap", usersList)}
         {usersList &&
           usersList.map((user) => {
-            const { nick, img } = user;
-            if (user !== "undefined") {
-              return (
-                <div className="user-mini">
-                  <img className="user-img" src={img} alt="" />
-                  <h5 className="user-nick">{nick}</h5>
-                </div>
-              );
-            }
+            if (user === "undefined") return;
+            const { login, img } = user;
+            return (
+              <div className="user-mini">
+                <img className="user-img" src={img} alt="" />
+                <h5 className="user-nick">{login}</h5>
+              </div>
+            );
           })}
       </ul>
 
