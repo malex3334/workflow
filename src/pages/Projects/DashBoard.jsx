@@ -51,12 +51,15 @@ export default function Dashboard() {
         } else return "";
       });
 
+      const result = users.users.filter(({ id }) => newUsersList.includes(id));
+      console.log(result);
+
       // const arr = users.users.filter(function (item) {
       //   return newUsersList.indexOf(item.id) === -1;
       // });
 
       // console.log(arr);
-      // setUsersList(assignedUsers);
+      setUsersList(result);
     }
   }, [loading, usersLoading]);
 
