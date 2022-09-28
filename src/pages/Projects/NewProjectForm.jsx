@@ -1,39 +1,17 @@
 import React, { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { FaHandSparkles } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import useFetch from "../../hooks/useFetch";
 
 export default function NewProjectForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
-  const [submitObject, setSubmitObject] = useState({});
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
 
-  const postNewProject = async (newProjectObject) => {
-    try {
-      const response = await fetch(`/api/projects/`, {
-        method: "POST",
-        body: JSON.stringify(newProjectObject),
-      });
-      const test = await response.json();
-      // console.log([...filteredData, { ...newProject }]);
-      // setFilteredData([...filteredData, { ...newProject }]);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const postNewRelation = async (mewRelationObject) => {
-    try {
-      const response = await fetch(`/api/relations/`, {
-        method: "POST",
-        body: JSON.stringify(mewRelationObject),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { postData } = useFetch();
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -51,8 +29,11 @@ export default function NewProjectForm() {
       users: ["1", "2", "3", "100"],
     };
 
-    postNewProject(newObject);
-    postNewRelation(newRelation);
+    // postNewProject(newObject);
+    // postNewRelation(newRelation);
+    // new version
+    postData("projects/", newObject);
+    postData("relations/", newRelation);
     navigate("/dashboard");
   };
 

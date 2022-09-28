@@ -1,4 +1,3 @@
-import { Server } from "miragejs";
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -8,51 +7,14 @@ import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
 export default function ProjectList() {
-  const { setData, data, user } = useGlobalContext();
+  const { user } = useGlobalContext();
   const [filteredData, setFilteredData] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [relations, setRelations] = useState([]);
 
-  // const { data: relations, loading } = useFetch("relations");
+  //  fetch all projects
+  const { data, setData, loading, setLoading } = useFetch("projects");
 
-  // fetch all projects
-  useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true);
-
-      try {
-        const response = await fetch(`/api/projects`);
-        const data = await response.json();
-        console.log("data", data);
-        setData(data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-        setError(error);
-      }
-    };
-    fetchData();
-  }, []);
-
-  // fetch relations
-  useEffect(() => {
-    const fetchRelations = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/relations`);
-        const data = await response.json();
-        setRelations(data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-        setError(error);
-      }
-    };
-    fetchRelations();
-  }, []);
+  // fetch all relations
+  const { data: relations, setData: setRelations } = useFetch("relations");
 
   // check users projects
   const filter = () => {
@@ -73,28 +35,6 @@ export default function ProjectList() {
     return newArray;
   };
 
-  // moved to new project form
-  // const postNewProject = async () => {
-  //   const newProject = {
-  //     id: "10",
-  //     name: "Jira clone project",
-  //     description: "React practice project",
-  //     createdAt: Date.now(),
-  //   };
-  //   try {
-  //     const response = await fetch(`/api/projects/`, {
-  //       method: "POST",
-  //       body: JSON.stringify(newProject),
-  //     });
-  //     const test = await response.json();
-  //     console.log(test);
-  //     console.log([...filteredData, { ...newProject }]);
-  //     setFilteredData([...filteredData, { ...newProject }]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const handleEdit = () => {};
 
   // delete project
@@ -113,9 +53,11 @@ export default function ProjectList() {
     setFilteredData(filter());
   }, [setData, data, relations]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  if (loading) {
+    return <Loader />;
+  }
+
+  return (
     <div className="project-list-container">
       <h2>Your projects:</h2>
 

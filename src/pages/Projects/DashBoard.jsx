@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useFetcher, useParams } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
 import { v4 as uuidv4 } from "uuid";
@@ -7,12 +7,13 @@ import Modal from "../../components/Modal";
 import TaskForm from "./Tasks/TaskForm";
 import SingleTask from "./Tasks/SingleTask";
 import { useGlobalContext } from "../../context";
+import useFetch from "../../hooks/useFetch";
 
 export default function DashBoard() {
   const { id } = useParams();
   // const { data, loading } = useGlobalContext();
   const [project, setProject] = useState("");
-  const [loading, setLoading] = useState();
+  // const [loading, setLoading] = useState();
   const [data, setData] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -22,53 +23,62 @@ export default function DashBoard() {
   const { user } = useGlobalContext();
   const [relations, setRelations] = useState([]);
   const [usersList, setUsersList] = useState([]);
+  const { postData } = useFetch();
+  const { data: fetching, loading, setLoading } = useFetch("relations");
+  console.log("test", fetching);
 
   // fetch relations
-  useEffect(() => {
-    const fetchRelations = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(`/api/relations`);
-        const data = await response.json();
-        setRelations(data.relations);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        console.log(error);
-      }
-    };
-    fetchRelations();
-  }, []);
+  // useEffect(() => {
+  //   const fetchRelations = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch(`/api/relations`);
+  //       const data = await response.json();
+  //       setRelations(data.relations);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       setLoading(false);
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchRelations();
+  // }, []);
 
   const getUsers = (data) => {
     const filter = data.filter((relation) => relation.projectID === id);
     const users = filter[0]?.users;
     return users;
   };
+  console.log("outside", getUsers(fetching.relations));
 
   useEffect(() => {
-    setUsersList(getUsers(relations));
-  }, [setUsersList, relations]);
+    // setUsersList(getUsers(fetching?.relations));
+  }, []);
 
-  // ### fetch POST tasks
-  const fetchNewTask = async (newTask) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`/api/tasks`, {
-        method: "POST",
-        body: JSON.stringify(newTask),
-      });
+  // useEffect(() => {
+  //   setUsersList(getUsers(fetching.relations));
+  // }, [setUsersList, fetching]);
 
-      setData([...data, newTask]);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  // // ### fetch POST tasks
+  // const fetchNewTask = async (newTask) => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await fetch(`/api/tasks`, {
+  //       method: "POST",
+  //       body: JSON.stringify(newTask),
+  //     });
+
+  //     setData([...data, newTask]);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //     setLoading(false);
+  //   }
+  // };
 
   const handleAddTask = (newTaskObj) => {
-    fetchNewTask(newTaskObj);
+    // fetchNewTask(newTaskObj);
+    postData("tasks/", newTaskObj);
     setShowModal(false);
   };
 
@@ -163,9 +173,11 @@ export default function DashBoard() {
     setData(test());
   }, [tasks]);
 
-  return loading ? (
-    <Loader />
-  ) : (
+  if (loading) {
+    return <Loader />;
+  }
+
+  return (
     <div>
       <h2>{project.name}</h2>
       <p>{project.description}</p>
