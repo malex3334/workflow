@@ -6,14 +6,12 @@ import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
 export default function EditProjectForm() {
-  // const [img, setImg] = useState("");
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
-  const { postData } = useFetch();
+  const { updateData } = useFetch();
 
   const { id } = useParams();
   const { data, setData, loading, setLoading } = useFetch(`projects/${id}`);
-  console.log("editdata", data.project);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
@@ -28,24 +26,13 @@ export default function EditProjectForm() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-    // const newObject = {
-    //   id: newID,
-    //   name: name,
-    //   description: description,
-    //   img: img,
-    //   createdAt: Date.now(),
-    // };
-
-    // const newRelation = {
-    //   id: uuidv4(),
-    //   projectID: newID,
-    //   users: ["1", "2", "3", "100"],
-    // };
-
-    // // new version
-    // postData("projects/", newObject);
-    // postData("relations/", newRelation);
-    // navigate("/dashboard");
+    updateData(id, "projects", {
+      name,
+      description,
+      img,
+      updatedAt: Date.now(),
+    });
+    navigate(`/dashboard/projects/${id}`);
   };
   if (loading) {
     return <Loader />;

@@ -35,10 +35,6 @@ export default function ProjectList() {
     return newArray;
   };
 
-  const handleEdit = (id) => {
-    console.log(id);
-  };
-
   // delete project
   const handleDelete = async (id) => {
     try {
@@ -84,14 +80,7 @@ export default function ProjectList() {
                 </NavLink>
                 <p>{project.description}</p>
 
-                <ul className="project-users">
-                  Users IDs:
-                  {/* {relations.relations !== "undefined" &&
-                    relations.relations.length > 0 &&
-                    relations.relations[project.id].users.map((user) => {
-                      return <li>{user}, </li>;
-                    })} */}
-                </ul>
+                <ul className="project-users">Users:</ul>
                 {user.type === "company" && (
                   <button
                     className="del-btn"
@@ -102,10 +91,7 @@ export default function ProjectList() {
                 )}
                 {/* #### edit project */}
                 {user.type === "company" && (
-                  <button
-                    className="edit-btn"
-                    onClick={(e) => handleEdit(project.id)}
-                  >
+                  <button className="edit-btn">
                     <NavLink to={`/editproject/${project.id}`}>edit</NavLink>
                   </button>
                 )}

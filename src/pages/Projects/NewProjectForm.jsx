@@ -10,6 +10,7 @@ export default function NewProjectForm() {
   const [img, setImg] = useState("");
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
+  const { data, loading } = useFetch("users/");
 
   const { postData } = useFetch();
 
