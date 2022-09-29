@@ -36,10 +36,23 @@ function useFetch(dataFrom) {
     }
   };
 
+  const updateData = async (id, collection, updatedValue) => {
+    setLoading(true);
+    try {
+      await fetch(`/api/${collection}/${id}`, {
+        method: "PATCH",
+        body: JSON.stringify(updatedValue),
+      });
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
+    setRerender(!rerender);
+  };
+
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
-
       try {
         const response = await fetch(`/api/${dataFrom}`);
         // const response = await fetch(`${url}projects`);
@@ -67,6 +80,7 @@ function useFetch(dataFrom) {
     setRerender,
     postData,
     deleteData,
+    updateData,
   };
 }
 

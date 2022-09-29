@@ -20,21 +20,7 @@ export default function SingleTask({
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);
-  const { deleteData } = useFetch();
-
-  const updateTask = async (id, updatedValue) => {
-    setLoading(true);
-    try {
-      await fetch(`/api/tasks/${id}`, {
-        method: "PATCH",
-        body: JSON.stringify(updatedValue),
-      });
-    } catch (error) {
-      console.log(error);
-    }
-    setLoading(false);
-    setRerender(!rerender);
-  };
+  const { deleteData, updateData } = useFetch();
 
   const handleDelete = (id) => {
     deleteData(id, "tasks");
@@ -60,17 +46,22 @@ export default function SingleTask({
               }}
               onBlur={(prev) => {
                 setEdit({ ...prev, title: false });
-                updateTask(task.id, {
+                updateData(task.id, "tasks", {
                   task: title,
                   updatedAt: Date.now(),
                 });
+                setRerender(!rerender);
               }}
             ></input>
             <button
               className="btn-save"
               onClick={(prev) => {
-                updateTask(task.id, { task: title, updatedAt: Date.now() });
                 setEdit({ ...prev, title: false });
+                updateData(task.id, "tasks", {
+                  task: title,
+                  updatedAt: Date.now(),
+                });
+                setRerender(!rerender);
               }}
             >
               save
@@ -118,10 +109,11 @@ export default function SingleTask({
                 <textarea
                   onBlur={(prev) => {
                     setEdit({ ...prev, description: false });
-                    updateTask(task.id, {
+                    updateData(task.id, "tasks", {
                       text: description,
                       updatedAt: Date.now(),
                     });
+                    setRerender(!rerender);
                   }}
                   className="description-input"
                   type="text"
@@ -134,10 +126,11 @@ export default function SingleTask({
                   className="btn-save"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
-                    updateTask(task.id, {
+                    updateData(task.id, "tasks", {
                       text: description,
                       updatedAt: Date.now(),
                     });
+                    setRerender(!rerender);
                   }}
                 >
                   save
@@ -168,7 +161,10 @@ export default function SingleTask({
             <select
               value={select}
               onChange={(e) => {
-                updateTask(task.id, { status: e.target.value });
+                updateData(task.id, "tasks", {
+                  status: e.target.value,
+                });
+                setRerender(!rerender);
                 setSelect(e.target.value);
               }}
             >
