@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
+import useFetch from "../../../hooks/useFetch";
 
 const descr = { description: false, title: false };
 
@@ -19,20 +20,7 @@ export default function SingleTask({
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);
-
-  const deleteTask = async (id) => {
-    setLoading(true);
-    try {
-      await fetch(`/api/tasks/${id}`, {
-        method: "DELETE",
-      });
-      setData((prev) => prev.filter((item) => item.id !== id));
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
+  const { deleteData } = useFetch();
 
   const updateTask = async (id, updatedValue) => {
     setLoading(true);
@@ -49,7 +37,8 @@ export default function SingleTask({
   };
 
   const handleDelete = (id) => {
-    deleteTask(id);
+    deleteData(id, "tasks");
+    setRerender(!rerender);
     setShowModal(false);
   };
 

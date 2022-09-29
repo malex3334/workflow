@@ -35,7 +35,9 @@ export default function ProjectList() {
     return newArray;
   };
 
-  const handleEdit = () => {};
+  const handleEdit = (id) => {
+    console.log(id);
+  };
 
   // delete project
   const handleDelete = async (id) => {
@@ -104,7 +106,7 @@ export default function ProjectList() {
                     className="edit-btn"
                     onClick={(e) => handleEdit(project.id)}
                   >
-                    edit
+                    <NavLink to={`/editproject/${project.id}`}>edit</NavLink>
                   </button>
                 )}
               </div>

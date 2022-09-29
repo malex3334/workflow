@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { timeStamp } from "../../utils/time";
 import Modal from "../../components/Modal";
@@ -44,41 +44,11 @@ export default function Dashboard() {
   useEffect(() => {
     if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
-      const assignedUsers = users.users.map((user) => {
-        if (newUsersList.includes(user.id)) {
-          console.log("userlist!!!!!!!!!!", user);
-          return user;
-        } else return "";
-      });
 
       const result = users.users.filter(({ id }) => newUsersList.includes(id));
-      console.log(result);
-
-      // const arr = users.users.filter(function (item) {
-      //   return newUsersList.indexOf(item.id) === -1;
-      // });
-
-      // console.log(arr);
       setUsersList(result);
     }
   }, [loading, usersLoading]);
-
-  // useEffect(() => {
-  //   if (!loading) {
-  //     const newUsersList = getUsers(fetching.relations, id);
-  //     const result = newUsersList.filter(function (obj) {
-  //       return users.users.some(function (obj2) {
-  //         return obj === obj2.id;
-  //       });
-  //     });
-  //     console.log(result);
-  //     console.log(newUsersList);
-  //     setUsersList(result);
-  //   }
-  // }, [loading]);
-
-  console.log(usersList);
-  console.log(usersList);
 
   const handleAddTask = (newTaskObj) => {
     postData("tasks/", newTaskObj);
@@ -129,6 +99,10 @@ export default function Dashboard() {
 
   return (
     <div>
+      <span>
+        <NavLink to="/dashboard">projects / </NavLink>
+        <span>{projects.project.name}</span>
+      </span>
       <h2>{projects.project.name}</h2>
       <p>{projects.project.description}</p>
 

@@ -14,7 +14,6 @@ export default function TaskForm({ handleAddTask, id }) {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    // console.log(newObj);
     handleAddTask(newObj);
   };
 

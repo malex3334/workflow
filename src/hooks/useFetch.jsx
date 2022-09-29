@@ -22,6 +22,20 @@ function useFetch(dataFrom) {
     }
   };
 
+  const deleteData = async (id, collection) => {
+    setLoading(true);
+    try {
+      await fetch(`/api/${collection}/${id}`, {
+        method: "DELETE",
+      });
+      setData((prev) => prev.filter((item) => item.id !== id));
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const fetchBooks = async () => {
       setLoading(true);
@@ -52,6 +66,7 @@ function useFetch(dataFrom) {
     rerender,
     setRerender,
     postData,
+    deleteData,
   };
 }
 
