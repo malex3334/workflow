@@ -25,7 +25,7 @@ button,
 a,
 ul,
 li {
-  color: black;
+  color: $font-color-primary;
   margin: 0;
   padding: 0;
   border: none;
@@ -91,7 +91,7 @@ ul {
   height: 5rem;
   padding-left: 7rem;
   width: 100%;
-  background-color: white;
+  background: $nav-bg;
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -20,6 +20,7 @@ export default function SingleTask({
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);
+  const [priority, setPriority] = useState(task.priority);
   const { deleteData, updateData } = useFetch();
 
   const handleDelete = (id) => {
@@ -83,7 +84,7 @@ export default function SingleTask({
             }}
           >
             {/* {task.task} */}
-            {title}
+            {title ? `${title}` : "no title"}
           </h2>
         )}
         <nav className="navigation">
@@ -163,6 +164,7 @@ export default function SingleTask({
               onChange={(e) => {
                 updateData(task.id, "tasks", {
                   status: e.target.value,
+                  updatedAt: Date.now(),
                 });
                 setRerender(!rerender);
                 setSelect(e.target.value);
@@ -174,6 +176,25 @@ export default function SingleTask({
               <option value="testing">Testing</option>
               <option value="deploy">To deploy</option>
               <option value="done">Done</option>
+            </select>
+          </div>
+          <div className="priority">
+            <label htmlFor="">Priority:</label>
+            <select
+              value={priority}
+              onChange={(e) => {
+                updateData(task.id, "tasks", {
+                  priority: e.target.value,
+                  updatedAt: Date.now(),
+                });
+                setRerender(!rerender);
+                setPriority(e.target.value);
+              }}
+            >
+              <option value="low">low</option>
+              <option value="normal">normal</option>
+              <option value="high">high</option>
+              <option value="very high">very high</option>
             </select>
           </div>
           <div className="timestamps">

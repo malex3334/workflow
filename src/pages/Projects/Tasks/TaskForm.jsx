@@ -22,6 +22,7 @@ export default function TaskForm({ handleAddTask, id }) {
       <h2>New task:</h2>
       <form onSubmit={(e) => handleAdd(e)}>
         <input
+          required
           type="text"
           placeholder="task name"
           value={newObj.task}
@@ -46,6 +47,19 @@ export default function TaskForm({ handleAddTask, id }) {
             <option value="testing">Testing</option>
             <option value="deploy">To deploy</option>
             <option value="done">Done</option>
+          </select>
+        </div>
+        <div className="select">
+          <label htmlFor="">Priority:</label>
+          <select
+            name=""
+            id=""
+            onChange={(e) => setNewObj({ ...newObj, priority: e.target.value })}
+          >
+            <option value="low">low</option>
+            <option value="normal">normal</option>
+            <option value="high">high</option>
+            <option value="very high">very high</option>
           </select>
         </div>
 

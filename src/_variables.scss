@@ -1,7 +1,10 @@
-$nav-bg: white;
-$aside-bg: rgb(203, 203, 203);
+// $nav-bg: #3c4b64;
+// $aside-bg: #353a40;
+$nav-bg: #ffffff;
+$aside-bg: #ccd3db;
 
-$board-bg: rgb(223, 223, 223);
+$board-bg: #ebedef;
+// $board-bg: rgb(223, 223, 223);
 $project-card-bg: white;
 
 $bg-green: green;
@@ -9,3 +12,18 @@ $bg-green: green;
 $board-title: grey;
 
 $shadow-normal: 3px 3px 10px rgba(0, 0, 0, 0.298);
+
+$font-color-primary: #8d939d;
+$font-hover-primary: white;
+$color-secondary: #ffff;
+$color-tertiary: #ffff;
+$color-quatemary: #ffff;
+
+$fz-title: 2rem;
+$fz-subtitle: 2rem;
+$fz-paragraph: 1.4rem;
+$fz-button: 1.4rem;
+
+$bg-primary: #ffff;
+$bg-secondary: #ffff;
+$bg-tertiary: #ffff;

@@ -88,6 +88,7 @@ export default function () {
         task: "finish project",
         text: "somet text a co",
         status: "done",
+        priority: "high",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -97,6 +98,7 @@ export default function () {
         task: "start",
         text: "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         status: "done",
+        priority: "normal",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -106,6 +108,7 @@ export default function () {
         task: "plan project",
         text: "some text etc.",
         status: "testing",
+        priority: "low",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -115,6 +118,7 @@ export default function () {
         task: "finish project",
         text: "somet text a co",
         status: "done",
+        priority: "very high",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -124,6 +128,7 @@ export default function () {
         task: "start",
         text: "some text etc.",
         status: "done",
+        priority: "low",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -133,6 +138,7 @@ export default function () {
         task: "plan project",
         text: "some text etc.",
         status: "testing",
+        priority: "normal",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });

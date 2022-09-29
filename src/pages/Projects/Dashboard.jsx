@@ -80,6 +80,7 @@ export default function Dashboard() {
           >
             {item.task}
           </h4>
+          <p>{item.priority}</p>
         </div>
         <p>{item.text}</p>
       </div>
