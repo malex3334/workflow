@@ -10,7 +10,7 @@ import useFetch from "../../hooks/useFetch";
 import NotLoggedIn from "../../components/NotLoggedIn";
 
 const getUsers = (data, id) => {
-  const filter = data.filter((relation) => relation.projectID === id);
+  const filter = data.filter((relation) => relation.projectId === id);
   const users = filter[0]?.users;
   return users;
 };
@@ -20,7 +20,7 @@ const filter = (tasks, id) => {
   tasks.tasks &&
     tasks.tasks.length > 0 &&
     tasks.tasks.map((task) => {
-      if (task.projectID === id) {
+      if (task.projectId === id) {
         newTasks.push(task);
       }
     });
@@ -42,9 +42,10 @@ export default function Dashboard() {
   const { data: users, loading: usersLoading } = useFetch("users/");
 
   useEffect(() => {
+    console.log("######", fetching.relations);
     if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
-
+      console.log("############", newUsersList);
       const result = users.users.filter(({ id }) => newUsersList.includes(id));
       setUsersList(result);
     }

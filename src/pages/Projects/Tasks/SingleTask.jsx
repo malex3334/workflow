@@ -3,6 +3,7 @@ import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
+import Comment from "./Comment";
 
 const descr = { description: false, title: false };
 
@@ -21,7 +22,27 @@ export default function SingleTask({
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);
   const [priority, setPriority] = useState(task.priority);
+  const [commentsList, setCommentsList] = useState([]);
   const { deleteData, updateData } = useFetch();
+  const {
+    data: comments,
+    loading: commentsLoading,
+    rerender: commentsRerender,
+    setRerender: setCommentsRerender,
+  } = useFetch("comments/");
+  const { data: users, loading: usersLoading } = useFetch("users/");
+
+  console.log("#", comments);
+
+  useEffect(() => {
+    if (!commentsLoading) {
+      const result = comments.comments.filter(
+        (comment) => comment.taskId === task.id
+      );
+      console.log("this is result", result);
+      setCommentsList(result);
+    }
+  }, [commentsLoading, rerender]);
 
   const handleDelete = (id) => {
     deleteData(id, "tasks");
@@ -204,20 +225,14 @@ export default function SingleTask({
         </div>
         <div className="right"></div>
       </div>
-      <div className="comments">
-        <label htmlFor="comments">comments:</label>
-        <div className="comment-input-container">
-          <img className="user-avatar" src={user.img} alt="" />
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="2"
-            placeholder="enter comment"
-          />
-        </div>
-        <button className="submit">submit</button>
-      </div>
+      <Comment
+        commentsList={commentsList}
+        loading={commentsLoading}
+        user={user}
+        task={task}
+        rerender={commentsRerender}
+        setRerender={setCommentsRerender}
+      />
     </div>
   );
 }

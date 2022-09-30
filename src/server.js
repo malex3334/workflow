@@ -1,17 +1,77 @@
-import { createServer, Model } from "miragejs";
-
-console.log("render");
+import {
+  createServer,
+  hasMany,
+  Model,
+  belongsTo,
+  RestSerializer,
+} from "miragejs";
 
 export default function () {
   createServer({
+    serializers: {
+      application: RestSerializer,
+      comment: RestSerializer.extend({
+        include: ["user"],
+        embed: true,
+      }),
+    },
     models: {
       project: Model,
-      user: Model,
+
+      user: Model.extend({
+        comment: hasMany(),
+      }),
+
       relation: Model,
-      task: Model,
+
+      task: Model.extend({
+        comments: hasMany(),
+      }),
+
+      comment: Model.extend({
+        user: belongsTo(),
+      }),
     },
 
     seeds(server) {
+      // USERS
+
+      let michael = server.create("user", {
+        id: "1",
+        login: "michael",
+        name: "Michael Scott",
+        img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png",
+      });
+      let dwight = server.create("user", {
+        id: "2",
+        login: "dwight",
+        name: "Dwight Schrute",
+        email: "dwight@dunder.com",
+        password: "dwight11",
+        img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
+        type: "user",
+      });
+      let tuna = server.create("user", {
+        id: "3",
+        login: "tuna",
+        name: "Jim Halpert",
+        img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
+      });
+      let dn = server.create("user", {
+        id: "100",
+        login: "nasa1",
+        name: "Dunder Mifflin",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
+        type: "company",
+      });
+      let pam = server.create("user", {
+        id: "5",
+        name: "Pam Halpert",
+        img: "https://wallpapercave.com/wp/wp10346398.jpg",
+        login: "pam",
+        type: "user",
+      });
+
       // PROJECTS
       server.create("project", {
         id: "1",
@@ -47,35 +107,35 @@ export default function () {
       // relations
       server.create("relation", {
         id: "555",
-        projectID: "1",
+        projectId: "1",
         users: ["1", "2", "3", "5", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "121",
-        projectID: "2",
+        projectId: "2",
         users: ["1", "2", "3", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "222",
-        projectID: "3",
+        projectId: "3",
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "1124",
-        projectID: "10",
+        projectId: "10",
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
       server.create("relation", {
         id: "1124",
-        projectID: "4",
+        projectId: "4",
         users: ["100", "1"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -84,7 +144,7 @@ export default function () {
       // tasks
       server.create("task", {
         id: "99",
-        projectID: "2",
+        projectId: "2",
         task: "finish project",
         text: "somet text a co",
         status: "done",
@@ -94,7 +154,7 @@ export default function () {
       });
       server.create("task", {
         id: "89",
-        projectID: "2",
+        projectId: "2",
         task: "start",
         text: "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         status: "done",
@@ -104,7 +164,7 @@ export default function () {
       });
       server.create("task", {
         id: "94",
-        projectID: "2",
+        projectId: "2",
         task: "plan project",
         text: "some text etc.",
         status: "testing",
@@ -114,7 +174,7 @@ export default function () {
       });
       server.create("task", {
         id: "51",
-        projectID: "1",
+        projectId: "1",
         task: "finish project",
         text: "somet text a co",
         status: "done",
@@ -124,7 +184,7 @@ export default function () {
       });
       server.create("task", {
         id: "894",
-        projectID: "2",
+        projectId: "2",
         task: "start",
         text: "some text etc.",
         status: "done",
@@ -134,7 +194,7 @@ export default function () {
       });
       server.create("task", {
         id: "924",
-        projectID: "3",
+        projectId: "3",
         task: "plan project",
         text: "some text etc.",
         status: "testing",
@@ -143,46 +203,44 @@ export default function () {
         updatedAt: Date.now(),
       });
 
-      // USERS
-
-      server.create("user", {
-        id: "1",
-        login: "michael",
-        name: "Michael Scott",
-        img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png",
+      // comments
+      server.create("comment", {
+        id: "888",
+        taskID: "89",
+        text: "this is my firs comment in this app",
+        user: dwight,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
-      server.create("user", {
-        id: "2",
-        login: "dwight",
-        name: "Dwight Schrute",
-        email: "dwight@dunder.com",
-        password: "dwight11",
-        img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
-        type: "user",
+      server.create("comment", {
+        id: "555",
+        taskID: "89",
+        text: "does it work",
+        user: pam,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
-      server.create("user", {
-        id: "3",
-        login: "tuna",
-        name: "Jim Halpert",
-        img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
+      server.create("comment", {
+        id: "888",
+        taskID: "89",
+        text: "this is my firs comment in this app",
+        user: dwight,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
-      server.create("user", {
-        id: "100",
-        login: "nasa1",
-        name: "Dunder Mifflin",
-        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
-        type: "company",
-      });
-      server.create("user", {
-        id: "5",
-        name: "Pam Halpert",
-        img: "https://wallpapercave.com/wp/wp10346398.jpg",
-        login: "pam",
-        type: "user",
+      server.create("comment", {
+        id: "777",
+        taskID: "94",
+        text: "this is my second comment",
+        user: dwight,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
       });
     },
 
     routes() {
+      this.resource("user");
+      this.resource("comments");
       //  ############# PROJECTS
       this.get("/api/projects", (schema, request) => {
         return schema.projects.all();
@@ -251,7 +309,20 @@ export default function () {
         return task.update(newAttrs);
       });
 
-      // users
+      // ########## COMMENTS
+      this.get("/api/comments", (schema, request) => {
+        return schema.comments.all();
+      });
+
+      this.post("/api/comments", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody);
+        // attrs.id = Math.floor(Math.random() * 100);
+        console.log("data dump: ", this.db.dump());
+        return schema.comments.create(attrs);
+      });
+
+      // this.post("comments");
+      // // users
 
       this.get("/api/users", (schema, request) => {
         return schema.users.all();
