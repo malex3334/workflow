@@ -16,20 +16,8 @@ import { useEffect } from "react";
 function App() {
   const { user, setUser } = useGlobalContext();
 
-  const { data } = useFetch("comments/");
-  const { data: tasks } = useFetch("tasks/");
-  const { data: relations, loading } = useFetch("relations/");
-
-  useEffect(() => {
-    console.log(
-      "data",
-      data
-      // "users",
-      // relations.relations?.filter((relation) => relation.project === "1"),
-      // "project",
-      // relations.projects?.filter((project) => project.id === "1")
-    );
-  }, [loading]);
+  // const { data: tasks } = useFetch("tasks/");
+  // const { data: relations, loading } = useFetch("relations/");
 
   return (
     <div className="app-container">

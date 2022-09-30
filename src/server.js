@@ -57,7 +57,7 @@ export default function () {
         name: "Jim Halpert",
         img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
       });
-      let dn = server.create("user", {
+      let dm = server.create("user", {
         id: "100",
         login: "nasa1",
         name: "Dunder Mifflin",
@@ -241,6 +241,7 @@ export default function () {
     routes() {
       this.resource("user");
       this.resource("comments");
+      this.resource("relations");
       //  ############# PROJECTS
       this.get("/api/projects", (schema, request) => {
         return schema.projects.all();

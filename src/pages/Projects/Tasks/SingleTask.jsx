@@ -32,8 +32,6 @@ export default function SingleTask({
   } = useFetch("comments/");
   const { data: users, loading: usersLoading } = useFetch("users/");
 
-  console.log("#", comments);
-
   useEffect(() => {
     if (!commentsLoading) {
       const result = comments.comments.filter(

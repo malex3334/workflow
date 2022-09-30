@@ -27,6 +27,13 @@ const filter = (tasks, id) => {
   return newTasks;
 };
 
+const getRelations = (relations, id) => {
+  const response = relations.relations.filter(
+    (relation) => relation.projectId === id
+  );
+  return response;
+};
+
 export default function Dashboard() {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -42,12 +49,12 @@ export default function Dashboard() {
   const { data: users, loading: usersLoading } = useFetch("users/");
 
   useEffect(() => {
-    console.log("######", fetching.relations);
     if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
-      console.log("############", newUsersList);
       const result = users.users.filter(({ id }) => newUsersList.includes(id));
       setUsersList(result);
+      const test = getRelations(fetching, id);
+      console.log(test[0].users);
     }
   }, [loading, usersLoading]);
 
