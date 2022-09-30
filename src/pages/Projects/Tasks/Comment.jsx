@@ -4,6 +4,7 @@ import useFetch from "../../../hooks/useFetch";
 import { timeStamp } from "../../../utils/time";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "../../../components/Loader";
+import { FaTrash } from "react-icons/fa";
 
 export default function Comment({
   commentsList,
@@ -14,7 +15,7 @@ export default function Comment({
   loading,
 }) {
   const [commentText, setCommentText] = useState("");
-  const { postData } = useFetch();
+  const { postData, deleteData } = useFetch();
 
   const handleSubmit = () => {
     postData("comments", {
@@ -25,6 +26,12 @@ export default function Comment({
       createdAt: Date.now(),
     });
     setRerender(!rerender);
+    setCommentText("");
+  };
+
+  const handleDelete = (id) => {
+    deleteData(id, "comments");
+    setRerender(!rerender);
   };
 
   if (loading) {
@@ -33,27 +40,30 @@ export default function Comment({
 
   return (
     <div className="comments">
-      <div>
+      <>
         <label htmlFor="comments">comments:</label>
-        <ul>
+        <>
           {commentsList.map((comment) => {
             return (
-              <div>
-                <div style={{ display: "flex" }}>
-                  <img
-                    src={comment.user.img}
-                    style={{ width: "4rem" }}
-                    alt=""
-                  />
+              <div className="single-comment">
+                <div className="user-info" style={{ display: "flex" }}>
+                  <img className="user-avatar" src={comment.user.img} alt="" />
                   <h4>{comment.user.name}</h4>
                 </div>
-                <p>{comment.text}</p>
+                <div className="text-container">
+                  <p>{comment.text}</p>
+                  {comment.user.id === user.id && (
+                    <button onClick={(e) => handleDelete(comment.id)}>
+                      <FaTrash />
+                    </button>
+                  )}
+                </div>
                 <p>posted: {timeStamp(comment.createdAt)} </p>
               </div>
             );
           })}
-        </ul>
-      </div>
+        </>
+      </>
       <div className="comment-input-container">
         <img className="user-avatar" src={user.img} alt="" />
         <textarea

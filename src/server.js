@@ -321,6 +321,12 @@ export default function () {
         return schema.comments.create(attrs);
       });
 
+      this.delete("/api/comments/:id", (schema, request) => {
+        let id = request.params.id;
+        console.log("xxxxxxxxxxxxxxxdata dump: ", this.db.dump());
+        return schema.comments.find(id).destroy();
+      });
+
       // this.post("comments");
       // // users
 
