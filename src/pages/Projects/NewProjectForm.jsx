@@ -11,9 +11,9 @@ export default function NewProjectForm() {
   const [img, setImg] = useState("");
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
-  const { data, loading } = useFetch("users/");
+  const { data, setData, loading } = useFetch("users/");
   const [users, setUsers] = useState([]);
-
+  const [assignedUsers, setAssignedUsers] = useState([]);
   const { postData, loading: postLoading } = useFetch();
 
   const handleSumbit = async (e) => {
@@ -46,6 +46,18 @@ export default function NewProjectForm() {
     return <Loader />;
   }
 
+  const handleAssignUsers = (e, user) => {
+    setUsers([...users, user.id]);
+    setAssignedUsers([...assignedUsers, user]);
+  };
+
+  const handleUnassignUser = (e, user) => {
+    setAssignedUsers((prev) =>
+      prev.filter((filtered) => filtered.id !== user.id)
+    );
+    setUsers((prev) => prev.filter((filtered) => filtered !== user.id));
+  };
+
   return (
     <div className="new-project-container">
       <h2>New Project:</h2>
@@ -68,27 +80,48 @@ export default function NewProjectForm() {
             setDescription(e.target.value);
           }}
         />
-        <div>
-          {data.users.map((user) => {
-            return (
-              <li
-                style={{ cursor: "pointer" }}
-                key={user.id}
-                onClick={(e) => {
-                  setUsers([...users, user.id]);
-                }}
-              >
-                {user.name}
-              </li>
-            );
-          })}
-        </div>
-        <input
-          type="text"
-          placeholder="users"
-          value={users}
-          onChange={(e) => setUsers(e.target.value)}
-        />
+        <ul className="users-list">
+          <h4>all users:</h4>
+          {data.users
+            ? data.users.map((user) => {
+                return (
+                  <li
+                    className="user-mini row"
+                    style={{ cursor: "pointer" }}
+                    key={uuidv4()}
+                    onClick={(e) => {
+                      handleAssignUsers(e, user);
+                    }}
+                  >
+                    <img src={user.img} className="user-img" alt={user.name} />
+                    <p className="user-nick">{user.name}</p>
+                  </li>
+                );
+              })
+            : "no users"}
+        </ul>
+        {/* show all users */}
+        <ul className="users-list">
+          <h4>assigned users:</h4>
+          {assignedUsers
+            ? assignedUsers?.map((user) => {
+                return (
+                  <li
+                    onClick={(e) => {
+                      handleUnassignUser(e, user);
+                    }}
+                    className="user-mini row"
+                    style={{ cursor: "pointer" }}
+                    key={uuidv4()}
+                  >
+                    <img src={user.img} className="user-img" alt={user.name} />
+                    <p className="user-nick">{user.name}</p>
+                  </li>
+                );
+              })
+            : "no users"}
+        </ul>
+
         <input
           type="text"
           placeholder="paste image link"
