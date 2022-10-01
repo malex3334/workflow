@@ -47,6 +47,9 @@ export default function NewProjectForm() {
   }
 
   const handleAssignUsers = (e, user) => {
+    if (assignedUsers.includes(user)) {
+      return;
+    }
     setUsers([...users, user.id]);
     setAssignedUsers([...assignedUsers, user]);
   };
