@@ -14,6 +14,9 @@ export default function () {
         include: ["user"],
         embed: true,
       }),
+      relations: RestSerializer.extend({
+        include: ["user"],
+      }),
     },
     models: {
       project: Model.extend({
@@ -112,7 +115,7 @@ export default function () {
       let relation1 = server.create("relation", {
         id: "555",
         project: project1,
-        // projectId: "1",
+
         users: ["1", "2", "3", "5", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -120,7 +123,7 @@ export default function () {
       let relation2 = server.create("relation", {
         id: "121",
         project: project2,
-        // projectId: "2",
+
         users: ["1", "2", "3", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -128,7 +131,7 @@ export default function () {
       let relation3 = server.create("relation", {
         id: "222",
         project: project3,
-        // projectId: "3",
+
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -136,7 +139,7 @@ export default function () {
       let relation4 = server.create("relation", {
         id: "1124",
         project: project4,
-        // projectId: "10",
+
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
@@ -291,6 +294,14 @@ export default function () {
         // attrs.id = Math.floor(Math.random() * 100);
         console.log("data dump: ", this.db.dump());
         return schema.relations.create(attrs);
+      });
+
+      this.patch("api/relations/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let project = schema.relations.find(id);
+
+        return project.update(newAttrs);
       });
 
       //  ############# TASKS

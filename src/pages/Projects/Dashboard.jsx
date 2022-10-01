@@ -125,7 +125,6 @@ export default function Dashboard() {
         <span>Assigned users:</span>
         {usersList &&
           usersList.map((user) => {
-            console.log("user from dashboard", user);
             if (user === "undefined") return;
             const { login, img } = user;
             return (
