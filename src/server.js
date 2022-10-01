@@ -16,13 +16,17 @@ export default function () {
       }),
     },
     models: {
-      project: Model,
+      project: Model.extend({
+        relation: belongsTo(),
+      }),
 
       user: Model.extend({
         comment: hasMany(),
       }),
 
-      relation: Model,
+      relation: Model.extend({
+        project: belongsTo(),
+      }),
 
       task: Model.extend({
         comments: hasMany(),
@@ -73,7 +77,7 @@ export default function () {
       });
 
       // PROJECTS
-      server.create("project", {
+      let project1 = server.create("project", {
         id: "1",
         name: "Jira clone project",
         description:
@@ -81,7 +85,7 @@ export default function () {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("project", {
+      let project2 = server.create("project", {
         id: "2",
         name: "Project",
         description:
@@ -90,14 +94,14 @@ export default function () {
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("project", {
+      let project3 = server.create("project", {
         id: "3",
         name: "third test",
         description: "still testing this",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("project", {
+      let project4 = server.create("project", {
         id: "4",
         name: "secret project",
         description: "you cant see it dwight",
@@ -105,41 +109,45 @@ export default function () {
         updatedAt: Date.now(),
       });
       // relations
-      server.create("relation", {
+      let relation1 = server.create("relation", {
         id: "555",
-        projectId: "1",
+        project: project1,
+        // projectId: "1",
         users: ["1", "2", "3", "5", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("relation", {
+      let relation2 = server.create("relation", {
         id: "121",
-        projectId: "2",
+        project: project2,
+        // projectId: "2",
         users: ["1", "2", "3", "100"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("relation", {
+      let relation3 = server.create("relation", {
         id: "222",
-        projectId: "3",
+        project: project3,
+        // projectId: "3",
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("relation", {
+      let relation4 = server.create("relation", {
         id: "1124",
-        projectId: "10",
+        project: project4,
+        // projectId: "10",
         users: ["1", "100", "2", "3"],
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
-      server.create("relation", {
-        id: "1124",
-        projectId: "4",
-        users: ["100", "1"],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
-      });
+      // let relation5 = server.create("relation", {
+      //   id: "1124",
+      //   projectId: "4",
+      //   users: ["100", "1"],
+      //   createdAt: Date.now(),
+      //   updatedAt: Date.now(),
+      // });
 
       // tasks
       server.create("task", {
@@ -242,6 +250,7 @@ export default function () {
       this.resource("user");
       this.resource("comments");
       this.resource("relations");
+      this.resource("projects");
       //  ############# PROJECTS
       this.get("/api/projects", (schema, request) => {
         return schema.projects.all();

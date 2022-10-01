@@ -12,27 +12,33 @@ export default function NewProjectForm() {
   let navigate = useNavigate();
   const { data, loading } = useFetch("users/");
 
+  console.log(data);
+
   const { postData } = useFetch();
 
-  const handleSumbit = (e) => {
+  const handleSumbit = async (e) => {
     e.preventDefault();
+
+    const newRelation = {
+      id: newID,
+      projectId: newID,
+      // projectId: "1",
+      users: ["1", "2", "3", "5", "100"],
+      createdAt: Date.now(),
+      updatedAt: Date.now(),
+    };
+
     const newObject = {
       id: newID,
       name: name,
       description: description,
-      img: img,
       createdAt: Date.now(),
-    };
-
-    const newRelation = {
-      id: uuidv4(),
-      projectID: newID,
-      users: ["1", "2", "3", "100"],
+      updatedAt: Date.now(),
     };
 
     // new version
-    postData("projects/", newObject);
-    postData("relations/", newRelation);
+    await postData("projects/", newObject);
+    await postData("relations/", newRelation);
     navigate("/dashboard");
   };
 

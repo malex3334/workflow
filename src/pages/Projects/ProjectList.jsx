@@ -24,7 +24,7 @@ export default function ProjectList() {
       relations.relations.map((item) => {
         if (item.users.includes(user.id)) {
           data.projects.map((project) => {
-            if (project.id === item.projectId) {
+            if (project.id === item.project) {
               newArray.push(project);
               return newArray;
             }
