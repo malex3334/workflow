@@ -73,7 +73,7 @@ export default function () {
       });
       let pam = server.create("user", {
         id: "5",
-        name: "Pam Halpert",
+        name: "Pam Beasley",
         img: "https://wallpapercave.com/wp/wp10346398.jpg",
         login: "pam",
         type: "user",
@@ -85,6 +85,7 @@ export default function () {
         name: "Jira clone project",
         description:
           "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
+        img: "https://images.unsplash.com/photo-1574717024757-c1ec4d86ae82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -101,6 +102,7 @@ export default function () {
         id: "3",
         name: "third test",
         description: "still testing this",
+        img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });
@@ -108,6 +110,7 @@ export default function () {
         id: "4",
         name: "secret project",
         description: "you cant see it dwight",
+        img: "https://images.unsplash.com/photo-1664466935816-4cf27816333e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
         createdAt: Date.now(),
         updatedAt: Date.now(),
       });

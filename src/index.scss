@@ -1,58 +1,5 @@
 @import "./variables";
-
-html {
-  font-size: 61.5%;
-  font-family: "Lato", sans-serif;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-size: 1.8rem;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-span,
-button,
-a,
-ul,
-li {
-  color: $font-color-primary;
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  font-weight: normal;
-  list-style: none;
-  text-decoration: none;
-  background: none;
-}
-
-button {
-  cursor: pointer;
-  padding: 0.5em;
-  border-radius: 6px;
-}
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.loader {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-}
+@import "./global";
 
 .app-container {
   position: relative;
@@ -163,11 +110,6 @@ ul {
   }
 }
 
-.user-img {
-  max-width: 50rem;
-  max-height: 30rem;
-}
-
 .project-list-container {
   h2 {
     padding: 1rem;
@@ -227,12 +169,6 @@ ul {
   // }
 }
 
-.users-list {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
 .user-mini {
   position: relative;
   .user-img {
@@ -246,10 +182,12 @@ ul {
     background-color: white;
     padding: 0.5rem;
     opacity: 0;
+    visibility: hidden;
     border-radius: 1px;
   }
 
   .user-img:hover + .user-nick {
+    visibility: visible;
     opacity: 1;
     z-index: 2;
   }
@@ -300,7 +238,7 @@ ul {
   .single-task {
     background-color: white;
     padding: 1rem;
-    box-shadow: 2px 2px 1px rgba(114, 114, 114, 0.268);
+    box-shadow: 2px 2px 3px rgba(114, 114, 114, 0.168);
     border-radius: 3px;
     cursor: pointer;
     transition: color 0.4s ease-in-out;

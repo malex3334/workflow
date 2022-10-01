@@ -135,7 +135,7 @@ export default function EditProjectForm() {
             setDescription(e.target.value);
           }}
         />
-        <ul className="users-list">
+        <ul className="users-list users-list-width">
           <h4>all users:</h4>
           {/* {usersData.users
             ? usersData.users.map((user) => { */}
@@ -158,7 +158,7 @@ export default function EditProjectForm() {
             : "no users"}
         </ul>
         {/* show all users */}
-        <ul className="users-list">
+        <ul className="users-list users-list-width">
           <h4>assigned users:</h4>
           {assignedUsers
             ? assignedUsers?.map((user) => {
