@@ -12,8 +12,8 @@ import NotLoggedIn from "../../components/NotLoggedIn";
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
   const result = filter.map((single) => {
-    const users = single.users;
-    return users;
+    let users = single.users;
+    return (users = single.users);
   });
   return result;
 };
@@ -30,12 +30,12 @@ const filter = (tasks, id) => {
   return newTasks;
 };
 
-const getRelations = (relations, id) => {
-  const response = relations.relations.filter(
-    (relation) => relation.project === id
-  );
-  return response;
-};
+// const getRelations = (relations, id) => {
+//   const response = relations.relations.filter(
+//     (relation) => relation.project === id
+//   );
+//   return response;
+// };
 
 export default function Dashboard() {
   const { id } = useParams();
@@ -54,13 +54,13 @@ export default function Dashboard() {
   useEffect(() => {
     if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
-      console.log("####", newUsersList);
-      console.log("relations", fetching.relations);
-      console.log("users", users.users);
-      const result = users.users.filter(({ id }) => newUsersList.includes(id));
+      console.log("newuserslist", newUsersList);
+      const result = users.users.filter(({ id }) =>
+        newUsersList[0].includes(id)
+      );
+      console.log("result", result);
       setUsersList(result);
-      const test = getRelations(fetching, id);
-      console.log(test[0].users);
+      console.log("userslist", result);
     }
   }, [loading, usersLoading]);
 
@@ -125,6 +125,7 @@ export default function Dashboard() {
         <span>Assigned users:</span>
         {usersList &&
           usersList.map((user) => {
+            console.log("user from dashboard", user);
             if (user === "undefined") return;
             const { login, img } = user;
             return (

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaHandSparkles } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
 export default function NewProjectForm() {
@@ -11,10 +12,9 @@ export default function NewProjectForm() {
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
   const { data, loading } = useFetch("users/");
+  const [users, setUsers] = useState([]);
 
-  console.log(data);
-
-  const { postData } = useFetch();
+  const { postData, loading: postLoading } = useFetch();
 
   const handleSumbit = async (e) => {
     e.preventDefault();
@@ -23,7 +23,7 @@ export default function NewProjectForm() {
       id: newID,
       projectId: newID,
       // projectId: "1",
-      users: ["1", "2", "3", "5", "100"],
+      users: ["100", ...users],
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
@@ -41,6 +41,10 @@ export default function NewProjectForm() {
     await postData("relations/", newRelation);
     navigate("/dashboard");
   };
+
+  if (loading || postLoading) {
+    return <Loader />;
+  }
 
   return (
     <div className="new-project-container">
@@ -64,7 +68,27 @@ export default function NewProjectForm() {
             setDescription(e.target.value);
           }}
         />
-        <input type="text" placeholder="users" />
+        <div>
+          {data.users.map((user) => {
+            return (
+              <li
+                style={{ cursor: "pointer" }}
+                key={user.id}
+                onClick={(e) => {
+                  setUsers([...users, user.id]);
+                }}
+              >
+                {user.name}
+              </li>
+            );
+          })}
+        </div>
+        <input
+          type="text"
+          placeholder="users"
+          value={users}
+          onChange={(e) => setUsers(e.target.value)}
+        />
         <input
           type="text"
           placeholder="paste image link"
