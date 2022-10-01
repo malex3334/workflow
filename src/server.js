@@ -286,7 +286,7 @@ export default function () {
       });
       //  ############# RELATIONS
       this.get("/api/relations", (schema) => {
-        return schema.relations.all();
+        return [schema.relations.all(), schema.users.all()];
       });
 
       this.post("/api/relations", (schema, request) => {

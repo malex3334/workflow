@@ -4,14 +4,14 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
-const getUsers = (data, id) => {
-  const filter = data.filter((relation) => relation.project === id);
-  const result = filter.map((single) => {
-    let users = single.users;
-    return (users = single.users);
-  });
-  return result;
-};
+// const getUsers = (data, id) => {
+//   const filter = data.filter((relation) => relation.project === id);
+//   const result = filter.map((single) => {
+//     let users = single.users;
+//     return (users = single.users);
+//   });
+//   return result;
+// };
 
 export default function EditProjectForm() {
   const [newID, setNewID] = useState(uuidv4());
@@ -57,8 +57,13 @@ export default function EditProjectForm() {
         (relation) => relation.project === id
       );
       setRelationId(result[0]);
+      const test = relations.users.filter(({ id }) =>
+        result[0].users.includes(id)
+      );
+      setAssignedUsers(test);
+      setUsers(test.map((user) => user.id));
     }
-  }, [relationsLoading, relations, loading, usersLoading]);
+  }, [, relations, loading, usersLoading]);
 
   // useEffect(() => {
   //   if (!usersLoading) {
@@ -90,7 +95,7 @@ export default function EditProjectForm() {
   };
 
   const handleAssignUsers = (e, user) => {
-    if (assignedUsers.includes(user)) {
+    if (assignedUsers.includes(user) || users.includes(user.id)) {
       return;
     }
     setUsers([...users, user.id]);
