@@ -54,7 +54,6 @@ export default function Dashboard() {
   useEffect(() => {
     if (!loading) {
       const newUsersList = getUsers(fetching.relations, id);
-      console.log("newuserslist", newUsersList);
       const result = users.users.filter(({ id }) =>
         newUsersList[0].includes(id)
       );

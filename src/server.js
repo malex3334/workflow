@@ -14,7 +14,7 @@ export default function () {
         include: ["user"],
         embed: true,
       }),
-      relations: RestSerializer.extend({
+      relation: RestSerializer.extend({
         include: ["user"],
       }),
     },

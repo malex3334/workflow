@@ -4,28 +4,44 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
+const getUsers = (data, id) => {
+  const filter = data.filter((relation) => relation.project === id);
+  const result = filter.map((single) => {
+    let users = single.users;
+    return (users = single.users);
+  });
+  return result;
+};
+
 export default function EditProjectForm() {
   const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
   const { updateData } = useFetch();
   const { id } = useParams();
   const [relationId, setRelationId] = useState();
-  const { data, setData, loading, setLoading } = useFetch(`projects/${id}`);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
+
+  const { data, setData, loading, setLoading } = useFetch(`projects/${id}`);
+  // users to be patched
+  const [users, setUsers] = useState([]);
+  // users to be displayed as assigned
+  const [assignedUsers, setAssignedUsers] = useState([]);
+  // all users full data
   const {
     data: usersData,
     setData: setUsersData,
     loading: usersLoading,
   } = useFetch("users/");
+  // users to be fetched as assigned
+  const [fetchedUsers, setFetchedUsers] = useState([]);
+  // relations
   const {
     data: relations,
     setData: setRelations,
     loading: relationsLoading,
   } = useFetch("relations/");
-  const [users, setUsers] = useState([]);
-  const [assignedUsers, setAssignedUsers] = useState([]);
 
   useEffect(() => {
     if (!loading) {
@@ -40,11 +56,23 @@ export default function EditProjectForm() {
       const result = relations.relations.filter(
         (relation) => relation.project === id
       );
-
       setRelationId(result[0]);
-      console.log(result[0].users);
     }
-  }, [relationsLoading, relations]);
+  }, [relationsLoading, relations, loading, usersLoading]);
+
+  // useEffect(() => {
+  //   if (!usersLoading) {
+  //     const result = relations.relations.filter(
+  //       (relation) => relation.project === id
+  //     );
+  //     const newUsersList = getUsers(
+  //       usersData && usersData?.users,
+  //       result[0].id
+  //     );
+  //     console.log("newusers", newUsersList);
+  //     setAssignedUsers(newUsersList);
+  //   }
+  // }, [usersLoading]);
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -104,6 +132,8 @@ export default function EditProjectForm() {
         />
         <ul className="users-list">
           <h4>all users:</h4>
+          {/* {usersData.users
+            ? usersData.users.map((user) => { */}
           {usersData.users
             ? usersData.users.map((user) => {
                 return (

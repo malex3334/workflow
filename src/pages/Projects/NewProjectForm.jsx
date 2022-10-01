@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { FaHandSparkles } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "../../components/Loader";
+import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 
 export default function NewProjectForm() {
@@ -15,6 +15,7 @@ export default function NewProjectForm() {
   const [users, setUsers] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
   const { postData, loading: postLoading } = useFetch();
+  const { user } = useGlobalContext();
 
   const handleSumbit = async (e) => {
     e.preventDefault();
@@ -22,8 +23,7 @@ export default function NewProjectForm() {
     const newRelation = {
       id: newID,
       projectId: newID,
-      // projectId: "1",
-      users: ["100", ...users],
+      users: [user.id, ...users],
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
