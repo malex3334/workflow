@@ -130,3 +130,37 @@ ul {
     margin: 0 0.25rem;
   }
 }
+
+// add btns
+
+.btn-hover-container {
+  display: flex;
+  align-items: center;
+}
+
+.btn-text {
+  opacity: 0;
+  transition: 0.5s all ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.add-btn {
+  &:hover {
+    // fill: white;
+
+    & + .btn-text {
+      opacity: 1;
+    }
+  }
+}
+
+// .add-btn:hover + .btn-text {
+//   opacity: 1;
+// }
+
+a:hover + .btn-text {
+  opacity: 1;
+}

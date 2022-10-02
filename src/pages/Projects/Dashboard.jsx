@@ -120,23 +120,37 @@ export default function Dashboard() {
         <span>{projects.project.name}</span>
       </span>
       <div className="main-header">
-        <h2>{projects.project.name}</h2>
-        <p>{projects.project.description} </p>
+        <img src={projects.project.img} className="image" alt="" />
+        <div>
+          <h2>{projects.project.name}</h2>
+          <p>{projects.project.description} </p>
 
-        <ul className="users-list" key={user}>
-          <span>Assigned users:</span>
-          {usersList &&
-            usersList.map((user) => {
-              if (user === "undefined") return;
-              const { login, img } = user;
-              return (
-                <div className="user-mini">
-                  <img className="user-img" src={img} alt="" />
-                  <h5 className="user-nick">{login}</h5>
-                </div>
-              );
-            })}
-        </ul>
+          <ul className="users-list" key={user}>
+            <span>Assigned users:</span>
+            {usersList &&
+              usersList.map((user) => {
+                if (user === "undefined") return;
+                const { login, img } = user;
+                return (
+                  <div className="user-mini">
+                    <img className="user-img" src={img} alt="" />
+                    <h5 className="user-nick">{login}</h5>
+                  </div>
+                );
+              })}
+          </ul>
+          <div className="btn">
+            <button
+              className="btn-hover-container"
+              // style={{ fontSize: "2rem" }}
+              // className="add-btn"
+              onClick={() => setShowModal(true)}
+            >
+              <IoAddCircle className="add-btn" />
+              <span className="btn-text">Add new task</span>
+            </button>
+          </div>
+        </div>
       </div>
 
       <div className="dashboard-container">
@@ -213,13 +227,7 @@ export default function Dashboard() {
         </div>
       </div>
       {/* <button onClick={handleAddTask}>New task test</button> */}
-      <button
-        // style={{ fontSize: "2rem" }}
-        // className="add-btn"
-        onClick={() => setShowModal(true)}
-      >
-        <IoAddCircle className="add-btn" />
-      </button>
+
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <TaskForm handleAddTask={handleAddTask} id={id} />
       </Modal>

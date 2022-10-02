@@ -16,13 +16,16 @@ $single-card-shadow: 1px 1px 5px rgba(114, 114, 114, 0.368);
 
 $users-avatar-border: solid rgb(193, 193, 193) 2px;
 
-// background: #4b6cb7;  /* fallback for old browsers */
-// background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
-// background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+$font-hover-primary: white;
 
 // elements
 $btn-add-color: #00d060;
+$bg-green: #00d060;
 $btn-del-color: grey;
+
+// background: #4b6cb7;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 // #########################
 // $nav-bg: #3c4b64;
@@ -33,14 +36,13 @@ $aside-bg: #ccd3db;
 // $board-bg: rgb(223, 223, 223);
 $project-card-bg: white;
 
-$bg-green: #00d060;
 // text
 $board-title: grey;
 
 $shadow-normal: 3px 3px 10px rgba(0, 0, 0, 0.298);
 
 $font-color-primary: #8d939d;
-$font-hover-primary: white;
+
 $color-secondary: #ffff;
 $color-tertiary: #ffff;
 $color-quatemary: #ffff;

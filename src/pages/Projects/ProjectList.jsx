@@ -116,10 +116,11 @@ export default function ProjectList() {
       {filteredData.length === 0 && <div>No projects to show</div>}
       {user.type === "company" && (
         // <button onClick={() => postNewProject()}>Add new Project</button>
-        <button>
+        <button className="btn-hover-container">
           <NavLink to="/newproject">
             <IoAddCircle className="add-btn" />
           </NavLink>
+          <div className="btn-text">Add new project</div>
         </button>
       )}
     </div>

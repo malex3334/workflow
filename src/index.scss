@@ -194,6 +194,7 @@
     // background: green;
     margin: 1rem 0;
     fill: $btn-add-color;
+    border-radius: 50%;
 
     .navlink {
       color: white;
@@ -216,9 +217,10 @@
 }
 
 .main-header {
-  margin: 2rem 0;
+  margin: 2rem 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 2rem;
   color: $font-color-secondary;
 
   h2 {
@@ -226,20 +228,25 @@
     font-weight: bold;
   }
   p {
-    height: 4rem;
+    min-height: 4rem;
+    padding: 1rem 0;
   }
 }
 
+.image {
+  width: 25rem;
+  border-radius: 6px;
+}
+
 .dashboard-container {
-  // min-width: 100%;
+  margin: 2rem;
   background: $dashboard-container-color;
-  // min-height: 40rem;
   display: flex;
   justify-content: space-around;
   // align-items: center;
   gap: 2.5rem;
   overflow-x: auto;
-  padding: 1rem;
+  padding: 1rem 0;
 
   h4 {
     font-size: 1.4rem;
