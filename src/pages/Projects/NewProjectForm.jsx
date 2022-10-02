@@ -83,7 +83,7 @@ export default function NewProjectForm() {
             setDescription(e.target.value);
           }}
         />
-        <ul className="users-list">
+        <ul className="users-list users-list-width">
           <h4>all users:</h4>
           {data.users
             ? data.users.map((user) => {
@@ -104,7 +104,7 @@ export default function NewProjectForm() {
             : "no users"}
         </ul>
         {/* show all users */}
-        <ul className="users-list">
+        <ul className="users-list users-list-width">
           <h4>assigned users:</h4>
           {assignedUsers
             ? assignedUsers?.map((user) => {
@@ -131,7 +131,12 @@ export default function NewProjectForm() {
           onChange={(e) => setImg(e.target.value)}
           value={img}
         />
-        <button type="submit">submit</button>
+        <div className="btns">
+          <button className="submit" type="submit">
+            submit
+          </button>
+          <button className="cancel">cancel</button>
+        </div>
       </form>
     </div>
   );

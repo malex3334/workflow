@@ -5,8 +5,9 @@ export default function LandingPage() {
     <div className="landing-container">
       <h2 className="title">landing page</h2>
       <div className="landing-body">
-        <div className="img">
+        <div className="">
           <img
+            className="img"
             src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             alt=""
           />

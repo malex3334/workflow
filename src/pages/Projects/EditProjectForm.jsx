@@ -184,8 +184,12 @@ export default function EditProjectForm() {
           onChange={(e) => setImg(e.target.value)}
           value={img}
         />
-        <button type="submit">submit</button>
-        <button type="cancel">cancel</button>
+        <div className="btns">
+          <button className="submit" type="submit">
+            submit
+          </button>
+          <button className="cancel">cancel</button>
+        </div>
       </form>
     </div>
   );

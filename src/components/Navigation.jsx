@@ -7,7 +7,7 @@ export default function Navigation() {
 
   return (
     <nav className="nav">
-      <div className="">My Arij</div>
+      <div className="logo">My Arij</div>
       <ul className="nav-list">
         <NavLink to="/">start</NavLink>
         {user && <NavLink to="/dashboard">projects</NavLink>}
