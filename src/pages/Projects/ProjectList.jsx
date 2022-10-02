@@ -6,8 +6,9 @@ import Loader from "../../components/Loader";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 import { IoAddCircle } from "react-icons/io5";
-import { FaEdit, FaReddit, FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { timeStamp } from "../../utils/time";
+import NotLoggedIn from "../../components/NotLoggedIn";
 
 export default function ProjectList() {
   const { user } = useGlobalContext();
@@ -53,6 +54,10 @@ export default function ProjectList() {
   useEffect(() => {
     setFilteredData(filter());
   }, [setData, data, relations]);
+
+  if (!user) {
+    return <NotLoggedIn />;
+  }
 
   if (loading) {
     return <Loader />;
@@ -115,7 +120,6 @@ export default function ProjectList() {
 
       {filteredData.length === 0 && <div>No projects to show</div>}
       {user.type === "company" && (
-        // <button onClick={() => postNewProject()}>Add new Project</button>
         <button className="btn-hover-container">
           <NavLink to="/newproject">
             <IoAddCircle className="add-btn" />

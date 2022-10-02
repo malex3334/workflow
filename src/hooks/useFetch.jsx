@@ -16,10 +16,9 @@ function useFetch(dataFrom) {
         body: JSON.stringify(newObject),
       });
       const test = await response.json();
-      // console.log([...filteredData, { ...newProject }]);
-      // setFilteredData([...filteredData, { ...newProject }]);
     } catch (error) {
       console.log(error);
+      setError(error);
     }
   };
 
@@ -33,6 +32,7 @@ function useFetch(dataFrom) {
       setLoading(false);
     } catch (error) {
       console.log(error);
+      setError(error);
       setLoading(false);
     }
   };
@@ -46,6 +46,7 @@ function useFetch(dataFrom) {
       });
     } catch (error) {
       console.log(error);
+      setError(error);
     }
     setLoading(false);
     setRerender(!rerender);

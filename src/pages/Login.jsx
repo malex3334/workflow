@@ -27,11 +27,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   let navigate = useNavigate();
 
-  console.log(name, email);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email);
     navigate("/");
   };
 

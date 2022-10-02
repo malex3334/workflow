@@ -7,7 +7,9 @@ export default function Navigation() {
 
   return (
     <nav className="nav">
-      <div className="logo">My Arij</div>
+      <div className="logo">
+        <a href="#">My Arij</a>
+      </div>
       <ul className="nav-list">
         <NavLink to="/">start</NavLink>
         {user && <NavLink to="/dashboard">projects</NavLink>}

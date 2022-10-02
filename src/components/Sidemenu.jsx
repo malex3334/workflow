@@ -6,7 +6,6 @@ export default function Sidemenu() {
   const { user, setUser } = useGlobalContext();
   const { name, id, login, type, img } = user;
   const { data } = useFetch("relations/");
-  console.log(data);
 
   return (
     <aside className="aside-nav">

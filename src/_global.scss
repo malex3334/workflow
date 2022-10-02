@@ -53,8 +53,15 @@ button {
 
 .del-btn {
   font-size: 1.4rem;
-  color: $btn-del-color !important;
-  background: none !important;
+  color: $btn-del-color;
+  background: none;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    color: $dark-color-hover;
+    rotate: 15deg;
+    scale: 1.1;
+  }
 }
 
 ul {

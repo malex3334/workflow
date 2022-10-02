@@ -10,14 +10,9 @@ import UserSettings from "./pages/UserSettings";
 import ProjectList from "./pages/Projects/ProjectList";
 import NewProjectForm from "./pages/Projects/NewProjectForm";
 import EditProjectForm from "./pages/Projects/EditProjectForm";
-import useFetch from "./hooks/useFetch";
-import { useEffect } from "react";
 
 function App() {
-  const { user, setUser } = useGlobalContext();
-
-  // const { data: tasks } = useFetch("tasks/");
-  // const { data: relations, loading } = useFetch("relations/");
+  const { user } = useGlobalContext();
 
   return (
     <div className="app-container">

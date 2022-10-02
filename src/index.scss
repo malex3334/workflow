@@ -97,6 +97,7 @@
     text-align: center;
     font-weight: bold;
     margin: 2rem auto 5rem auto;
+    color: $font-color-main !important;
   }
 
   .landing-body {
@@ -127,6 +128,8 @@
   }
   h3 {
     font-weight: 500;
+    // border-bottom: 2px solid grey;
+    color: $font-color-main !important;
     // margin-bottom: 1.5rem;
   }
 
@@ -149,7 +152,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .project-list {
@@ -177,12 +180,6 @@
     margin: 2rem 0;
     font-size: 1.5rem;
   }
-
-  // .del-btn {
-  //   color: white;
-  //   background: red;
-  //   margin: 1rem 0;
-  // }
 
   .btns {
     display: flex;
@@ -242,7 +239,7 @@
   margin: 2rem;
   background: $dashboard-container-color;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   // align-items: center;
   gap: 2.5rem;
   overflow-x: auto;

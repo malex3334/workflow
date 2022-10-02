@@ -86,8 +86,8 @@ export default function () {
         description:
           "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         img: "https://images.unsplash.com/photo-1574717024757-c1ec4d86ae82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let project2 = server.create("project", {
         id: "2",
@@ -95,24 +95,24 @@ export default function () {
         description:
           "aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let project3 = server.create("project", {
         id: "3",
         name: "third test",
         description: "still testing this",
         img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let project4 = server.create("project", {
         id: "4",
         name: "secret project",
         description: "you cant see it dwight",
         img: "https://images.unsplash.com/photo-1664466935816-4cf27816333e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       // relations
       let relation1 = server.create("relation", {
@@ -120,39 +120,39 @@ export default function () {
         project: project1,
 
         users: ["1", "2", "3", "5", "100"],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let relation2 = server.create("relation", {
         id: "121",
         project: project2,
 
         users: ["1", "2", "3", "100"],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let relation3 = server.create("relation", {
         id: "222",
         project: project3,
 
         users: ["1", "100", "2", "3"],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       let relation4 = server.create("relation", {
         id: "1124",
         project: project4,
 
         users: ["1", "100", "2", "3"],
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       // let relation5 = server.create("relation", {
       //   id: "1124",
       //   projectId: "4",
       //   users: ["100", "1"],
-      //   createdAt: Date.now(),
-      //   updatedAt: Date.now(),
+      //   createdAt: 1664728152418,
+      //   updatedAt: 1664728152418,
       // });
 
       // tasks
@@ -163,8 +163,8 @@ export default function () {
         text: "somet text a co",
         status: "done",
         priority: "high",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("task", {
         id: "89",
@@ -173,8 +173,8 @@ export default function () {
         text: "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         status: "done",
         priority: "normal",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("task", {
         id: "94",
@@ -183,8 +183,8 @@ export default function () {
         text: "some text etc.",
         status: "testing",
         priority: "low",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("task", {
         id: "51",
@@ -193,8 +193,8 @@ export default function () {
         text: "somet text a co",
         status: "done",
         priority: "very high",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("task", {
         id: "894",
@@ -203,8 +203,8 @@ export default function () {
         text: "some text etc.",
         status: "done",
         priority: "low",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("task", {
         id: "924",
@@ -213,8 +213,8 @@ export default function () {
         text: "some text etc.",
         status: "testing",
         priority: "normal",
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
 
       // comments
@@ -223,32 +223,32 @@ export default function () {
         taskID: "89",
         text: "this is my firs comment in this app",
         user: dwight,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("comment", {
         id: "555",
         taskID: "89",
         text: "does it work",
         user: pam,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("comment", {
         id: "888",
         taskID: "89",
         text: "this is my firs comment in this app",
         user: dwight,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
       server.create("comment", {
         id: "777",
         taskID: "94",
         text: "this is my second comment",
         user: dwight,
-        createdAt: Date.now(),
-        updatedAt: Date.now(),
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
       });
     },
 

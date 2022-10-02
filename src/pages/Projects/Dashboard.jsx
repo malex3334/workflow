@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
 import Loader from "../../components/Loader";
-import { timeStamp } from "../../utils/time";
 import Modal from "../../components/Modal";
 import TaskForm from "./Tasks/TaskForm";
 import SingleTask from "./Tasks/SingleTask";
-import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 import NotLoggedIn from "../../components/NotLoggedIn";
+import { useGlobalContext } from "../../context";
 import { convertPriority } from "../../utils/icons";
 import { IoAddCircle } from "react-icons/io5";
+import Error from "../../components/Error";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -32,13 +32,6 @@ const filter = (tasks, id) => {
   return newTasks;
 };
 
-// const getRelations = (relations, id) => {
-//   const response = relations.relations.filter(
-//     (relation) => relation.project === id
-//   );
-//   return response;
-// };
-
 export default function Dashboard() {
   const { id } = useParams();
   const [data, setData] = useState([]);
@@ -48,7 +41,7 @@ export default function Dashboard() {
   const { user } = useGlobalContext();
   const [usersList, setUsersList] = useState([]);
   const { postData } = useFetch();
-  const { data: fetching, loading, setLoading } = useFetch("relations");
+  const { data: fetching, loading, setLoading, error } = useFetch("relations");
   const { data: tasks, rerender, setRerender } = useFetch("tasks/");
   const { data: projects } = useFetch(`projects/${id}`);
   const { data: users, loading: usersLoading } = useFetch("users/");
@@ -59,9 +52,7 @@ export default function Dashboard() {
       const result = users.users.filter(({ id }) =>
         newUsersList[0].includes(id)
       );
-      console.log("result", result);
       setUsersList(result);
-      console.log("userslist", result);
     }
   }, [loading, usersLoading]);
 
@@ -113,6 +104,10 @@ export default function Dashboard() {
     return <NotLoggedIn />;
   }
 
+  if (error) {
+    <Error />;
+  }
+
   return (
     <div className="main-container">
       <span className="dashboard-navi">
@@ -142,8 +137,6 @@ export default function Dashboard() {
           <div className="btn">
             <button
               className="btn-hover-container"
-              // style={{ fontSize: "2rem" }}
-              // className="add-btn"
               onClick={() => setShowModal(true)}
             >
               <IoAddCircle className="add-btn" />
@@ -226,7 +219,6 @@ export default function Dashboard() {
           </ul>
         </div>
       </div>
-      {/* <button onClick={handleAddTask}>New task test</button> */}
 
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <TaskForm handleAddTask={handleAddTask} id={id} />
