@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import Loader from "../../components/Loader";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
+import { IoAddCircle } from "react-icons/io5";
+import { FaEdit, FaReddit, FaTrash } from "react-icons/fa";
 
 export default function ProjectList() {
   const { user } = useGlobalContext();
@@ -66,8 +68,30 @@ export default function ProjectList() {
           filteredData.map((project, index) => {
             return (
               <div key={project.id} className="project-list-item">
+                <div className="project-item-header">
+                  <NavLink to={`projects/${project.id}`}>
+                    <h3>{project.name}</h3>
+                  </NavLink>
+                  <div className="btns">
+                    {/* #### edit project */}
+                    {user.type === "company" && (
+                      <button className="edit-btn">
+                        <NavLink to={`/editproject/${project.id}`}>
+                          <FaEdit className="del-btn" />
+                        </NavLink>
+                      </button>
+                    )}
+                    {user.type === "company" && (
+                      <button
+                        // className="del-btn"
+                        onClick={(e) => handleDelete(project.id)}
+                      >
+                        <FaTrash className="del-btn" />
+                      </button>
+                    )}
+                  </div>
+                </div>
                 <NavLink to={`projects/${project.id}`}>
-                  <h3>{project.name}</h3>
                   {project.img ? (
                     <img
                       className="image"
@@ -77,24 +101,10 @@ export default function ProjectList() {
                   ) : (
                     <div className="noimage"></div>
                   )}
-                </NavLink>
-                <p>{project.description}</p>
 
+                  <p className="description">{project.description}</p>
+                </NavLink>
                 <ul className="project-users">Users:</ul>
-                {user.type === "company" && (
-                  <button
-                    className="del-btn"
-                    onClick={(e) => handleDelete(project.id)}
-                  >
-                    delete
-                  </button>
-                )}
-                {/* #### edit project */}
-                {user.type === "company" && (
-                  <button className="edit-btn">
-                    <NavLink to={`/editproject/${project.id}`}>edit</NavLink>
-                  </button>
-                )}
               </div>
             );
           })}
@@ -103,9 +113,9 @@ export default function ProjectList() {
       {filteredData.length === 0 && <div>No projects to show</div>}
       {user.type === "company" && (
         // <button onClick={() => postNewProject()}>Add new Project</button>
-        <button className="add-btn">
-          <NavLink className="navlink" to="/newproject">
-            Add new Project
+        <button>
+          <NavLink to="/newproject">
+            <IoAddCircle className="add-btn" />
           </NavLink>
         </button>
       )}

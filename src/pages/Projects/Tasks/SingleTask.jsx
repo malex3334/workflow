@@ -4,6 +4,7 @@ import { FaTrash, FaWindowClose } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
 import Comment from "./Comment";
+import { convertPriority } from "../../../utils/icons";
 
 const descr = { description: false, title: false };
 
@@ -199,6 +200,7 @@ export default function SingleTask({
           </div>
           <div className="priority">
             <label htmlFor="">Priority:</label>
+
             <select
               value={priority}
               onChange={(e) => {

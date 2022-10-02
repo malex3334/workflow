@@ -117,7 +117,7 @@
   }
   h3 {
     font-weight: bold;
-    margin-bottom: 1.5rem;
+    // margin-bottom: 1.5rem;
   }
 
   .project-list-item {
@@ -126,8 +126,16 @@
     min-width: 20rem;
     max-width: 30rem;
     border-radius: 12px;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+    box-shadow: $single-card-shadow;
     background: $project-card-bg;
+  }
+
+  .project-item-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
   }
 
   .project-list {
@@ -143,10 +151,20 @@
     flex-direction: row;
   }
 
-  .del-btn {
-    color: white;
-    background: red;
-    margin: 1rem 0;
+  .description {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+  }
+
+  // .del-btn {
+  //   color: white;
+  //   background: red;
+  //   margin: 1rem 0;
+  // }
+
+  .btns {
+    display: flex;
+    gap: 1rem;
   }
 
   .add-btn {
@@ -161,6 +179,7 @@
 
   .image {
     width: 100%;
+    border-radius: 2px;
   }
   // .noimage {
   //   background-color: red;
@@ -169,39 +188,34 @@
   // }
 }
 
-.user-mini {
-  position: relative;
-  .user-img {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    border: solid green 2px;
-  }
-  .user-nick {
-    position: absolute;
-    background-color: white;
-    padding: 0.5rem;
-    opacity: 0;
-    visibility: hidden;
-    border-radius: 1px;
-  }
+.main-container {
+  height: auto;
+}
 
-  .user-img:hover + .user-nick {
-    visibility: visible;
-    opacity: 1;
-    z-index: 2;
+.main-header {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  color: $font-color-secondary;
+
+  h2 {
+    color: $font-color-main;
+  }
+  p {
+    height: 4rem;
   }
 }
 
 .dashboard-container {
   // min-width: 100%;
-  min-height: 50rem;
+  background: $dashboard-container-color;
+  // min-height: 40rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  // align-items: center;
   gap: 2.5rem;
   overflow-x: auto;
-  padding: 2.5rem;
-  background-color: grey;
+  padding: 1rem;
 
   h4 {
     font-size: 1.4rem;
@@ -211,16 +225,20 @@
   .single-board {
     font-size: 1.2rem;
     padding: 1rem;
-    background-color: $board-bg;
+    background: $single-board-color;
     height: 60%;
-    min-width: 18rem;
+    width: 20%;
+    min-width: 20rem;
     min-height: 25rem;
-    max-width: 40rem;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
+    max-width: 30rem;
+    box-shadow: $single-card-shadow;
+    // box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.178);
     border-radius: 6px;
   }
   .board-title {
-    color: $board-title;
+    color: $font-color-secondary;
+    text-transform: uppercase;
+    font-weight: bold;
     margin-bottom: 1rem;
   }
 
@@ -238,13 +256,13 @@
   .single-task {
     background-color: white;
     padding: 1rem;
-    box-shadow: 2px 2px 3px rgba(114, 114, 114, 0.168);
+    box-shadow: $single-card-shadow;
     border-radius: 3px;
     cursor: pointer;
     transition: color 0.4s ease-in-out;
 
     &:hover {
-      background-color: rgba(173, 173, 173, 0.826);
+      background-color: $single-card-color-hover;
     }
   }
 
@@ -254,10 +272,6 @@
     padding: 0.25em 0.5em;
     color: white;
   }
-}
-.add-btn {
-  color: white;
-  background: green;
 }
 
 .singletask-container {

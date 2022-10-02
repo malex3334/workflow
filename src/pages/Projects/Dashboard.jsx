@@ -8,6 +8,8 @@ import SingleTask from "./Tasks/SingleTask";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 import NotLoggedIn from "../../components/NotLoggedIn";
+import { convertPriority } from "../../utils/icons";
+import { IoAddCircle } from "react-icons/io5";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -93,7 +95,7 @@ export default function Dashboard() {
           >
             {item.task}
           </h4>
-          <p>{item.priority}</p>
+          <p>{convertPriority(item.priority)}</p>
         </div>
         <p>{item.text}</p>
       </div>
@@ -112,28 +114,30 @@ export default function Dashboard() {
   }
 
   return (
-    <div>
-      <span>
+    <div className="main-container">
+      <span className="dashboard-navi">
         <NavLink to="/dashboard">projects / </NavLink>
         <span>{projects.project.name}</span>
       </span>
-      <h2>{projects.project.name}</h2>
-      <p>{projects.project.description}</p>
+      <div className="main-header">
+        <h2>{projects.project.name}</h2>
+        <p>{projects.project.description} </p>
 
-      <ul className="users-list" key={user}>
-        <span>Assigned users:</span>
-        {usersList &&
-          usersList.map((user) => {
-            if (user === "undefined") return;
-            const { login, img } = user;
-            return (
-              <div className="user-mini">
-                <img className="user-img" src={img} alt="" />
-                <h5 className="user-nick">{login}</h5>
-              </div>
-            );
-          })}
-      </ul>
+        <ul className="users-list" key={user}>
+          <span>Assigned users:</span>
+          {usersList &&
+            usersList.map((user) => {
+              if (user === "undefined") return;
+              const { login, img } = user;
+              return (
+                <div className="user-mini">
+                  <img className="user-img" src={img} alt="" />
+                  <h5 className="user-nick">{login}</h5>
+                </div>
+              );
+            })}
+        </ul>
+      </div>
 
       <div className="dashboard-container">
         <div className="single-board">
@@ -209,8 +213,12 @@ export default function Dashboard() {
         </div>
       </div>
       {/* <button onClick={handleAddTask}>New task test</button> */}
-      <button className="add-btn" onClick={() => setShowModal(true)}>
-        New task test
+      <button
+        // style={{ fontSize: "2rem" }}
+        // className="add-btn"
+        onClick={() => setShowModal(true)}
+      >
+        <IoAddCircle className="add-btn" />
       </button>
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <TaskForm handleAddTask={handleAddTask} id={id} />
@@ -227,7 +235,6 @@ export default function Dashboard() {
           setData={setData}
         />
       </Modal>
-      <p>Created: {timeStamp(projects.project.createdAt)}</p>
     </div>
   );
 }
