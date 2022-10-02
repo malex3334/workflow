@@ -458,11 +458,20 @@
 
 .new-project-container {
   margin: 0 auto;
-  width: 100rem;
+  width: 65rem;
+  border-radius: 12px;
+  padding: 5rem 0;
+  background: $project-card-bg;
+  box-shadow: $single-card-shadow;
 
   h2 {
     text-align: center;
     margin: 2rem auto;
+    color: $font-color-main;
+  }
+
+  h4 {
+    margin-right: 1.25rem;
   }
 
   form {
@@ -476,10 +485,21 @@
 
   input,
   textarea {
-    font-size: 2rem;
-    padding: 0.5rem;
+    font-size: 1.6rem;
+    font-family: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    // padding: 0.5rem;
+    padding: 0.5rem 1rem;
     width: 100%;
     margin: 1rem 0;
+    background: none;
+    border: 1px solid $bg-green;
+    border-radius: 6px;
+
+    &:focus-visible {
+      outline: 2px solid $bg-green;
+    }
   }
 
   textarea {
@@ -491,9 +511,9 @@
 
   button {
     color: white;
-    font-size: 2rem;
+    font-size: 1.5rem;
     background: $bg-green;
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
 
   .select {
@@ -538,15 +558,13 @@
 }
 
 .testWrapper {
-  margin: 0 auto;
+  margin: auto auto;
   justify-content: center;
   align-items: center;
-  /* max-width: 100%; */
-  // width: 80%;
-  height: 80%;
-  max-height: 100%;
+  border-radius: 12px;
+
   overflow-y: auto;
-  /* width: 25% !important; */
+
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.31);
   background: $board-bg;
 }
