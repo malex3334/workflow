@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { timeStamp } from "../../../utils/time";
 import { FaTrash, FaWindowClose } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
@@ -17,6 +17,7 @@ export default function SingleTask({
   rerender,
   setRerender,
 }) {
+  const { descriptionRef } = useRef();
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(descr);
   const [title, setTitle] = useState(task.task);
@@ -129,6 +130,7 @@ export default function SingleTask({
             {edit.description ? (
               <form>
                 <textarea
+                  ref={descriptionRef}
                   onBlur={(prev) => {
                     setEdit({ ...prev, description: false });
                     updateData(task.id, "tasks", {
@@ -177,6 +179,8 @@ export default function SingleTask({
               </p>
             )}
           </div>
+        </div>
+        <div className="right">
           <div className="status">
             <label htmlFor="">Status:</label>
             {/* <select onChange={updateTask(task.id, {})}> */}
@@ -224,7 +228,6 @@ export default function SingleTask({
             <p className="timestamp">modified: {timeStamp(task.updatedAt)}</p>
           </div>
         </div>
-        <div className="right"></div>
       </div>
       <Comment
         commentsList={commentsList}

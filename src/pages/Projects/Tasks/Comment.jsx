@@ -5,6 +5,7 @@ import { timeStamp } from "../../../utils/time";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "../../../components/Loader";
 import { FaTrash } from "react-icons/fa";
+import { IoSend } from "react-icons/io5";
 
 export default function Comment({
   commentsList,
@@ -49,6 +50,9 @@ export default function Comment({
                 <div className="user-info" style={{ display: "flex" }}>
                   <img className="user-avatar" src={comment.user.img} alt="" />
                   <h4>{comment.user.name}</h4>
+                  <p className="timestamp">
+                    posted: {timeStamp(comment.createdAt)}{" "}
+                  </p>
                 </div>
                 <div className="text-container">
                   <p>{comment.text}</p>
@@ -58,7 +62,6 @@ export default function Comment({
                     </button>
                   )}
                 </div>
-                <p>posted: {timeStamp(comment.createdAt)} </p>
               </div>
             );
           })}
@@ -75,10 +78,10 @@ export default function Comment({
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         />
+        <button className="submit" onClick={handleSubmit}>
+          <IoSend className="send-btn" />
+        </button>
       </div>
-      <button className="submit" onClick={handleSubmit}>
-        submit
-      </button>
     </div>
   );
 }

@@ -3,21 +3,27 @@ $board-bg: #ebedef;
 
 $font-color-main: #656565;
 $font-color-secondary: grey;
+$font-color-tertiary: grey;
+$font-color-light: rgb(233, 233, 233);
+$font-color-light-secondary: rgb(216, 216, 216);
 
 // dashboard and elements:
 
 $dashboard-container-color: transparent;
 
 $single-board-color: rgb(245, 245, 245);
-$single-board-shadow: 1px 1px 5px rgba(114, 114, 114, 0.168);
+$single-board-shadow: 1px 1px 1px rgba(114, 114, 114, 0.1);
 
 $single-card-color-hover: rgb(226, 226, 226);
-$single-card-shadow: 1px 1px 5px rgba(114, 114, 114, 0.368);
+$single-card-shadow: 1px 1px 1px rgba(114, 114, 114, 0.4);
 
 $users-avatar-border: solid rgb(193, 193, 193) 2px;
 
 $font-hover-primary: white;
 
+$nav-bg: #ffffff;
+
+$aside-bg: linear-gradient(to right, #3959a3, #4b6cb7);
 // elements
 $btn-add-color: #00d060;
 $bg-green: #00d060;
@@ -31,9 +37,6 @@ $dark-color-hover: black;
 // #########################
 // $nav-bg: #3c4b64;
 // $aside-bg: #353a40;
-$nav-bg: #ffffff;
-// $nav-bg: #ffffff;
-$aside-bg: #ccd3db;
 
 // $board-bg: rgb(223, 223, 223);
 $project-card-bg: white;

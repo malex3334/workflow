@@ -4,19 +4,29 @@ import useFetch from "../hooks/useFetch";
 
 export default function Sidemenu() {
   const { user, setUser } = useGlobalContext();
-  const { name, id, login, type, img } = user;
+  const { name, id, login, type, img, email } = user;
   const { data } = useFetch("relations/");
 
   return (
     <aside className="aside-nav">
       {user && (
         <>
-          <img style={{ width: "5rem" }} src={img} alt="" />
+          <img src={img} alt="" />
           <h2>{name}</h2>
-          <ul>
-            <li>{login}</li>
-            <li>type: {type}</li>
-            <li>user id: {id}</li>
+          <ul className="aside-list">
+            <li>
+              <span className="data-title">name:</span> {name}
+            </li>
+            <li>
+              <span className="data-title">login:</span> {login}
+            </li>
+            <li>
+              <span className="data-title">email: </span>
+              {email}
+            </li>
+            <li>
+              <span className="data-title">type:</span> {type}
+            </li>
           </ul>
           <div className="projects-list">
             <h3>Your projects:</h3>
