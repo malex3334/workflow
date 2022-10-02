@@ -3,16 +3,27 @@ import Login from "./Login";
 
 export default function UserSettings({ user }) {
   console.log(user);
-  const { name, login, img, type, salary } = user;
+  const { name, login, img, type, salary, email } = user;
 
   if (user) {
     return (
-      <div>
-        <h2>{name}</h2>
+      <div className="user-settings-container">
+        <h2 className="user-settings-title">{name}</h2>
         <img className="user-img" src={img} alt={name} />
-        <ul>
-          <li>login:{login}</li>
-          <li>type:{type}</li>
+        <ul className="user-data">
+          <li>
+            <span className="data-title">name:</span> {name}
+          </li>
+          <li>
+            <span className="data-title">login:</span> {login}
+          </li>
+          <li>
+            <span className="data-title">email: </span>
+            {email}
+          </li>
+          <li>
+            <span className="data-title">type:</span> {type}
+          </li>
           {salary && <li>salary: {salary}</li>}
         </ul>
       </div>

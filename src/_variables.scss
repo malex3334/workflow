@@ -1,6 +1,7 @@
+$board-bg: #ebedef;
 // font colors:
 
-$font-color-main: black;
+$font-color-main: #656565;
 $font-color-secondary: grey;
 
 // dashboard and elements:
@@ -15,6 +16,10 @@ $single-card-shadow: 1px 1px 5px rgba(114, 114, 114, 0.368);
 
 $users-avatar-border: solid green 2px;
 
+// background: #4b6cb7;  /* fallback for old browsers */
+// background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to right, #182848, #4b6cb7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 // elements
 $btn-add-color: green;
 $btn-del-color: grey;
@@ -24,7 +29,6 @@ $btn-del-color: grey;
 $nav-bg: #ffffff;
 $aside-bg: #ccd3db;
 
-$board-bg: #ebedef;
 // $board-bg: rgb(223, 223, 223);
 $project-card-bg: white;
 

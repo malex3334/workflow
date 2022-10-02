@@ -7,6 +7,7 @@ import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
 import { IoAddCircle } from "react-icons/io5";
 import { FaEdit, FaReddit, FaTrash } from "react-icons/fa";
+import { timeStamp } from "../../utils/time";
 
 export default function ProjectList() {
   const { user } = useGlobalContext();
@@ -59,7 +60,7 @@ export default function ProjectList() {
 
   return (
     <div className="project-list-container">
-      <h2>Your projects:</h2>
+      <h2 className="project-list-title">Your projects:</h2>
 
       <ul className="project-list">
         {filteredData &&
@@ -104,7 +105,9 @@ export default function ProjectList() {
 
                   <p className="description">{project.description}</p>
                 </NavLink>
-                <ul className="project-users">Users:</ul>
+                <p className="project-timestamp">
+                  {timeStamp(project.createdAt)}
+                </p>
               </div>
             );
           })}
