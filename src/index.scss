@@ -381,11 +381,13 @@
 
   .title {
     font-size: 2.5rem;
-
     background: none;
     border: none;
     outline: none;
     padding: 0;
+    color: $font-color-main;
+    margin: 0 0 1.5rem 0;
+    font-weight: 500;
   }
 
   .description-input {
@@ -398,12 +400,6 @@
 
   .nav-btn {
     font-size: 1.8rem;
-  }
-
-  .title {
-    color: $font-color-main;
-    margin: 2rem 0;
-    font-weight: 500;
   }
 
   .body {
