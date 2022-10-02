@@ -91,7 +91,7 @@ export default function () {
       });
       let project2 = server.create("project", {
         id: "2",
-        name: "Project",
+        name: "Dunder Project",
         description:
           "aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
@@ -100,7 +100,7 @@ export default function () {
       });
       let project3 = server.create("project", {
         id: "3",
-        name: "third test",
+        name: "Third test",
         description: "still testing this",
         img: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         createdAt: 1664728152418,
@@ -108,7 +108,7 @@ export default function () {
       });
       let project4 = server.create("project", {
         id: "4",
-        name: "secret project",
+        name: "Secret project",
         description: "you cant see it dwight",
         img: "https://images.unsplash.com/photo-1664466935816-4cf27816333e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
         createdAt: 1664728152418,
@@ -143,7 +143,7 @@ export default function () {
         id: "1124",
         project: project4,
 
-        users: ["1", "100", "2", "3"],
+        users: ["1", "100", "3"],
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
       });

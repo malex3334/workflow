@@ -109,14 +109,15 @@ export default function SingleTask({
         )}
         <nav className="navigation">
           <button
-            className="nav-btn"
+            className="del-btn"
             onClick={(e) => {
               handleDelete(task.id);
             }}
           >
             <FaTrash />
           </button>
-          <button className="nav-btn" onClick={() => setShowModal(false)}>
+          <button className="del-btn" onClick={() => setShowModal(false)}>
+            {/* <button className="nav-btn" onClick={() => setShowModal(false)}> */}
             <FaWindowClose />
           </button>
         </nav>
