@@ -349,7 +349,8 @@
 }
 
 .singletask-container {
-  background: $board-bg;
+  // background: $board-bg;
+  background-color: white;
   min-width: 60rem;
   max-width: 80rem;
   font-size: 1.6rem;
@@ -480,7 +481,7 @@
   .user-info {
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    // gap: 0.25rem;
   }
 
   .text-container {
@@ -709,7 +710,8 @@
   }
 
   .user-img {
-    width: 30rem;
+    display: block;
+    margin: 0 auto;
     height: auto;
     border-radius: 12px;
   }

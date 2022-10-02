@@ -59,7 +59,6 @@ function useFetch(dataFrom) {
         const response = await fetch(`/api/${dataFrom}`);
         // const response = await fetch(`${url}projects`);
         const data = await response.json();
-        console.log(data);
         setData(data);
 
         setLoading(false);

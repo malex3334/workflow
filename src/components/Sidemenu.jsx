@@ -1,6 +1,8 @@
 import React from "react";
 import { useGlobalContext } from "../context";
 import useFetch from "../hooks/useFetch";
+import { NavLink } from "react-router-dom";
+import { IoAddCircle } from "react-icons/io5";
 
 export default function Sidemenu() {
   const { user, setUser } = useGlobalContext();
@@ -28,9 +30,18 @@ export default function Sidemenu() {
               <span className="data-title">type:</span> {type}
             </li>
           </ul>
-          <div className="projects-list">
-            <h3>Your projects:</h3>
-          </div>
+          <div className="projects-list"></div>
+
+          {user.type === "company" && (
+            <button className="btn-hover-container">
+              <NavLink to="/newproject">
+                <IoAddCircle className="add-btn" />
+              </NavLink>
+              <div className="btn-text" style={{ color: "white" }}>
+                Add new project
+              </div>
+            </button>
+          )}
         </>
       )}
     </aside>

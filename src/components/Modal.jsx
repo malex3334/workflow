@@ -11,7 +11,7 @@ function Modal({ showModal, setShowModal, children }) {
 
   if (showModal) {
     return ReactDOM.createPortal(
-      <div className="modal" onClick={(e) => handleCloseOnClick(e)}>
+      <div className="modal" onMouseDown={(e) => handleCloseOnClick(e)}>
         <div className="testWrapper" ref={modalRef}>
           {children}
         </div>
