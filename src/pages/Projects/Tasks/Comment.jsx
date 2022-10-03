@@ -16,18 +16,20 @@ export default function Comment({
   loading,
 }) {
   const [commentText, setCommentText] = useState("");
-  const { postData, deleteData } = useFetch();
+  const { postData, deleteData, loading: postLoading } = useFetch();
 
   const handleSubmit = () => {
-    postData("comments", {
-      id: uuidv4(),
-      taskId: task.id,
-      text: commentText,
-      userId: user.id,
-      createdAt: Date.now(),
-    });
-    setRerender(!rerender);
-    setCommentText("");
+    if (commentText.length > 0) {
+      postData("comments", {
+        id: uuidv4(),
+        taskId: task.id,
+        text: commentText,
+        userId: user.id,
+        createdAt: Date.now(),
+      });
+      setRerender(!rerender);
+      setCommentText("");
+    }
   };
 
   const handleDelete = (id) => {
@@ -47,20 +49,29 @@ export default function Comment({
           {commentsList.map((comment) => {
             return (
               <div className="single-comment">
-                <div className="user-info" style={{ display: "flex" }}>
-                  <img className="user-avatar" src={comment.user.img} alt="" />
-                  <h4>{comment.user.name}</h4>
-                  <p className="timestamp">
-                    posted: {timeStamp(comment.createdAt)}{" "}
-                  </p>
-                </div>
-                <div className="text-container">
-                  <p>{comment.text}</p>
+                <div
+                  className="user-info"
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div className="user-info">
+                    <img
+                      className="user-avatar"
+                      src={comment.user.img}
+                      alt=""
+                    />
+                    <h4>{comment.user.name}</h4>
+                    <p className="timestamp">
+                      posted: {timeStamp(comment.createdAt)}{" "}
+                    </p>
+                  </div>
                   {comment.user.id === user.id && (
                     <button onClick={(e) => handleDelete(comment.id)}>
                       <FaTrash />
                     </button>
                   )}
+                </div>
+                <div className="text-container">
+                  <p>{comment.text}</p>
                 </div>
               </div>
             );

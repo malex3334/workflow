@@ -88,7 +88,9 @@ export default function Dashboard() {
           </h4>
           <p>{convertPriority(item.priority)}</p>
         </div>
-        <p>{item.text}</p>
+        <p>
+          {item.text.length > 200 ? item.text.slice(0, 300) + "..." : item.text}
+        </p>
       </div>
     );
   };

@@ -8,6 +8,7 @@ export default function TaskForm({ handleAddTask, id }) {
     task: "",
     text: "",
     status: "backlog",
+    priority: "normal",
     createdAt: Date.now(),
     updatedAt: Date.now(),
   });
@@ -52,6 +53,7 @@ export default function TaskForm({ handleAddTask, id }) {
         <div className="select">
           <label htmlFor="">Priority:</label>
           <select
+            value="normal"
             name=""
             id=""
             onChange={(e) => setNewObj({ ...newObj, priority: e.target.value })}

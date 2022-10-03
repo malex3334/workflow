@@ -10,6 +10,7 @@ function useFetch(dataFrom) {
   const [rerender, setRerender] = useState(false);
 
   const postData = async (collection, newObject) => {
+    setLoading(true);
     try {
       const response = await fetch(`/api/${collection}`, {
         method: "POST",
@@ -20,6 +21,7 @@ function useFetch(dataFrom) {
       console.log(error);
       setError(error);
     }
+    setLoading(false);
   };
 
   const deleteData = async (id, collection) => {

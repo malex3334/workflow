@@ -105,7 +105,9 @@ export default function ProjectList() {
                       alt=""
                     />
                   ) : (
-                    <div className="noimage"></div>
+                    <div className="noimage">
+                      <span>no image</span>
+                    </div>
                   )}
 
                   <p className="description">{project.description}</p>
