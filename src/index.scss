@@ -90,7 +90,7 @@
 
   .nav-list {
     margin-right: 2rem;
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     text-transform: uppercase;
     letter-spacing: 1px;
 
@@ -744,5 +744,31 @@
 
   .data-title {
     font-weight: 500;
+  }
+}
+
+.login-container {
+  .form {
+    position: relative;
+    padding: 3rem;
+    background: $project-card-bg;
+    border-radius: 6px;
+  }
+
+  .incorrect-password {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.5rem;
+    font-size: 1.2rem;
+    text-align: center;
+    color: red;
+  }
+
+  button {
+    padding: 0.5rem;
+    display: block;
+    color: white;
+    background: $bg-green;
   }
 }

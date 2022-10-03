@@ -66,7 +66,8 @@ export default function () {
       });
       let dm = server.create("user", {
         id: "100",
-        login: "nasa1",
+        login: "dunder",
+        password: "michael1",
         name: "Dunder Mifflin",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
         type: "company",

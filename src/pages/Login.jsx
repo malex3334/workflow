@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import useFetch from "../hooks/useFetch";
 
 const testUser = {
   id: "2",
@@ -23,43 +24,64 @@ const testCompany = {
 
 export default function Login() {
   const { user, setUser } = useGlobalContext();
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
+  // const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   let navigate = useNavigate();
+  const { data } = useFetch("users/");
+  const [error, setError] = useState(false);
+
+  console.log(data);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/");
+    const result = data.users.filter(({ login: log }) => log.includes(login)); // navigate("/");
+    console.log(result[0].password);
+    if (result[0].password === password) {
+      setUser(result[0]);
+      navigate("/");
+    } else {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    }
   };
 
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={(e) => handleSubmit}>
+    <div className="login-container">
+      <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <h2>Login </h2>
 
         <input
-          type="email"
-          placeholder="email"
-          value={name}
+          type="text"
+          placeholder="login"
+          value={login}
           onChange={(e) => {
-            setName(e.target.value);
+            setLogin(e.target.value);
           }}
         />
         <input
           type="password"
           placeholder="password"
-          value={email}
+          value={password}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setPassword(e.target.value);
           }}
         />
-
         <button>Log in</button>
+        {error && (
+          <span className="incorrect-password">
+            incorrect login or password
+          </span>
+        )}
       </form>
+      {/* login shortcut for testing */}
       <div
         style={{
           display: "flex",
           justifyContent: "center",
+          alignItems: "center",
           flexDirection: "column",
           margin: "2rem",
         }}
@@ -75,7 +97,23 @@ export default function Login() {
           login as user
         </button>{" "}
         <br />
-        <button onClick={() => setUser(testCompany)}>login as company</button>
+        <button
+          onClick={() => {
+            setUser(testCompany);
+            navigate("/");
+          }}
+        >
+          login as company
+        </button>
+        <div style={{ marginTop: "2rem" }}>
+          <h2 style={{ fontWeight: "bold" }}>Testing credentials:</h2>
+          <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>user:</h4>
+          <p>login: dwight</p>
+          <p>password: dwight11</p>
+          <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>company:</h4>
+          <p>login: dunder</p>
+          <p>password: michael1</p>
+        </div>
       </div>
     </div>
   );
