@@ -87,32 +87,32 @@ export default function Login() {
         }}
         className="test"
       >
-        <h2 style={{ textAlign: "center" }}>testing utils</h2> <br />
-        <button
-          onClick={() => {
-            setUser(testUser);
-            navigate("/");
-          }}
-        >
-          login as user
-        </button>{" "}
-        <br />
-        <button
-          onClick={() => {
-            setUser(testCompany);
-            navigate("/");
-          }}
-        >
-          login as company
-        </button>
         <div style={{ marginTop: "2rem" }}>
           <h2 style={{ fontWeight: "bold" }}>Testing credentials:</h2>
           <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>user:</h4>
           <p>login: dwight</p>
           <p>password: dwight11</p>
+          <button
+            style={{ marginTop: "1rem" }}
+            onClick={() => {
+              setUser(testUser);
+              navigate("/");
+            }}
+          >
+            login as user
+          </button>
           <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>company:</h4>
           <p>login: dunder</p>
           <p>password: michael1</p>
+          <button
+            style={{ marginTop: "1rem" }}
+            onClick={() => {
+              setUser(testCompany);
+              navigate("/");
+            }}
+          >
+            login as company
+          </button>
         </div>
       </div>
     </div>

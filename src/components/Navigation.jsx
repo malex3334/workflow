@@ -1,9 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../context";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
   const { user, setUser } = useGlobalContext();
+  let navigate = useNavigate();
 
   return (
     <nav className="nav">
@@ -27,6 +29,7 @@ export default function Navigation() {
             style={{ cursor: "pointer" }}
             onClick={() => {
               setUser(false);
+              navigate("/");
             }}
           >
             logout

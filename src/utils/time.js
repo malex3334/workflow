@@ -1,4 +1,6 @@
 export const timeStamp = (timestamp) => {
+  const userLang = navigator.languages[1];
+  console.log(userLang);
   const now = Date.now();
   var date = new Date(timestamp);
 
@@ -13,5 +15,5 @@ export const timeStamp = (timestamp) => {
     return `${minutesFrom} minutes ago`;
   }
 
-  return `${date.toLocaleDateString("en")}, ${date.toLocaleTimeString()}`;
+  return `${date.toLocaleDateString(userLang)}, ${date.toLocaleTimeString()}`;
 };
