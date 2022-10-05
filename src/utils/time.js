@@ -1,6 +1,6 @@
 export const timeStamp = (timestamp) => {
   const userLang = navigator.languages[1];
-  console.log(userLang);
+
   const now = Date.now();
   var date = new Date(timestamp);
 

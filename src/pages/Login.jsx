@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Loader from "../components/Loader";
 import { useGlobalContext } from "../context";
 import useFetch from "../hooks/useFetch";
 
@@ -30,6 +31,7 @@ export default function Login() {
   let navigate = useNavigate();
   const { data } = useFetch("users/");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   console.log(data);
 
@@ -38,9 +40,14 @@ export default function Login() {
     const result = data.users.filter(({ login: log }) => log.includes(login)); // navigate("/");
     console.log(result[0].password);
     if (result[0].password === password) {
-      setUser(result[0]);
-      navigate("/");
-    } else {
+      setLoading(true);
+      setTimeout(() => {
+        setUser(result[0]);
+        navigate("/");
+      }, 1500);
+    }
+
+    if (!result[0] || result[0].password !== password) {
       setError(true);
       setTimeout(() => {
         setError(false);
@@ -48,12 +55,16 @@ export default function Login() {
     }
   };
 
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="login-container">
       <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <h2>Login </h2>
 
         <input
+          required
           type="text"
           placeholder="login"
           value={login}
@@ -62,6 +73,7 @@ export default function Login() {
           }}
         />
         <input
+          required
           type="password"
           placeholder="password"
           value={password}

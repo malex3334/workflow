@@ -86,7 +86,7 @@ export default function Dashboard() {
           >
             {item.task}
           </h4>
-          <p>{convertPriority(item.priority)}</p>
+          <p className="priority">{convertPriority(item.priority)}</p>
         </div>
         <p>
           {item.text.length > 200 ? item.text.slice(0, 300) + "..." : item.text}

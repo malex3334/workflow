@@ -342,6 +342,7 @@
   }
 
   .single-task {
+    position: relative;
     background: white;
     padding: 1.5rem;
     box-shadow: $single-card-shadow;
@@ -351,6 +352,12 @@
 
     &:hover {
       background: $single-card-color-hover;
+    }
+
+    .priority {
+      position: absolute;
+      top: 0.25rem;
+      right: 1rem;
     }
   }
 
@@ -427,6 +434,9 @@
     width: 60%;
   }
   .right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
   }
 
   .description {
@@ -459,6 +469,10 @@
 
   select {
     margin-left: 1rem;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
   }
 
   .timestamps {
@@ -466,6 +480,7 @@
     font-size: 1.2rem;
     p {
       margin: 0.5rem 0;
+      text-align: end;
     }
   }
 
@@ -474,6 +489,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    text-align: end;
 
     gap: 1rem;
   }
