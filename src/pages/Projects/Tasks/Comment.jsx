@@ -4,7 +4,7 @@ import useFetch from "../../../hooks/useFetch";
 import { timeStamp } from "../../../utils/time";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "../../../components/Loader";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 
 export default function Comment({
@@ -16,7 +16,22 @@ export default function Comment({
   loading,
 }) {
   const [commentText, setCommentText] = useState("");
-  const { postData, deleteData, loading: postLoading } = useFetch();
+  const { postData, updateData, deleteData, loading: postLoading } = useFetch();
+  const [editedComment, setEditedComment] = useState("");
+  const [edit, setEdit] = useState({
+    id: "",
+    edit: false,
+  });
+
+  const handleEdit = (id, comment) => {
+    setEdit({ id: id, edit: true });
+    setEditedComment(comment);
+  };
+
+  const handleUpdateComment = (id) => {
+    updateData(id, "comments", { text: editedComment });
+    setRerender(!rerender);
+  };
 
   const handleSubmit = () => {
     if (commentText.length > 0) {
@@ -65,13 +80,48 @@ export default function Comment({
                     </p>
                   </div>
                   {comment.user.id === user.id && (
-                    <button onClick={(e) => handleDelete(comment.id)}>
-                      <FaTrash />
-                    </button>
+                    <div>
+                      <button
+                        onClick={(e) => {
+                          handleEdit(comment.id, comment.text);
+                        }}
+                      >
+                        <FaEdit />
+                      </button>
+                      <button onClick={(e) => handleDelete(comment.id)}>
+                        <FaTrash />
+                      </button>
+                    </div>
                   )}
                 </div>
                 <div className="text-container">
-                  <p>{comment.text}</p>
+                  <p>
+                    {edit.edit && edit.id === comment.id ? (
+                      <div style={{ display: "flex" }}>
+                        <textarea
+                          rows="1"
+                          className="comment-editedarea"
+                          onChange={(e) => setEditedComment(e.target.value)}
+                          onBlur={() => {
+                            handleUpdateComment(comment.id);
+                            setEdit({ edit: false });
+                          }}
+                          value={editedComment}
+                        ></textarea>
+                        <button
+                          className="submit"
+                          onClick={() => {
+                            handleUpdateComment(comment.id);
+                            setEdit({ edit: false });
+                          }}
+                        >
+                          <IoSend className="send-btn" />
+                        </button>
+                      </div>
+                    ) : (
+                      `${comment.text}`
+                    )}
+                  </p>
                 </div>
               </div>
             );

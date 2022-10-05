@@ -352,6 +352,14 @@ export default function () {
         return schema.comments.find(id).destroy();
       });
 
+      this.patch("api/comments/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let project = schema.comments.find(id);
+
+        return project.update(newAttrs);
+      });
+
       // this.post("comments");
       // // users
 
