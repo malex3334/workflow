@@ -9,6 +9,7 @@ import NotLoggedIn from "../../components/NotLoggedIn";
 import { useGlobalContext } from "../../context";
 import { convertPriority } from "../../utils/icons";
 import { IoAddCircle } from "react-icons/io5";
+import { FaEdit } from "react-icons/fa";
 import Error from "../../components/Error";
 
 const getUsers = (data, id) => {
@@ -119,17 +120,25 @@ export default function Dashboard() {
       <div className="main-header">
         <img src={projects.project.img} className="image" alt="" />
         <div>
-          <h2>{projects.project.name}</h2>
+          <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+            <h2>{projects.project.name}</h2>
+            {user.type === "company" && (
+              <button className="edit-btn">
+                <NavLink to={`/editproject/${projects.project.id}`}>
+                  <FaEdit className="del-btn" style={{ fontSize: "2.5rem" }} />
+                </NavLink>
+              </button>
+            )}
+          </div>
           <p>{projects.project.description} </p>
-
           <ul className="users-list" key={user}>
             <span>Assigned users:</span>
             {usersList &&
               usersList.map((user) => {
                 if (user === "undefined") return;
-                const { login, img } = user;
+                const { login, img, id } = user;
                 return (
-                  <div className="user-mini">
+                  <div className="user-mini" key={id}>
                     <img className="user-img" src={img} alt="" />
                     <h5 className="user-nick">{login}</h5>
                   </div>

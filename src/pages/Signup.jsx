@@ -2,7 +2,13 @@ import React from "react";
 
 export default function Signup() {
   return (
-    <div className="form-container">
+    <div
+      className="form-container"
+      style={{ flexDirection: "column", alignItems: "center" }}
+    >
+      <h2 style={{ color: "red" }}>
+        work in progress, please use Login in page
+      </h2>
       <form className="form">
         <h2>Register new user / company </h2>
         <select name="" id="">

@@ -62,7 +62,7 @@ export default function Comment({
         <>
           {commentsList.map((comment) => {
             return (
-              <div className="single-comment">
+              <div className="single-comment" key={comment.id}>
                 <div
                   className="user-info"
                   style={{ display: "flex", justifyContent: "space-between" }}

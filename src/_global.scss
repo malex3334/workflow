@@ -44,6 +44,14 @@ button {
   border-radius: 6px;
 }
 
+select {
+  margin-left: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: none;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
 .add-btn {
   padding: 0;
   font-size: 5rem;

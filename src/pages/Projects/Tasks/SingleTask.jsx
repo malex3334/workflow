@@ -90,6 +90,7 @@ export default function SingleTask({
               className="btn-cancel"
               onClick={(prev) => {
                 setEdit({ ...prev, title: false });
+                setShowModal(false);
               }}
             >
               cancel
@@ -161,6 +162,7 @@ export default function SingleTask({
                   className="btn-cancel"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
+                    setShowModal(false);
                   }}
                 >
                   cancel
