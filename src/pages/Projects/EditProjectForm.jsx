@@ -13,12 +13,7 @@ import useFetch from "../../hooks/useFetch";
 //   return result;
 // };
 
-const ifInAssigned = {
-  display: "none",
-};
-
 export default function EditProjectForm() {
-  const [newID, setNewID] = useState(uuidv4());
   let navigate = useNavigate();
   const { updateData } = useFetch();
   const { id } = useParams();
@@ -27,7 +22,7 @@ export default function EditProjectForm() {
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
 
-  const { data, setData, loading, setLoading } = useFetch(`projects/${id}`);
+  const { data, setData, loading } = useFetch(`projects/${id}`);
   // users to be patched
   const [users, setUsers] = useState([]);
   // users to be displayed as assigned
@@ -38,8 +33,6 @@ export default function EditProjectForm() {
     setData: setUsersData,
     loading: usersLoading,
   } = useFetch("users/");
-  // users to be fetched as assigned
-  const [fetchedUsers, setFetchedUsers] = useState([]);
   // relations
   const {
     data: relations,
