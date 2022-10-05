@@ -26,32 +26,32 @@ const testCompany = {
 export default function Login() {
   const { user, setUser } = useGlobalContext();
   const [login, setLogin] = useState("");
-  // const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
   const { data } = useFetch("users/");
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  console.log(data);
-
   const handleSubmit = (e) => {
+    const showError = () => {
+      setError(true);
+      setTimeout(() => {
+        setError(false);
+      }, 3000);
+    };
     e.preventDefault();
-    const result = data.users.filter(({ login: log }) => log.includes(login)); // navigate("/");
-    console.log(result[0].password);
-    if (result[0].password === password) {
+    const result = data.users.filter(({ login: log }) => log.includes(login));
+
+    if (result.length > 0 && result[0].password === password) {
       setLoading(true);
       setTimeout(() => {
         setUser(result[0]);
         navigate("/");
       }, 1500);
-    }
+    } else showError();
 
-    if (!result[0] || result[0].password !== password) {
-      setError(true);
-      setTimeout(() => {
-        setError(false);
-      }, 3000);
+    if (result.length === 0) {
+      showError();
     }
   };
 
