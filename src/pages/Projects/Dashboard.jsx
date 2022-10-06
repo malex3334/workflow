@@ -236,6 +236,7 @@ export default function Dashboard() {
       </Modal>
       <Modal showModal={showTask} setShowModal={setShowTask}>
         <SingleTask
+          usersList={usersList}
           task={taskID}
           user={user}
           rerender={rerender}

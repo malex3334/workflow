@@ -17,6 +17,9 @@ export default function () {
       relation: RestSerializer.extend({
         include: ["user"],
       }),
+      task: RestSerializer.extend({
+        include: ["user"],
+      }),
     },
     models: {
       project: Model.extend({
@@ -25,6 +28,7 @@ export default function () {
 
       user: Model.extend({
         comment: hasMany(),
+        task: hasMany(),
       }),
 
       relation: Model.extend({
@@ -33,6 +37,7 @@ export default function () {
 
       task: Model.extend({
         comments: hasMany(),
+        user: belongsTo(),
       }),
 
       comment: Model.extend({

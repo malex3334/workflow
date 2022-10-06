@@ -13,8 +13,7 @@ export default function SingleTask({
   task,
   user,
   setShowModal,
-  data,
-  setData,
+  usersList,
   rerender,
   setRerender,
 }) {
@@ -27,6 +26,7 @@ export default function SingleTask({
   const [select, setSelect] = useState(task.status);
   const [priority, setPriority] = useState(task.priority);
   const [commentsList, setCommentsList] = useState([]);
+  const [assignedUsers, setAssignedUsers] = useState([]);
   const { deleteData, updateData } = useFetch();
   const {
     data: comments,
@@ -35,6 +35,14 @@ export default function SingleTask({
     setRerender: setCommentsRerender,
   } = useFetch("comments/");
   const { data: users, loading: usersLoading } = useFetch("users/");
+
+  useEffect(() => {
+    if (!usersLoading) {
+      const result = users.users.filter(({ id }) => task.users.includes(id));
+      console.log(result);
+      setAssignedUsers(result);
+    }
+  }, [users, task]);
 
   useEffect(() => {
     if (!commentsLoading) {
@@ -122,7 +130,6 @@ export default function SingleTask({
             <FaTrash />
           </button>
           <button className="del-btn" onClick={() => setShowModal(false)}>
-            {/* <button className="nav-btn" onClick={() => setShowModal(false)}> */}
             <FaWindowClose />
           </button>
         </nav>
@@ -232,6 +239,55 @@ export default function SingleTask({
             <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
             <p className="timestamp">modified: {timeStamp(task.updatedAt)}</p>
           </div>
+          <ul className="users-list users-list-width">
+            {/* TODO - ADD USERS => SHOW ALL USERS IN PROJECT */}
+            {usersList
+              ? usersList.map((user) => {
+                  return (
+                    <li
+                      className="user-mini row"
+                      style={{ cursor: "pointer" }}
+                      // key={uuidv4()}
+                      // onClick={(e) => {
+                      //   handleAssignUsers(e, user);
+                      // }}
+                    >
+                      <img
+                        src={user.img}
+                        className="user-img"
+                        alt={user.name}
+                      />
+                      <p className="user-nick">{user.name}</p>
+                    </li>
+                  );
+                })
+              : "no users"}
+          </ul>
+          {/* show all users */}
+          <ul className="users-list users-list-width">
+            <h4>assigned users:</h4>
+            {assignedUsers
+              ? assignedUsers?.map((user) => {
+                  return (
+                    <li
+                      // onClick={(e) => {
+                      //   handleUnassignUser(e, user);
+                      // }}
+                      className="user-mini row"
+                      // style={{ cursor: "pointer" }}
+                      // key={uuidv4()}
+                    >
+                      <img
+                        src={user.img}
+                        className="user-img"
+                        alt={user.name}
+                      />
+                      <p className="user-nick">{user.name}</p>
+                    </li>
+                  );
+                })
+              : "no users"}
+          </ul>
         </div>
       </div>
       <Comment
