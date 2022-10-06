@@ -52,6 +52,12 @@ select {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
+.btn-save {
+  background-color: $btn-add-color;
+  color: white;
+  padding: 0.5rem;
+}
+
 .add-btn {
   padding: 0;
   font-size: 5rem;

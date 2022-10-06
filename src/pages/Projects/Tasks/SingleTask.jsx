@@ -4,6 +4,8 @@ import { FaTrash, FaWindowClose } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
 import Comment from "./Comment";
+import Modal from "../../../components/Modal";
+import DeleteModal from "../../../components/DeleteModal";
 
 const descr = { description: false, title: false };
 
@@ -19,7 +21,7 @@ export default function SingleTask({
   const { descriptionRef } = useRef();
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(descr);
-
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);
@@ -47,6 +49,7 @@ export default function SingleTask({
     deleteData(id, "tasks");
     setRerender(!rerender);
     setShowModal(false);
+    setShowDeleteModal(false);
   };
 
   if (!user) {
@@ -112,7 +115,8 @@ export default function SingleTask({
           <button
             className="del-btn"
             onClick={(e) => {
-              handleDelete(task.id);
+              // handleDelete(task.id);
+              setShowDeleteModal(true);
             }}
           >
             <FaTrash />
@@ -238,6 +242,13 @@ export default function SingleTask({
         rerender={commentsRerender}
         setRerender={setCommentsRerender}
       />
+      <Modal showModal={showDeleteModal} setShowModal={setShowDeleteModal}>
+        <DeleteModal
+          setShowDeleteModal={setShowDeleteModal}
+          id={task.id}
+          handleDelete={handleDelete}
+        />
+      </Modal>
     </div>
   );
 }

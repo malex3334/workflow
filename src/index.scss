@@ -793,3 +793,27 @@
     background: $aside-bg;
   }
 }
+
+.delete-modal {
+  padding: 2.5rem;
+  width: 50rem;
+  height: 20rem;
+
+  h2 {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    color: white;
+  }
+}
