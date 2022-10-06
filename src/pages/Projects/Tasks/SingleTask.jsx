@@ -6,6 +6,8 @@ import useFetch from "../../../hooks/useFetch";
 import Comment from "./Comment";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
+import { IoAddCircle } from "react-icons/io5";
+import { v4 as uuidv4 } from "uuid";
 
 const descr = { description: false, title: false };
 
@@ -18,7 +20,6 @@ export default function SingleTask({
   setRerender,
 }) {
   const { descriptionRef } = useRef();
-  const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(descr);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [title, setTitle] = useState(task.task);
@@ -27,6 +28,7 @@ export default function SingleTask({
   const [priority, setPriority] = useState(task.priority);
   const [commentsList, setCommentsList] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
+  const [showAllUsers, setShowAllUsers] = useState(false);
   const { deleteData, updateData } = useFetch();
   const {
     data: comments,
@@ -58,6 +60,12 @@ export default function SingleTask({
     setRerender(!rerender);
     setShowModal(false);
     setShowDeleteModal(false);
+  };
+
+  const handleAssignUser = (taskId, user) => {
+    // setAssignedUsers()
+    updateData(taskId, "tasks", { users: [user.id] });
+    setRerender(!rerender);
   };
 
   if (!user) {
@@ -241,16 +249,16 @@ export default function SingleTask({
           </div>
           <ul className="users-list users-list-width">
             {/* TODO - ADD USERS => SHOW ALL USERS IN PROJECT */}
-            {usersList
+            {showAllUsers && usersList
               ? usersList.map((user) => {
                   return (
                     <li
                       className="user-mini row"
                       style={{ cursor: "pointer" }}
-                      // key={uuidv4()}
-                      // onClick={(e) => {
-                      //   handleAssignUsers(e, user);
-                      // }}
+                      key={uuidv4()}
+                      onClick={(e) => {
+                        handleAssignUser(task.id, user);
+                      }}
                     >
                       <img
                         src={user.img}
@@ -261,7 +269,7 @@ export default function SingleTask({
                     </li>
                   );
                 })
-              : "no users"}
+              : ""}
           </ul>
           {/* show all users */}
           <ul className="users-list users-list-width">
@@ -287,7 +295,14 @@ export default function SingleTask({
                   );
                 })
               : "no users"}
+            <button>
+              <IoAddCircle
+                className="add-btn small"
+                onClick={() => setShowAllUsers(true)}
+              />
+            </button>
           </ul>
+          <div className="worktime">work</div>
         </div>
       </div>
       <Comment
