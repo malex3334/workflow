@@ -166,6 +166,7 @@ export default function () {
         priority: "high",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
       server.create("task", {
         id: "89",
@@ -176,6 +177,7 @@ export default function () {
         priority: "normal",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
       server.create("task", {
         id: "94",
@@ -186,6 +188,7 @@ export default function () {
         priority: "low",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
       server.create("task", {
         id: "51",
@@ -196,6 +199,7 @@ export default function () {
         priority: "very high",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
       server.create("task", {
         id: "894",
@@ -206,6 +210,7 @@ export default function () {
         priority: "low",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
       server.create("task", {
         id: "924",
@@ -216,6 +221,7 @@ export default function () {
         priority: "normal",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
       });
 
       // comments
