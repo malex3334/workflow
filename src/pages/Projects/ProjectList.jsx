@@ -9,11 +9,14 @@ import { IoAddCircle } from "react-icons/io5";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { timeStamp } from "../../utils/time";
 import NotLoggedIn from "../../components/NotLoggedIn";
+import Modal from "../../components/Modal";
+import DeleteModal from "../../components/DeleteModal";
 
 export default function ProjectList() {
   const { user } = useGlobalContext();
   const [filteredData, setFilteredData] = useState({});
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   //  fetch all projects
   const { data, setData, loading, setLoading } = useFetch("projects");
 
@@ -46,6 +49,7 @@ export default function ProjectList() {
         method: "DELETE",
       });
       setFilteredData(filteredData.filter((project) => project.id !== id));
+      setShowDeleteModal(false);
     } catch (error) {
       console.log(error);
     }
@@ -90,7 +94,10 @@ export default function ProjectList() {
                     {user.type === "company" && (
                       <button
                         // className="del-btn"
-                        onClick={(e) => handleDelete(project.id)}
+                        onClick={(e) => {
+                          // handleDelete(project.id);
+                          setShowDeleteModal(true);
+                        }}
                       >
                         <FaTrash className="del-btn" />
                       </button>
@@ -115,6 +122,17 @@ export default function ProjectList() {
                 <p className="project-timestamp">
                   {timeStamp(project.createdAt)}
                 </p>
+
+                <Modal
+                  showModal={showDeleteModal}
+                  setShowModal={setShowDeleteModal}
+                >
+                  <DeleteModal
+                    setShowDeleteModal={setShowDeleteModal}
+                    id={project.id}
+                    handleDelete={handleDelete}
+                  />
+                </Modal>
               </div>
             );
           })}

@@ -19,6 +19,7 @@ export default function SingleTask({
   const { descriptionRef } = useRef();
   const [loading, setLoading] = useState(false);
   const [edit, setEdit] = useState(descr);
+
   const [title, setTitle] = useState(task.task);
   const [description, setDescription] = useState(task.text);
   const [select, setSelect] = useState(task.status);

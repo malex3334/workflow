@@ -5,6 +5,8 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "../../../components/Loader";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
+import Modal from "../../../components/Modal";
+import DeleteModal from "../../../components/DeleteModal";
 
 export default function Comment({
   commentsList,
@@ -17,6 +19,7 @@ export default function Comment({
   const [commentText, setCommentText] = useState("");
   const { postData, updateData, deleteData, loading: postLoading } = useFetch();
   const [editedComment, setEditedComment] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [edit, setEdit] = useState({
     id: "",
     edit: false,
@@ -49,6 +52,7 @@ export default function Comment({
   const handleDelete = (id) => {
     deleteData(id, "comments");
     setRerender(!rerender);
+    setShowDeleteModal(false);
   };
 
   if (loading) {
@@ -87,7 +91,7 @@ export default function Comment({
                       >
                         <FaEdit />
                       </button>
-                      <button onClick={(e) => handleDelete(comment.id)}>
+                      <button onClick={(e) => setShowDeleteModal(true)}>
                         <FaTrash />
                       </button>
                     </div>
@@ -122,6 +126,16 @@ export default function Comment({
                     )}
                   </p>
                 </div>
+                <Modal
+                  showModal={showDeleteModal}
+                  setShowModal={setShowDeleteModal}
+                >
+                  <DeleteModal
+                    setShowDeleteModal={setShowDeleteModal}
+                    id={comment.id}
+                    handleDelete={handleDelete}
+                  />
+                </Modal>
               </div>
             );
           })}

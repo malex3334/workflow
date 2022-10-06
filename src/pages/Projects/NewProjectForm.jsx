@@ -32,6 +32,7 @@ export default function NewProjectForm() {
       id: newID,
       name: name,
       description: description,
+      img: img,
       createdAt: Date.now(),
       updatedAt: Date.now(),
     };
