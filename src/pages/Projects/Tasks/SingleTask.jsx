@@ -38,13 +38,31 @@ export default function SingleTask({
   } = useFetch("comments/");
   const { data: users, loading: usersLoading } = useFetch("users/");
 
+  const handeSaveUsers = (taskId, user) => {
+    const result = user.map((single) => {
+      return single.id;
+    });
+    // setAssignedUsers()
+    updateData(taskId, "tasks", { users: result });
+    setRerender(!rerender);
+  };
   useEffect(() => {
     if (!usersLoading) {
       const result = users.users.filter(({ id }) => task.users.includes(id));
       console.log(result);
       setAssignedUsers(result);
     }
-  }, [users, task]);
+  }, [users, usersLoading]);
+
+  const handleAssignUsers = (e, user) => {
+    const result = assignedUsers.map((single) => {
+      return single.id;
+    });
+
+    if (result.includes(user.id)) {
+      return;
+    } else setAssignedUsers([...assignedUsers, user]);
+  };
 
   useEffect(() => {
     if (!commentsLoading) {
@@ -60,12 +78,6 @@ export default function SingleTask({
     setRerender(!rerender);
     setShowModal(false);
     setShowDeleteModal(false);
-  };
-
-  const handleAssignUser = (taskId, user) => {
-    // setAssignedUsers()
-    updateData(taskId, "tasks", { users: [user.id] });
-    setRerender(!rerender);
   };
 
   if (!user) {
@@ -131,8 +143,7 @@ export default function SingleTask({
           <button
             className="del-btn"
             onClick={(e) => {
-              // handleDelete(task.id);
-              setShowDeleteModal(true);
+              handleDelete(task.id);
             }}
           >
             <FaTrash />
@@ -257,7 +268,7 @@ export default function SingleTask({
                       style={{ cursor: "pointer" }}
                       key={uuidv4()}
                       onClick={(e) => {
-                        handleAssignUser(task.id, user);
+                        handleAssignUsers(e, user);
                       }}
                     >
                       <img
@@ -274,7 +285,7 @@ export default function SingleTask({
           {/* show all users */}
           <ul className="users-list users-list-width">
             <h4>assigned users:</h4>
-            {assignedUsers
+            {assignedUsers && assignedUsers.length > 0
               ? assignedUsers?.map((user) => {
                   return (
                     <li
@@ -289,18 +300,35 @@ export default function SingleTask({
                         src={user.img}
                         className="user-img"
                         alt={user.name}
+                        onClick={() => {
+                          showAllUsers &&
+                            setAssignedUsers((prev) =>
+                              prev.filter((single) => single.id !== user.id)
+                            );
+                        }}
                       />
                       <p className="user-nick">{user.name}</p>
                     </li>
                   );
                 })
               : "no users"}
-            <button>
-              <IoAddCircle
-                className="add-btn small"
-                onClick={() => setShowAllUsers(true)}
-              />
-            </button>
+            {!showAllUsers ? (
+              <button>
+                <IoAddCircle
+                  className="add-btn small"
+                  onClick={() => setShowAllUsers(true)}
+                />
+              </button>
+            ) : (
+              <button
+                onClick={(e) => {
+                  handeSaveUsers(task.id, assignedUsers);
+                  setShowAllUsers(false);
+                }}
+              >
+                save
+              </button>
+            )}
           </ul>
           <div className="worktime">work</div>
         </div>

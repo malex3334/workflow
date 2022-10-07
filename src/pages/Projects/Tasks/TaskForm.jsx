@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { useGlobalContext } from "../../../context";
 
 export default function TaskForm({ handleAddTask, id }) {
+  const { user } = useGlobalContext();
   const [newObj, setNewObj] = useState({
     taskID: uuidv4(),
     projectID: id,
@@ -9,6 +11,7 @@ export default function TaskForm({ handleAddTask, id }) {
     text: "",
     status: "backlog",
     priority: "normal",
+    users: [user.id],
     createdAt: Date.now(),
     updatedAt: Date.now(),
   });
