@@ -41,11 +41,12 @@ export default function Dashboard() {
   const [taskID, setTaskID] = useState({});
   const { user } = useGlobalContext();
   const [usersList, setUsersList] = useState([]);
-  const { postData } = useFetch();
+  const { postData, updateData } = useFetch();
   const { data: fetching, loading, setLoading, error } = useFetch("relations");
   const { data: tasks, rerender, setRerender } = useFetch("tasks/");
   const { data: projects } = useFetch(`projects/${id}`);
   const { data: users, loading: usersLoading } = useFetch("users/");
+  const [draggedItem, setDraggedItem] = useState();
 
   useEffect(() => {
     if (!loading) {
@@ -71,6 +72,7 @@ export default function Dashboard() {
   const renderTaskElement = (item) => {
     return (
       <div
+        onDrag={(e) => setDraggedItem(item)}
         draggable
         className="single-task"
         key={item.id}
@@ -158,9 +160,22 @@ export default function Dashboard() {
       </div>
 
       <div className="dashboard-container">
-        <div className="single-board">
-          <h3 className="board-title">Backlog</h3>
-          <ul className="tasks-list">
+        <div
+          id="backlog"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="backlog" className="board-title">
+            Backlog
+          </h3>
+          <ul id="backlog" className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task) => {
@@ -170,9 +185,22 @@ export default function Dashboard() {
               })}
           </ul>
         </div>
-        <div className="single-board">
-          <h3 className="board-title">To do</h3>
-          <ul className="tasks-list">
+        <div
+          id="todo"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="todo" className="board-title">
+            To do
+          </h3>
+          <ul id="todo" className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task, index) => {
@@ -182,9 +210,22 @@ export default function Dashboard() {
               })}
           </ul>
         </div>
-        <div className="single-board">
-          <h3 className="board-title">Progress</h3>
-          <ul className="tasks-list">
+        <div
+          id="progress"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="progress" className="board-title">
+            Progress
+          </h3>
+          <ul id="progress" className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task) => {
@@ -194,9 +235,22 @@ export default function Dashboard() {
               })}
           </ul>
         </div>
-        <div className="single-board">
-          <h3 className="board-title">Testing</h3>
-          <ul className="tasks-list">
+        <div
+          id="testing"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="testing" className="board-title">
+            Testing
+          </h3>
+          <ul id="testing" className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task) => {
@@ -206,9 +260,22 @@ export default function Dashboard() {
               })}
           </ul>
         </div>
-        <div className="single-board">
-          <h3 className="board-title">To deploy</h3>
-          <ul className="tasks-list">
+        <div
+          id="deploy"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="deploy" className="board-title">
+            To deploy
+          </h3>
+          <ul id="deploy" className="tasks-list">
             {data &&
               data.map((task) => {
                 if (task.status === "deploy") {
@@ -217,9 +284,22 @@ export default function Dashboard() {
               })}
           </ul>
         </div>
-        <div className="single-board">
-          <h3 className="board-title">Done</h3>
-          <ul className="tasks-list">
+        <div
+          id="done"
+          className="single-board"
+          onDragLeave={(e) => {
+            if (e.target.id !== "") {
+              updateData(draggedItem.id, "tasks", {
+                status: e.target.id,
+              });
+              setRerender(!rerender);
+            }
+          }}
+        >
+          <h3 id="done" className="board-title">
+            Done
+          </h3>
+          <ul id="done" className="tasks-list">
             {data &&
               data.length > 0 &&
               data.map((task) => {
