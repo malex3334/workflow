@@ -283,8 +283,8 @@ export default function SingleTask({
               : ""}
           </ul>
           {/* show all users */}
+          <h4>assigned users:</h4>
           <ul className="users-list users-list-width">
-            <h4>assigned users:</h4>
             {assignedUsers && assignedUsers.length > 0
               ? assignedUsers?.map((user) => {
                   return (
@@ -325,6 +325,8 @@ export default function SingleTask({
                   handeSaveUsers(task.id, assignedUsers);
                   setShowAllUsers(false);
                 }}
+                className="add-btn"
+                style={{ fontSize: "1.5rem" }}
               >
                 save
               </button>
