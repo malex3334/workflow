@@ -14,6 +14,7 @@ import DeleteModal from "../../../components/DeleteModal";
 import { IoAddCircle } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import TimeReport from "./TimeReport";
+import Loader from "../../../components/Loader";
 
 const descr = { description: false, title: false };
 
@@ -85,11 +86,14 @@ export default function SingleTask({
     deleteData(id, "tasks");
     setRerender(!rerender);
     setShowModal(false);
-    setShowDeleteModal(false);
   };
 
   if (!user) {
     return <NotLoggedIn />;
+  }
+
+  if (usersLoading) {
+    return <Loader />;
   }
 
   return (
@@ -151,7 +155,8 @@ export default function SingleTask({
           <button
             className="del-btn"
             onClick={(e) => {
-              handleDelete(task.id);
+              setShowDeleteModal(true);
+              // handleDelete(task.id)
             }}
           >
             <FaTrash />

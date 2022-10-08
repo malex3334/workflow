@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Loader from "../../../components/Loader";
 import useFetch from "../../../hooks/useFetch";
 
 export default function TimeReport({
@@ -11,32 +12,37 @@ export default function TimeReport({
 }) {
   const [time, setTime] = useState(reportedTime);
   const [estTime, setEstTime] = useState(estaminatedTime);
-  const { updateData } = useFetch();
+  const { updateData, loading } = useFetch();
 
   const handleSetData = (e) => {
     e.preventDefault();
+
     updateData(task.id, "tasks", {
       reportedTime: time,
       estaminatedTime: estTime,
     });
-    setShowModal(false);
     setRerender(!rerender);
+
+    setShowModal(false);
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="worktime-modal">
       <h2>Time report:</h2>
-      <form
-        action=""
-        className="worktime-form"
-        onSubmit={(e) => handleSetData(e)}
-      >
+
+      <form className="worktime-form" onSubmit={(e) => handleSetData(e)}>
         <div className="worktime-input-control">
           <label htmlFor="">time spent (hours):</label>
           <input
             type="text"
             value={time}
-            onChange={(e) => setTime(e.target.value)}
+            onChange={(e) => {
+              setTime(e.target.value);
+            }}
           />
         </div>
         <div className="worktime-input-control">
