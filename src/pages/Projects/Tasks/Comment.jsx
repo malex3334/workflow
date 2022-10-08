@@ -7,6 +7,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
+import { ReactPropTypes } from "react";
 
 export default function Comment({
   commentsList,

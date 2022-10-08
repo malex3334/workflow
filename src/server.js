@@ -169,6 +169,8 @@ export default function () {
         text: "somet text a co",
         status: "done",
         priority: "high",
+        reportedTime: "1",
+        estaminatedTime: "10",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
         users: ["1", "100", "3"],

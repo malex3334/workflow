@@ -1,6 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { timeStamp } from "../../../utils/time";
-import { FaTrash, FaWindowClose } from "react-icons/fa";
+import {
+  FaTrash,
+  FaUserClock,
+  FaUserEdit,
+  FaWindowClose,
+} from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
 import Comment from "./Comment";
@@ -8,6 +13,7 @@ import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
 import { IoAddCircle } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
+import TimeReport from "./TimeReport";
 
 const descr = { description: false, title: false };
 
@@ -29,6 +35,8 @@ export default function SingleTask({
   const [commentsList, setCommentsList] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
+  const [showTimeReport, setShowTimeReport] = useState(false);
+
   const { deleteData, updateData } = useFetch();
   const {
     data: comments,
@@ -258,7 +266,10 @@ export default function SingleTask({
             <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
             <p className="timestamp">modified: {timeStamp(task.updatedAt)}</p>
           </div>
-          <ul className="users-list users-list-width">
+          <ul
+            className="users-list users-list-width"
+            style={{ padding: "0", height: "auto" }}
+          >
             {/* TODO - ADD USERS => SHOW ALL USERS IN PROJECT */}
             {showAllUsers && usersList
               ? usersList.map((user) => {
@@ -283,19 +294,15 @@ export default function SingleTask({
               : ""}
           </ul>
           {/* show all users */}
-          <h4>assigned users:</h4>
+          <div className="section-title">
+            <FaUserEdit className="title-icon" />
+            <h4>assigned users:</h4>
+          </div>
           <ul className="users-list users-list-width">
             {assignedUsers && assignedUsers.length > 0
               ? assignedUsers?.map((user) => {
                   return (
-                    <li
-                      // onClick={(e) => {
-                      //   handleUnassignUser(e, user);
-                      // }}
-                      className="user-mini row"
-                      // style={{ cursor: "pointer" }}
-                      // key={uuidv4()}
-                    >
+                    <li className="user-mini row">
                       <img
                         src={user.img}
                         className="user-img"
@@ -332,7 +339,28 @@ export default function SingleTask({
               </button>
             )}
           </ul>
-          <div className="worktime">work</div>
+          <div className="worktime">
+            <div className="section-title">
+              <FaUserClock className="title-icon" />
+              <h4>time tracking</h4>
+            </div>
+            <div
+              className="time-progressbar"
+              onClick={() => {
+                setShowTimeReport(true);
+              }}
+            >
+              <div
+                className="time-reported"
+                style={{
+                  width: (task.reportedTime / task.estaminatedTime) * 100 + "%",
+                }}
+              ></div>
+            </div>
+            <div className="time-reported-info">
+              {task.reportedTime}h logged / {task.estaminatedTime}h left
+            </div>
+          </div>
         </div>
       </div>
       <Comment
@@ -348,6 +376,17 @@ export default function SingleTask({
           setShowDeleteModal={setShowDeleteModal}
           id={task.id}
           handleDelete={handleDelete}
+        />
+      </Modal>
+
+      <Modal showModal={showTimeReport} setShowModal={setShowTimeReport}>
+        <TimeReport
+          reportedTime={task.reportedTime}
+          task={task}
+          estaminatedTime={task.estaminatedTime}
+          rerender={rerender}
+          setRerender={setRerender}
+          setShowModal={setShowTimeReport}
         />
       </Modal>
     </div>

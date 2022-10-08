@@ -555,6 +555,61 @@
     color: white;
     color: $btn-add-color;
   }
+
+  .worktime {
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .title-icon {
+    font-size: 2.3rem;
+  }
+  .time-progressbar {
+    height: 0.7rem;
+    width: 100%;
+    background: grey;
+    position: relative;
+    border-radius: 12px 12px 12px 12px;
+    cursor: pointer;
+  }
+
+  .time-reported {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0.7rem;
+    background: $bg-green;
+  }
+
+  .time-reported-info {
+    margin: 0.75rem 0;
+    font-size: 1.4rem;
+  }
+}
+
+.worktime-modal {
+  padding: 2.5rem;
+
+  .worktime-form {
+    display: flex;
+    gap: 3rem;
+  }
+
+  .worktime-input-control {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  button {
+    justify-self: flex-end;
+  }
 }
 // forms
 .form-container {
