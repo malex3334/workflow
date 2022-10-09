@@ -43,7 +43,12 @@ export default function Dashboard() {
   const [usersList, setUsersList] = useState([]);
   const { postData, updateData } = useFetch();
   const { data: fetching, loading, setLoading, error } = useFetch("relations");
-  const { data: tasks, rerender, setRerender } = useFetch("tasks/");
+  const {
+    data: tasks,
+    rerender,
+    setRerender,
+    loading: taskLoading,
+  } = useFetch("tasks/");
   const { data: projects } = useFetch(`projects/${id}`);
   const { data: users, loading: usersLoading } = useFetch("users/");
   const [draggedItem, setDraggedItem] = useState();
@@ -325,6 +330,7 @@ export default function Dashboard() {
           setShowModal={setShowTask}
           data={data}
           setData={setData}
+          taskLoading={taskLoading}
         />
       </Modal>
     </div>

@@ -37,6 +37,14 @@ p {
   text-decoration: none;
   background: none;
 }
+
+input {
+  background: none;
+  border: 1px solid grey;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: inherit;
+}
 // buttons
 button {
   cursor: pointer;

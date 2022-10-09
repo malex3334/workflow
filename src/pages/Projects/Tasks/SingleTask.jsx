@@ -25,6 +25,7 @@ export default function SingleTask({
   usersList,
   rerender,
   setRerender,
+  taskLoading,
 }) {
   const { descriptionRef } = useRef();
   const [edit, setEdit] = useState(descr);

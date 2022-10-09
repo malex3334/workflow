@@ -9,31 +9,29 @@ export default function TimeReport({
   rerender,
   setRerender,
   setShowModal,
+  taskLoading,
 }) {
   const [time, setTime] = useState(reportedTime);
   const [estTime, setEstTime] = useState(estaminatedTime);
-  const { updateData, loading } = useFetch();
+  const { updateData } = useFetch();
 
   const handleSetData = (e) => {
     e.preventDefault();
-
     updateData(task.id, "tasks", {
       reportedTime: time,
       estaminatedTime: estTime,
     });
-    setRerender(!rerender);
-
     setShowModal(false);
+    setRerender(!rerender);
   };
 
-  if (loading) {
+  if (taskLoading) {
     return <Loader />;
   }
 
   return (
     <div className="worktime-modal">
       <h2>Time report:</h2>
-
       <form className="worktime-form" onSubmit={(e) => handleSetData(e)}>
         <div className="worktime-input-control">
           <label htmlFor="">time spent (hours):</label>
