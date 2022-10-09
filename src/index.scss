@@ -389,13 +389,13 @@
     text-align: start;
   }
 
-  input {
-    background: none;
-    border: 1px solid grey;
-    border-radius: 4px;
-    padding: 0.5rem;
-    font-size: inherit;
-  }
+  // input {
+  //   background: none;
+  //   border: 1px solid grey;
+  //   border-radius: 4px;
+  //   padding: 0.5rem;
+  //   font-size: inherit;
+  // }
 
   h2 {
     font-size: 2.5rem;
@@ -558,39 +558,41 @@
 
   .worktime {
   }
+}
 
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 1rem 0;
-  }
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
 
-  .title-icon {
-    font-size: 2.3rem;
-  }
-  .time-progressbar {
-    height: 0.7rem;
-    width: 100%;
-    background: grey;
-    position: relative;
-    border-radius: 12px 12px 12px 12px;
-    cursor: pointer;
-  }
+.title-icon {
+  font-size: 2.3rem;
+}
+.time-progressbar {
+  height: 0.7rem;
+  width: 100%;
+  background: grey;
+  position: relative;
+  border-radius: 12px 12px 12px 12px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
 
-  .time-reported {
-    position: absolute;
-    max-width: 100%;
-    top: 0;
-    left: 0;
-    height: 0.7rem;
-    background: $bg-green;
-  }
+.time-reported {
+  position: absolute;
+  max-width: 100%;
+  top: 0;
+  left: 0;
+  height: 0.7rem;
+  background: $bg-green;
+  transition: all 0.5s ease-in-out;
+}
 
-  .time-reported-info {
-    margin: 0.75rem 0;
-    font-size: 1.4rem;
-  }
+.time-reported-info {
+  margin: 0.75rem 0;
+  font-size: 1.4rem;
 }
 
 .worktime-modal {
@@ -659,29 +661,8 @@
   input,
   textarea {
     font-size: 1.6rem;
-    font-family: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
-    // padding: 0.5rem;
-    padding: 0.5rem 1rem;
     width: 100%;
     margin: 1rem 0;
-    background: none;
-    // border: 1px solid $bg-green;
-    border: 1px solid gray;
-    border-radius: 6px;
-
-    &:focus-visible {
-      outline: 2px solid gray;
-      // outline: 2px solid $bg-green;
-    }
-  }
-
-  textarea {
-    font-size: inherit;
-    font-weight: inherit;
-    letter-spacing: inherit;
-    line-height: inherit;
   }
 
   button {

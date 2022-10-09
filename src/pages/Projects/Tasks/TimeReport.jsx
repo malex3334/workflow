@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../../../components/Loader";
 import useFetch from "../../../hooks/useFetch";
+import { FaUserClock } from "react-icons/fa";
 
 export default function TimeReport({
   reportedTime,
   task,
   estaminatedTime,
+  setEstaminatedTime,
+  setReportedTime,
   rerender,
   setRerender,
   setShowModal,
@@ -22,6 +25,8 @@ export default function TimeReport({
       estaminatedTime: estTime,
     });
     setShowModal(false);
+    setEstaminatedTime(estTime);
+    setReportedTime(time);
     setRerender(!rerender);
   };
 
@@ -31,12 +36,37 @@ export default function TimeReport({
 
   return (
     <div className="worktime-modal">
+      <div
+        className="worktime"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div className="section-title">
+          <FaUserClock className="title-icon" />
+        </div>
+        <div className="time-progressbar" style={{ width: "30rem" }}>
+          <div
+            className="time-reported"
+            style={{
+              width: (time / estTime) * 100 + "%",
+            }}
+          ></div>
+        </div>
+        <div className="time-reported-info">
+          {time}h logged / {estTime}h left
+        </div>
+      </div>
+
       <h2>Time report:</h2>
       <form className="worktime-form" onSubmit={(e) => handleSetData(e)}>
         <div className="worktime-input-control">
           <label htmlFor="">time spent (hours):</label>
           <input
-            type="text"
+            min="0"
+            type="number"
             value={time}
             onChange={(e) => {
               setTime(e.target.value);
@@ -46,7 +76,8 @@ export default function TimeReport({
         <div className="worktime-input-control">
           <label htmlFor="">time left:</label>
           <input
-            type="text"
+            min="0"
+            type="number"
             value={estTime}
             onChange={(e) => setEstTime(e.target.value)}
           />

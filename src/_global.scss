@@ -38,12 +38,27 @@ p {
   background: none;
 }
 
-input {
+input,
+textarea {
   background: none;
+  background-color: none;
   border: 1px solid grey;
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   font-size: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  transition: background 0.3s ease-in-out;
+
+  &:focus-visible {
+    outline: 1.5px solid gray;
+    // outline: 2px solid $bg-green;
+  }
+
+  &:hover {
+    background: rgb(206, 206, 206);
+  }
 }
 // buttons
 button {

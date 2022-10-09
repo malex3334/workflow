@@ -38,6 +38,8 @@ export default function SingleTask({
   const [assignedUsers, setAssignedUsers] = useState([]);
   const [showAllUsers, setShowAllUsers] = useState(false);
   const [showTimeReport, setShowTimeReport] = useState(false);
+  const [reportedTime, setReportedTime] = useState(task.reportedTime);
+  const [estaminatedTime, setEstaminatedTime] = useState(task.estaminatedTime);
 
   const { deleteData, updateData } = useFetch();
   const {
@@ -59,7 +61,6 @@ export default function SingleTask({
   useEffect(() => {
     if (!usersLoading) {
       const result = users.users.filter(({ id }) => task.users.includes(id));
-      console.log(result);
       setAssignedUsers(result);
     }
   }, [users, usersLoading]);
@@ -359,12 +360,12 @@ export default function SingleTask({
               <div
                 className="time-reported"
                 style={{
-                  width: (task.reportedTime / task.estaminatedTime) * 100 + "%",
+                  width: (reportedTime / estaminatedTime) * 100 + "%",
                 }}
               ></div>
             </div>
             <div className="time-reported-info">
-              {task.reportedTime}h logged / {task.estaminatedTime}h left
+              {reportedTime}h logged / {estaminatedTime}h left
             </div>
           </div>
         </div>
@@ -387,9 +388,13 @@ export default function SingleTask({
 
       <Modal showModal={showTimeReport} setShowModal={setShowTimeReport}>
         <TimeReport
-          reportedTime={task.reportedTime}
+          // reportedTime={task.reportedTime}
+          reportedTime={reportedTime}
+          setReportedTime={setReportedTime}
           task={task}
-          estaminatedTime={task.estaminatedTime}
+          // estaminatedTime={task.estaminatedTime}
+          estaminatedTime={estaminatedTime}
+          setEstaminatedTime={setEstaminatedTime}
           rerender={rerender}
           setRerender={setRerender}
           setShowModal={setShowTimeReport}
