@@ -1,8 +1,8 @@
 import React from "react";
-import { timeStamp } from "../../../utils/time";
+import { timeStamp } from "../../../../utils/time";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
-import Modal from "../../../components/Modal";
+import Modal from "../../../../components/Modal";
 
 export default function SingleComment({
   comment,

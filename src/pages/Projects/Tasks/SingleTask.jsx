@@ -8,7 +8,8 @@ import {
 } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
-import Comment from "./CommentWrapper";
+// import CommentWrapper from "./CommentWrapper";
+import CommentWrapper from "./Comments/CommentWrapper";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
 import { IoAddCircle } from "react-icons/io5";
@@ -40,6 +41,8 @@ export default function SingleTask({
   const [showTimeReport, setShowTimeReport] = useState(false);
   const [reportedTime, setReportedTime] = useState(task.reportedTime);
   const [estaminatedTime, setEstaminatedTime] = useState(task.estaminatedTime);
+
+  const [statusArray, setStatusArray] = useState([]);
 
   const { deleteData, updateData } = useFetch();
   const {
@@ -370,7 +373,7 @@ export default function SingleTask({
           </div>
         </div>
       </div>
-      <Comment
+      <CommentWrapper
         commentsList={commentsList}
         loading={commentsLoading}
         user={user}

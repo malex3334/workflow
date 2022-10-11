@@ -16,12 +16,3 @@ export default function Loader() {
     </div>
   );
 }
-
-// <div className="loader">
-//   <div class="lds-ring">
-//     <div></div>
-//     <div></div>
-//     <div></div>
-//     <div></div>
-//   </div>
-// </div>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import useFetch from "../../../hooks/useFetch";
+import useFetch from "../../../../hooks/useFetch";
 import { v4 as uuidv4 } from "uuid";
 import { IoSend } from "react-icons/io5";
-import DeleteModal from "../../../components/DeleteModal";
+import DeleteModal from "../../../../components/DeleteModal";
 import SingleComment from "./SingleComment";
-import Loader from "../../../components/Loader";
+import Loader from "../../../../components/Loader";
 
 export default function CommentWrapper({
   commentsList,
