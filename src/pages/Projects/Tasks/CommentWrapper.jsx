@@ -6,7 +6,7 @@ import DeleteModal from "../../../components/DeleteModal";
 import SingleComment from "./SingleComment";
 import Loader from "../../../components/Loader";
 
-export default function Comment({
+export default function CommentWrapper({
   commentsList,
   user,
   task,
@@ -78,6 +78,7 @@ export default function Comment({
                 setEditedComment={setEditedComment}
                 DeleteModal={DeleteModal}
                 handleUpdateComment={handleUpdateComment}
+                loading={postLoading}
               />
             );
           })}

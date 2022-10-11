@@ -1,14 +1,15 @@
-import React, { useState, CSSProperties } from "react";
-import { DotLoader } from "react-spinners";
+import React from "react";
+import { BeatLoader } from "react-spinners";
 import "./loader.scss";
 
 export default function Loader() {
   return (
     <div className="loader">
-      <DotLoader
-        color="blue"
+      <BeatLoader
+        // color="#4b6cb7"
+        color="#00d060"
         loading="true"
-        size={50}
+        size={15}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
