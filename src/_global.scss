@@ -214,3 +214,12 @@ a:hover + .btn-text {
 .small {
   font-size: 3rem !important;
 }
+
+.please-login-container {
+  color: red;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}

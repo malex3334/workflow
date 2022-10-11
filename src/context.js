@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import useFetch from "./hooks/useFetch";
 
 const AppContext = createContext();

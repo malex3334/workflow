@@ -16,6 +16,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import TimeReport from "./TimeReport";
 import Loader from "../../../components/Loader";
+import { statusOptions } from "../../../utils/helpers";
 
 const descr = { description: false, title: false };
 
@@ -391,11 +392,9 @@ export default function SingleTask({
 
       <Modal showModal={showTimeReport} setShowModal={setShowTimeReport}>
         <TimeReport
-          // reportedTime={task.reportedTime}
           reportedTime={reportedTime}
           setReportedTime={setReportedTime}
           task={task}
-          // estaminatedTime={task.estaminatedTime}
           estaminatedTime={estaminatedTime}
           setEstaminatedTime={setEstaminatedTime}
           rerender={rerender}

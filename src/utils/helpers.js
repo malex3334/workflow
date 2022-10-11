@@ -5,3 +5,16 @@ export const sliceDescription = (text) => {
     return text.slice(0, 300) + "...";
   } else return text;
 };
+
+// select options
+export const statusOptions = [
+  "backglog",
+  "todo",
+  "progress",
+  "testing",
+  "deploy",
+  "done",
+];
+
+// set priority - options
+export const priorityOptions = ["low", "normal", "high", "very high"];

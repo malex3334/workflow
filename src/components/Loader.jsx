@@ -1,12 +1,12 @@
 import React from "react";
 import { BeatLoader } from "react-spinners";
-import "./loader.scss";
+// import "./loader.scss";
+import "../index.scss";
 
 export default function Loader() {
   return (
     <div className="loader">
       <BeatLoader
-        // color="#4b6cb7"
         color="#00d060"
         loading="true"
         size={15}

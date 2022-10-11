@@ -1,13 +1,11 @@
 import React from "react";
 import { useGlobalContext } from "../context";
-import useFetch from "../hooks/useFetch";
 import { NavLink } from "react-router-dom";
 import { IoAddCircle } from "react-icons/io5";
 
 export default function Sidemenu() {
-  const { user, setUser } = useGlobalContext();
-  const { name, id, login, type, img, email } = user;
-  const { data } = useFetch("relations/");
+  const { user } = useGlobalContext();
+  const { name, login, type, img, email } = user;
 
   return (
     <aside className="aside-nav">

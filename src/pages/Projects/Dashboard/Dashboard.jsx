@@ -14,6 +14,7 @@ import Error from "../../../components/Error";
 import { sliceDescription } from "../../../utils/helpers";
 import TaskWrapper from "./TaskWrapper";
 import Breadcrumbs from "../../../components/Breadcrumbs";
+import User from "../../../components/User";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -141,13 +142,7 @@ export default function Dashboard() {
             {usersList &&
               usersList.map((user) => {
                 if (user === "undefined") return;
-                const { login, img, id } = user;
-                return (
-                  <div className="user-mini" key={id}>
-                    <img className="user-img" src={img} alt="" />
-                    <h5 className="user-nick">{login}</h5>
-                  </div>
-                );
+                return <User user={user} />;
               })}
           </ul>
           <div className="btn">

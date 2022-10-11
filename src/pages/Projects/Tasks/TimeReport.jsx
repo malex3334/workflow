@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Loader from "../../../components/Loader";
 import useFetch from "../../../hooks/useFetch";
 import { FaUserClock } from "react-icons/fa";

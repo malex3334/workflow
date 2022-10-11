@@ -1,5 +1,4 @@
 import React from "react";
-import Login from "./Login";
 
 export default function UserSettings({ user }) {
   console.log(user);

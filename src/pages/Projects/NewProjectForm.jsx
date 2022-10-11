@@ -9,9 +9,9 @@ export default function NewProjectForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [img, setImg] = useState("");
-  const [newID, setNewID] = useState(uuidv4());
+  const [newID] = useState(uuidv4());
   let navigate = useNavigate();
-  const { data, setData, loading } = useFetch("users/");
+  const { data, loading } = useFetch("users/");
   const [users, setUsers] = useState([]);
   const [assignedUsers, setAssignedUsers] = useState([]);
   const { postData, loading: postLoading } = useFetch();

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { useGlobalContext } from "../../../context";
+import { priorityOptions, statusOptions } from "../../../utils/helpers";
 
 export default function TaskForm({ handleAddTask, id }) {
   const { user } = useGlobalContext();
@@ -45,12 +46,9 @@ export default function TaskForm({ handleAddTask, id }) {
             id=""
             onChange={(e) => setNewObj({ ...newObj, status: e.target.value })}
           >
-            <option value="backlog">Backlog</option>
-            <option value="todo">To do</option>
-            <option value="progress">Progress</option>
-            <option value="testing">Testing</option>
-            <option value="deploy">To deploy</option>
-            <option value="done">Done</option>
+            {statusOptions.map((option) => {
+              return <option value={option}>{option}</option>;
+            })}
           </select>
         </div>
         <div className="select">
@@ -61,10 +59,9 @@ export default function TaskForm({ handleAddTask, id }) {
             id=""
             onChange={(e) => setNewObj({ ...newObj, priority: e.target.value })}
           >
-            <option value="low">low</option>
-            <option value="normal">normal</option>
-            <option value="high">high</option>
-            <option value="very high">very high</option>
+            {priorityOptions.map((option) => {
+              return <option value={option}>{option}</option>;
+            })}
           </select>
         </div>
 
