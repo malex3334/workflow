@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { timeStamp } from "../../../utils/time";
 import { v4 as uuidv4 } from "uuid";
-import Loader from "../../../components/Loader";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
-import { ReactPropTypes } from "react";
 
 export default function Comment({
   commentsList,
@@ -57,7 +55,7 @@ export default function Comment({
   };
 
   if (loading) {
-    return <Loader />;
+    // return <Loader />;
   }
 
   return (

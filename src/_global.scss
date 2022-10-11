@@ -162,6 +162,8 @@ ul {
     opacity: 0;
     visibility: hidden;
     border-radius: 1px;
+    font-size: 1.2rem;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
   }
 
   .user-img:hover + .user-nick {

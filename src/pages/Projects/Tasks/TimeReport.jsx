@@ -82,7 +82,9 @@ export default function TimeReport({
             onChange={(e) => setEstTime(e.target.value)}
           />
         </div>
-        <button type="submit">Done</button>
+        <button type="submit" className="btn-save">
+          save
+        </button>
       </form>
     </div>
   );

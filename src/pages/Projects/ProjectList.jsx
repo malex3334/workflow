@@ -73,9 +73,8 @@ export default function ProjectList() {
 
       <ul className="project-list">
         {filteredData &&
-          filteredData !== "undefined" &&
           filteredData.length > 0 &&
-          filteredData.map((project, index) => {
+          filteredData.map((project) => {
             return (
               <div key={project.id} className="project-list-item">
                 <div className="project-item-header">

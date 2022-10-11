@@ -11,6 +11,8 @@ import { convertPriority } from "../../utils/icons";
 import { IoAddCircle } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
 import Error from "../../components/Error";
+import { sliceDescription } from "../../utils/helpers";
+import TaskWrapper from "./TaskWrapper";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -96,9 +98,7 @@ export default function Dashboard() {
           </h4>
           <p className="priority">{convertPriority(item.priority)}</p>
         </div>
-        <p>
-          {item.text.length > 200 ? item.text.slice(0, 300) + "..." : item.text}
-        </p>
+        <p>{sliceDescription(item.text)}</p>
       </div>
     );
   };
@@ -165,6 +165,15 @@ export default function Dashboard() {
       </div>
 
       <div className="dashboard-container">
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          name="Backlog"
+        />
+
         <div
           id="backlog"
           className="single-board"

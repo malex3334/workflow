@@ -10,6 +10,7 @@ import UserSettings from "./pages/UserSettings";
 import ProjectList from "./pages/Projects/ProjectList";
 import NewProjectForm from "./pages/Projects/NewProjectForm";
 import EditProjectForm from "./pages/Projects/EditProjectForm";
+import NotLoggedIn from "./components/NotLoggedIn";
 
 function App() {
   const { user } = useGlobalContext();
@@ -25,7 +26,10 @@ function App() {
           <Route path="/login" element={!user && <Login />} />
           {/* TODO - REDIRECT IF LOGGED IN AND TRYING TO LOG IN */}
           <Route path="/signup" element={<Signup />} />
-          <Route path="/dashboard" element={user && <ProjectList />} />
+          <Route
+            path="/dashboard"
+            element={user ? <ProjectList /> : <NotLoggedIn />}
+          />
           <Route path="/dashboard/projects/:id" element={<Dashboard />} />
           <Route path="/user/" element={<UserSettings user={user} />} />
           <Route
