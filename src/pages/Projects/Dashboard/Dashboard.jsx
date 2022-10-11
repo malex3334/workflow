@@ -19,8 +19,7 @@ import User from "../../../components/User";
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
   const result = filter.map((single) => {
-    let users = single.users;
-    return (users = single.users);
+    return single.users;
   });
   return result;
 };

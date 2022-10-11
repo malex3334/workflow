@@ -15,7 +15,7 @@ export default function CommentWrapper({
   loading,
 }) {
   const [commentText, setCommentText] = useState("");
-  const { postData, updateData, deleteData, loading: postLoading } = useFetch();
+  const { postData, updateData, deleteData } = useFetch();
   const [editedComment, setEditedComment] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [edit, setEdit] = useState({
@@ -78,7 +78,6 @@ export default function CommentWrapper({
                 setEditedComment={setEditedComment}
                 DeleteModal={DeleteModal}
                 handleUpdateComment={handleUpdateComment}
-                loading={postLoading}
               />
             );
           })}

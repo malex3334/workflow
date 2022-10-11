@@ -1,6 +1,5 @@
-import { RestSerializer, Serializer } from "miragejs";
 import { useEffect } from "react";
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 // function useFetch(dataFrom, methodType = "GET", bodyObj) {
 function useFetch(dataFrom) {
@@ -16,7 +15,6 @@ function useFetch(dataFrom) {
         method: "POST",
         body: JSON.stringify(newObject),
       });
-      const test = await response.json();
     } catch (error) {
       console.log(error);
       setError(error);
@@ -71,7 +69,7 @@ function useFetch(dataFrom) {
       }
     };
     fetchBooks();
-  }, [rerender]);
+  }, [rerender, dataFrom]);
 
   return {
     setData,

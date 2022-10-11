@@ -19,17 +19,9 @@ export default function EditProjectForm() {
   // users to be displayed as assigned
   const [assignedUsers, setAssignedUsers] = useState([]);
   // all users full data
-  const {
-    data: usersData,
-    setData: setUsersData,
-    loading: usersLoading,
-  } = useFetch("users/");
+  const { data: usersData, loading: usersLoading } = useFetch("users/");
   // relations
-  const {
-    data: relations,
-    setData: setRelations,
-    loading: relationsLoading,
-  } = useFetch("relations/");
+  const { data: relations, loading: relationsLoading } = useFetch("relations/");
 
   useEffect(() => {
     if (!loading) {
@@ -51,7 +43,7 @@ export default function EditProjectForm() {
       setAssignedUsers(test);
       setUsers(test.map((user) => user.id));
     }
-  }, [, relations, loading, usersLoading]);
+  }, [id, relationsLoading, relations, loading, usersLoading]);
 
   const handleSumbit = (e) => {
     e.preventDefault();

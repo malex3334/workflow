@@ -34,7 +34,7 @@ export default function TaskWrapper({
           data.map((task) => {
             if (task.status === status) {
               return renderTaskElement(task);
-            }
+            } else return null;
           })}
       </ul>
     </div>

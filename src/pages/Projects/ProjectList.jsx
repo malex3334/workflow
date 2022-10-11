@@ -18,10 +18,10 @@ export default function ProjectList() {
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   //  fetch all projects
-  const { data, setData, loading, setLoading } = useFetch("projects");
+  const { data, setData, loading } = useFetch("projects");
 
   // fetch all relations
-  const { data: relations, setData: setRelations } = useFetch("relations");
+  const { data: relations } = useFetch("relations");
 
   // check users projects
   const filter = () => {
@@ -34,9 +34,9 @@ export default function ProjectList() {
             if (project.id === item.project) {
               newArray.push(project);
               return newArray;
-            }
+            } else return null;
           });
-        }
+        } else return null;
       });
 
     return newArray;

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import { useGlobalContext } from "../context";
 import useFetch from "../hooks/useFetch";
+import { PropTypes } from "prop-types";
 
 const testUser = {
   id: "2",
@@ -24,7 +25,7 @@ const testCompany = {
 };
 
 export default function Login() {
-  const { user, setUser } = useGlobalContext();
+  const { setUser } = useGlobalContext();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
@@ -130,3 +131,11 @@ export default function Login() {
     </div>
   );
 }
+
+Login.propTypes = {
+  user: PropTypes.object,
+  login: PropTypes.string.isRequired,
+  password: PropTypes.string,
+  error: PropTypes.bool,
+  loading: PropTypes.bool,
+};

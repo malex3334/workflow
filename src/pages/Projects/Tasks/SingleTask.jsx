@@ -16,7 +16,6 @@ import { IoAddCircle } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import TimeReport from "./TimeReport";
 import Loader from "../../../components/Loader";
-import { statusOptions } from "../../../utils/helpers";
 
 const descr = { description: false, title: false };
 
@@ -27,7 +26,6 @@ export default function SingleTask({
   usersList,
   rerender,
   setRerender,
-  taskLoading,
 }) {
   const { descriptionRef } = useRef();
   const [edit, setEdit] = useState(descr);
@@ -42,9 +40,6 @@ export default function SingleTask({
   const [showTimeReport, setShowTimeReport] = useState(false);
   const [reportedTime, setReportedTime] = useState(task.reportedTime);
   const [estaminatedTime, setEstaminatedTime] = useState(task.estaminatedTime);
-
-  const [statusArray, setStatusArray] = useState([]);
-
   const { deleteData, updateData } = useFetch();
   const {
     data: comments,
@@ -67,7 +62,7 @@ export default function SingleTask({
       const result = users.users.filter(({ id }) => task.users.includes(id));
       setAssignedUsers(result);
     }
-  }, [users, usersLoading]);
+  }, [users, usersLoading, task.users]);
 
   const handleAssignUsers = (e, user) => {
     const result = assignedUsers.map((single) => {
@@ -86,7 +81,7 @@ export default function SingleTask({
       );
       setCommentsList(result);
     }
-  }, [commentsLoading, rerender]);
+  }, [commentsLoading, rerender, comments.comments, task.id]);
 
   const handleDelete = (id) => {
     deleteData(id, "tasks");
