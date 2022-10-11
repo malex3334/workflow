@@ -88,10 +88,10 @@ export default function () {
       // PROJECTS
       let project1 = server.create("project", {
         id: "1",
-        name: "Jira clone project",
+        name: "Jira clone project?",
         description:
-          "Etiam dictum velit nisi, eget posuere risus molestie ut. Etiam eleifend, sem et aliquet convallis, sem urna tempor erat, ac iaculis turpis augue id tellus.",
-        img: "https://images.unsplash.com/photo-1574717024757-c1ec4d86ae82?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
+          "Check this project's content to see avaliable features of this workflow organiser.",
+        img: "https://images.unsplash.com/photo-1458419948946-19fb2cc296af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
       });
@@ -200,14 +200,70 @@ export default function () {
       server.create("task", {
         id: "51",
         projectId: "1",
-        task: "finish project",
-        text: "somet text a co",
-        status: "done",
+        task: "add new task",
+        text: "Click on the green button below the project deatils to add new Project",
+        status: "todo",
         priority: "very high",
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
         users: ["1", "100", "3"],
       });
+      server.create("task", {
+        id: "58",
+        projectId: "1",
+        task: "edit tasks properties",
+        text: "You could assign priority, status and report time to each task of your project. Click on title or description to open edit mode.",
+        status: "progress",
+        priority: "normal",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
+      server.create("task", {
+        id: "70",
+        projectId: "1",
+        task: "try to add a comment",
+        text: "After opening single task card you could list, add, delete or edit comment that is assigned to the task. You could only edit or delete your own comments.",
+        status: "testing",
+        priority: "high",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
+      server.create("task", {
+        id: "77",
+        projectId: "1",
+        task: "edit project",
+        text: "You could edit project info or assigned users by clicking on edit icon near the title or in the projects list. ",
+        status: "done",
+        priority: "low",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
+      server.create("task", {
+        id: "78",
+        projectId: "1",
+        task: "projects",
+        text: "You only see projects which you are assigned to.",
+        status: "done",
+        priority: "normal",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
+      server.create("task", {
+        id: "79",
+        projectId: "1",
+        task: "change status",
+        text: "To change project's status simply drag it to another container or open task card and select desired status from the list.",
+        status: "done",
+        priority: "high",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
+
       server.create("task", {
         id: "894",
         projectId: "2",
@@ -237,6 +293,22 @@ export default function () {
         taskID: "89",
         text: "this is my firs comment in this app",
         user: dwight,
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+      });
+      server.create("comment", {
+        id: "61541",
+        taskID: "70",
+        text: "Random comment passing by - try to add yours.",
+        user: dwight,
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+      });
+      server.create("comment", {
+        id: "1111",
+        taskID: "70",
+        text: "Please report time on time tracker.",
+        user: dm,
         createdAt: 1664728152418,
         updatedAt: 1664728152418,
       });
