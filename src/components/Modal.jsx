@@ -17,7 +17,7 @@ function Modal({ showModal, setShowModal, children }) {
     });
 
     return () => document.removeEventListener("keyup", listener);
-  }, []);
+  }, [setShowModal]);
 
   if (showModal) {
     return ReactDOM.createPortal(

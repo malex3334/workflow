@@ -105,7 +105,7 @@ export default function Dashboard() {
   };
   useEffect(() => {
     setData(filter(tasks, id));
-  }, [tasks]);
+  }, [tasks, id]);
 
   if (loading) {
     return <Loader />;

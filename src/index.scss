@@ -610,7 +610,17 @@
     flex-direction: column;
     gap: 0.5rem;
   }
+
+  h4 {
+    font-weight: 500;
+  }
+
+  label {
+    font-size: 1.3rem;
+  }
+
   input {
+    font-size: 1.3rem;
     width: 10rem;
   }
 

@@ -60,13 +60,14 @@ export default function TimeReport({
         </div>
       </div>
 
-      <h2>Time report:</h2>
+      <h4>Time report:</h4>
       <form className="worktime-form" onSubmit={(e) => handleSetData(e)}>
         <div className="worktime-input-control">
           <label htmlFor="">time spent (hours):</label>
           <input
             min="0"
             type="number"
+            step="0.5"
             value={time}
             onChange={(e) => {
               setTime(e.target.value);
@@ -78,6 +79,7 @@ export default function TimeReport({
           <input
             min="0"
             type="number"
+            step="0.5"
             value={estTime}
             onChange={(e) => setEstTime(e.target.value)}
           />

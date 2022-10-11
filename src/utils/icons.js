@@ -12,5 +12,7 @@ export const convertPriority = (source) => {
       return <FaArrowDown style={{ fill: "lightgreen" }} />;
     case "very low":
       return <FaArrowDown style={{ fill: "red" }} />;
+    default:
+      return;
   }
 };
