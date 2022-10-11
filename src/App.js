@@ -1,5 +1,5 @@
 import Sidemenu from "./components/Sidemenu";
-import Dashboard from "./pages/Projects/Dashboard";
+import Dashboard from "./pages/Projects/Dashboard/Dashboard";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { useGlobalContext } from "./context";

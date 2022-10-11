@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useParams, NavLink } from "react-router-dom";
-import Loader from "../../components/Loader";
-import Modal from "../../components/Modal";
-import TaskForm from "./Tasks/TaskForm";
-import SingleTask from "./Tasks/SingleTask";
-import useFetch from "../../hooks/useFetch";
-import NotLoggedIn from "../../components/NotLoggedIn";
-import { useGlobalContext } from "../../context";
-import { convertPriority } from "../../utils/icons";
+import Loader from "../../../components/Loader";
+import Modal from "../../../components/Modal";
+import TaskForm from "../Tasks/TaskForm";
+import SingleTask from "../Tasks/SingleTask";
+import useFetch from "../../../hooks/useFetch";
+import NotLoggedIn from "../../../components/NotLoggedIn";
+import { useGlobalContext } from "../../../context";
+import { convertPriority } from "../../../utils/icons";
 import { IoAddCircle } from "react-icons/io5";
 import { FaEdit } from "react-icons/fa";
-import Error from "../../components/Error";
-import { sliceDescription } from "../../utils/helpers";
+import Error from "../../../components/Error";
+import { sliceDescription } from "../../../utils/helpers";
 import TaskWrapper from "./TaskWrapper";
+import Breadcrumbs from "../Breadcrumbs";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -43,8 +44,8 @@ export default function Dashboard() {
   const [taskID, setTaskID] = useState({});
   const { user } = useGlobalContext();
   const [usersList, setUsersList] = useState([]);
-  const { postData, updateData } = useFetch();
-  const { data: fetching, loading, setLoading, error } = useFetch("relations");
+  const { postData } = useFetch();
+  const { data: fetching, loading, error } = useFetch("relations");
   const {
     data: tasks,
     rerender,
@@ -120,10 +121,7 @@ export default function Dashboard() {
 
   return (
     <div className="main-container">
-      <span className="dashboard-navi">
-        <NavLink to="/dashboard">projects / </NavLink>
-        <span>{projects.project.name}</span>
-      </span>
+      <Breadcrumbs data={projects} />
       <div className="main-header">
         <img src={projects.project.img} className="image" alt="" />
         <div>
@@ -171,158 +169,54 @@ export default function Dashboard() {
           data={data}
           renderTaskElement={renderTaskElement}
           draggedItem={draggedItem}
+          status="backlog"
           name="Backlog"
         />
-
-        <div
-          id="backlog"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="backlog" className="board-title">
-            Backlog
-          </h3>
-          <ul id="backlog" className="tasks-list">
-            {data &&
-              data.length > 0 &&
-              data.map((task) => {
-                if (task.status === "backlog") {
-                  return renderTaskElement(task);
-                }
-              })}
-          </ul>
-        </div>
-        <div
-          id="todo"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="todo" className="board-title">
-            To do
-          </h3>
-          <ul id="todo" className="tasks-list">
-            {data &&
-              data.length > 0 &&
-              data.map((task, index) => {
-                if (task.status === "todo") {
-                  return renderTaskElement(task, index);
-                }
-              })}
-          </ul>
-        </div>
-        <div
-          id="progress"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="progress" className="board-title">
-            Progress
-          </h3>
-          <ul id="progress" className="tasks-list">
-            {data &&
-              data.length > 0 &&
-              data.map((task) => {
-                if (task.status === "progress") {
-                  return renderTaskElement(task);
-                }
-              })}
-          </ul>
-        </div>
-        <div
-          id="testing"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="testing" className="board-title">
-            Testing
-          </h3>
-          <ul id="testing" className="tasks-list">
-            {data &&
-              data.length > 0 &&
-              data.map((task) => {
-                if (task.status === "testing") {
-                  return renderTaskElement(task);
-                }
-              })}
-          </ul>
-        </div>
-        <div
-          id="deploy"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="deploy" className="board-title">
-            To deploy
-          </h3>
-          <ul id="deploy" className="tasks-list">
-            {data &&
-              data.map((task) => {
-                if (task.status === "deploy") {
-                  return renderTaskElement(task);
-                }
-              })}
-          </ul>
-        </div>
-        <div
-          id="done"
-          className="single-board"
-          onDragLeave={(e) => {
-            if (e.target.id !== "") {
-              updateData(draggedItem.id, "tasks", {
-                status: e.target.id,
-              });
-              setRerender(!rerender);
-            }
-          }}
-        >
-          <h3 id="done" className="board-title">
-            Done
-          </h3>
-          <ul id="done" className="tasks-list">
-            {data &&
-              data.length > 0 &&
-              data.map((task) => {
-                if (task.status === "done") {
-                  return renderTaskElement(task);
-                }
-              })}
-          </ul>
-        </div>
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          status="todo"
+          name="To Do"
+        />
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          status="progress"
+          name="Progress"
+        />
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          status="testing"
+          name="Testing"
+        />
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          status="todeploy"
+          name="To Deploy"
+        />
+        <TaskWrapper
+          rerender={rerender}
+          setRerender={setRerender}
+          data={data}
+          renderTaskElement={renderTaskElement}
+          draggedItem={draggedItem}
+          status="done"
+          name="Done"
+        />
       </div>
 
       <Modal showModal={showModal} setShowModal={setShowModal}>

@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "../../hooks/useFetch";
+import useFetch from "../../../hooks/useFetch";
 
 export default function TaskWrapper({
   rerender,
@@ -8,12 +8,13 @@ export default function TaskWrapper({
   renderTaskElement,
   draggedItem,
   name,
+  status,
 }) {
   const { updateData } = useFetch();
 
   return (
     <div
-      id="backlog"
+      id={status}
       className="single-board"
       onDragLeave={(e) => {
         if (e.target.id !== "") {
@@ -24,14 +25,14 @@ export default function TaskWrapper({
         }
       }}
     >
-      <h3 id="backlog" className="board-title">
+      <h3 id={status} className="board-title">
         {name}
       </h3>
-      <ul id="backlog" className="tasks-list">
+      <ul id={status} className="tasks-list">
         {data &&
           data.length > 0 &&
           data.map((task) => {
-            if (task.status === "backlog") {
+            if (task.status === status) {
               return renderTaskElement(task);
             }
           })}
