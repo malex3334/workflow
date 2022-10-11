@@ -8,7 +8,7 @@ import {
 } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
-import Comment from "./Comment";
+import Comment from "./CommentWrapper";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
 import { IoAddCircle } from "react-icons/io5";

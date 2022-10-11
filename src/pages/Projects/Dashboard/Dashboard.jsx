@@ -13,7 +13,7 @@ import { FaEdit } from "react-icons/fa";
 import Error from "../../../components/Error";
 import { sliceDescription } from "../../../utils/helpers";
 import TaskWrapper from "./TaskWrapper";
-import Breadcrumbs from "../Breadcrumbs";
+import Breadcrumbs from "../../../components/Breadcrumbs";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);

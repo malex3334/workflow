@@ -4,15 +4,6 @@ import { v4 as uuidv4 } from "uuid";
 import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
-// const getUsers = (data, id) => {
-//   const filter = data.filter((relation) => relation.project === id);
-//   const result = filter.map((single) => {
-//     let users = single.users;
-//     return (users = single.users);
-//   });
-//   return result;
-// };
-
 export default function EditProjectForm() {
   let navigate = useNavigate();
   const { updateData } = useFetch();
@@ -61,20 +52,6 @@ export default function EditProjectForm() {
       setUsers(test.map((user) => user.id));
     }
   }, [, relations, loading, usersLoading]);
-
-  // useEffect(() => {
-  //   if (!usersLoading) {
-  //     const result = relations.relations.filter(
-  //       (relation) => relation.project === id
-  //     );
-  //     const newUsersList = getUsers(
-  //       usersData && usersData?.users,
-  //       result[0].id
-  //     );
-  //     console.log("newusers", newUsersList);
-  //     setAssignedUsers(newUsersList);
-  //   }
-  // }, [usersLoading]);
 
   const handleSumbit = (e) => {
     e.preventDefault();
@@ -134,8 +111,6 @@ export default function EditProjectForm() {
         />
         <ul className="users-list users-list-width">
           <h4>all users:</h4>
-          {/* {usersData.users
-            ? usersData.users.map((user) => { */}
           {usersData.users
             ? usersData.users.map((user) => {
                 return (
