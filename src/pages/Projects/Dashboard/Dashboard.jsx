@@ -66,6 +66,9 @@ export default function Dashboard() {
     }
   }, [loading, usersLoading]);
 
+  const filterUsers = (filteredData) =>
+    users.users.filter(({ id }) => filteredData.includes(id));
+
   const handleAddTask = (newTaskObj) => {
     postData("tasks/", newTaskObj);
     setRerender(!rerender);
@@ -100,6 +103,11 @@ export default function Dashboard() {
           <p className="priority">{convertPriority(item.priority)}</p>
         </div>
         <p>{sliceDescription(item.text)}</p>
+        <div className="user-flex">
+          {filterUsers(item.users).map((user) => {
+            return <User user={user} />;
+          })}
+        </div>
       </div>
     );
   };
@@ -140,7 +148,7 @@ export default function Dashboard() {
             <span>Assigned users:</span>
             {usersList &&
               usersList.map((user) => {
-                if (user === "undefined") return;
+                if (user === "undefined") return null;
                 return <User user={user} key={user.id} />;
               })}
           </ul>

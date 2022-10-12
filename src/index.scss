@@ -332,7 +332,7 @@
     color: $font-color-secondary;
     text-transform: uppercase;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
   .tasks-list {
@@ -568,9 +568,6 @@
     color: white;
     color: $btn-add-color;
   }
-
-  .worktime {
-  }
 }
 
 .section-title {
@@ -708,7 +705,6 @@
   }
 
   select {
-    // margin: 1rem 0;
     height: 4rem;
     padding: 0 1rem;
   }
@@ -944,4 +940,29 @@
   background: $bg-green;
   height: 0.5rem;
   border-radius: 12px;
+}
+
+.dashboard-underline {
+  margin-bottom: 1rem;
+  width: 75%;
+  // background: $bg-green;
+  background: $aside-bg;
+  height: 0.25rem;
+  border-radius: 12px;
+}
+
+.user-flex {
+  // scale: 0.6;
+
+  margin: 2rem 0 0 0;
+  display: flex;
+  justify-content: flex-end;
+
+  .user-mini {
+    margin-left: -1rem;
+    img {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
 }

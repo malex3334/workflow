@@ -28,6 +28,7 @@ export default function TaskWrapper({
       <h3 id={status} className="board-title">
         {name}
       </h3>
+      <div className="dashboard-underline"></div>
       <ul id={status} className="tasks-list">
         {data &&
           data.length > 0 &&
