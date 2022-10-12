@@ -23,6 +23,7 @@ export default function Employees() {
               return <EmployeeCard user={user} />;
             })}
         </ul>
+        <div className="underline"></div>
       </div>
     );
   }

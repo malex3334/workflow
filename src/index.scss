@@ -22,6 +22,9 @@
 }
 
 .aside-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   position: fixed;
   left: 0;
   top: 0;
@@ -68,6 +71,16 @@
   }
   .aside-list {
     margin-bottom: 2rem;
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .users {
+    margin-left: 1rem;
+    font-size: 3rem;
   }
 }
 
@@ -923,4 +936,12 @@
     opacity: 1;
     scale: 2;
   }
+}
+
+.underline {
+  margin: 3rem auto;
+  width: 50%;
+  background: $bg-green;
+  height: 0.5rem;
+  border-radius: 12px;
 }

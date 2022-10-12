@@ -38,11 +38,11 @@ const filter = (tasks, id) => {
 
 export default function Dashboard() {
   const { id } = useParams();
+  const { user } = useGlobalContext();
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showTask, setShowTask] = useState(false);
   const [taskID, setTaskID] = useState({});
-  const { user } = useGlobalContext();
   const [usersList, setUsersList] = useState([]);
   const { postData } = useFetch();
   const { data: fetching, loading, error } = useFetch("relations");

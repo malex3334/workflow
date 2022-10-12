@@ -32,13 +32,13 @@ export default function Sidemenu() {
           <div className="projects-list"></div>
 
           {user.type === "company" && (
-            <>
+            <div className="buttons-container">
               <button
                 className="btn-hover-container"
                 style={{ margin: "2rem 0" }}
               >
                 <NavLink to="/employees">
-                  <FaUser className="add-btn" />
+                  <FaUser className="add-btn users" />
                 </NavLink>
                 <div
                   className="btn-text"
@@ -59,7 +59,7 @@ export default function Sidemenu() {
                   Add new project
                 </div>
               </button>
-            </>
+            </div>
           )}
         </>
       )}
