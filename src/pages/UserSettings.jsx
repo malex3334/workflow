@@ -39,7 +39,11 @@ export default function UserSettings({ user, setUser }) {
       <div className="user-settings-container">
         <h2 className="user-settings-title">
           {name}
-          <FaEdit className="del-btn" onClick={() => setEdit(!edit)} />
+          <FaEdit
+            style={{ marginLeft: "1rem", fontSize: "2rem", cursor: "pointer" }}
+            className="del-btn"
+            onClick={() => setEdit(!edit)}
+          />
         </h2>
 
         <img className="user-img" src={img} alt={name} />
@@ -68,7 +72,9 @@ export default function UserSettings({ user, setUser }) {
             </li>
 
             {salary && <li>salary: {salary}</li>}
-            <button type="submit">save</button>
+            <button className="btn-save" type="submit">
+              save
+            </button>
           </form>
         </ul>
       </div>
@@ -80,7 +86,11 @@ export default function UserSettings({ user, setUser }) {
       <div className="user-settings-container">
         <h2 className="user-settings-title">
           {name}
-          <FaEdit className="del-btn" onClick={() => setEdit(true)} />
+          <FaEdit
+            className="del-btn"
+            style={{ marginLeft: "1rem", fontSize: "2rem", cursor: "pointer" }}
+            onClick={() => setEdit(true)}
+          />
         </h2>
 
         <img className="user-img" src={img} alt={name} />
@@ -105,11 +115,17 @@ export default function UserSettings({ user, setUser }) {
           <li>
             <span className="data-title">type:</span> {type}
           </li>
-          {salary && <li>salary: {salary}</li>}
+          {salary && (
+            <li>
+              <span className="data-title">salary:</span> {salary}
+            </li>
+          )}
         </ul>
         {user.type === "company" && (
-          <button>
-            <NavLink to="/employees">Employees</NavLink>
+          <button className="btn-save">
+            <NavLink to="/employees" style={{ color: "white" }}>
+              Employees
+            </NavLink>
           </button>
         )}
       </div>
