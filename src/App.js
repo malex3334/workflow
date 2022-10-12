@@ -13,7 +13,7 @@ import EditProjectForm from "./pages/Projects/EditProjectForm";
 import NotLoggedIn from "./components/NotLoggedIn";
 
 function App() {
-  const { user } = useGlobalContext();
+  const { user, setUser } = useGlobalContext();
 
   return (
     <div className="app-container">
@@ -31,7 +31,10 @@ function App() {
             element={user ? <ProjectList /> : <NotLoggedIn />}
           />
           <Route path="/dashboard/projects/:id" element={<Dashboard />} />
-          <Route path="/user/" element={<UserSettings user={user} />} />
+          <Route
+            path="/user/"
+            element={<UserSettings user={user} setUser={setUser} />}
+          />
           <Route
             path="/newproject"
             element={user.type === "company" && <NewProjectForm />}

@@ -9,7 +9,7 @@ const AppProvider = ({ children }) => {
 
   return (
     <AppContext.Provider
-      value={{ user, setData, setUser, data, loading, setLoading }}
+      value={{ user, setUser, setData, setUser, data, loading, setLoading }}
     >
       {children}
     </AppContext.Provider>

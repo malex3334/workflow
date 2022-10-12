@@ -451,6 +451,14 @@ export default function () {
       this.get("/api/users", (schema, request) => {
         return schema.users.all();
       });
+
+      this.patch("api/users/:id", (schema, request) => {
+        let newAttrs = JSON.parse(request.requestBody);
+        let id = request.params.id;
+        let project = schema.users.find(id);
+
+        return project.update(newAttrs);
+      });
     },
 
     // seeds(server) {
