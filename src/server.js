@@ -52,7 +52,10 @@ export default function () {
         id: "1",
         login: "michael",
         name: "Michael Scott",
+        email: "michael@dunder.com",
         img: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dc/MichaelScott.png/220px-MichaelScott.png",
+        salary: 1500,
+        type: "user",
       });
       let dwight = server.create("user", {
         id: "2",
@@ -62,12 +65,16 @@ export default function () {
         password: "dwight11",
         img: "https://upload.wikimedia.org/wikipedia/en/c/cd/Dwight_Schrute.jpg",
         type: "user",
+        salary: 1500,
       });
       let tuna = server.create("user", {
         id: "3",
         login: "tuna",
         name: "Jim Halpert",
         img: "https://www.looper.com/img/gallery/was-jim-halpert-from-the-office-secretly-a-sociopath/intro-1565015060.jpg",
+        email: "jim@dunder.com",
+        salary: 1500,
+        type: "user",
       });
       let dm = server.create("user", {
         id: "100",
@@ -76,6 +83,8 @@ export default function () {
         name: "Dunder Mifflin",
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
         type: "company",
+        email: "dunder@dunder.com",
+        salary: 1500,
       });
       let pam = server.create("user", {
         id: "5",
@@ -83,6 +92,8 @@ export default function () {
         img: "https://wallpapercave.com/wp/wp10346398.jpg",
         login: "pam",
         type: "user",
+        email: "pam@dunder.com",
+        salary: 1500,
       });
 
       // PROJECTS

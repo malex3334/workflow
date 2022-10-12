@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
+import { NavLink } from "react-router-dom";
 
 export default function UserSettings({ user, setUser }) {
   const { name, login, img, type, salary, email } = user;
@@ -10,13 +11,13 @@ export default function UserSettings({ user, setUser }) {
   const { updateData } = useFetch();
   const { data, loading, rerender, setRerender } = useFetch("users");
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     setEdit(false);
     updateData(user.id, "users", {
       ...updatedUser,
     });
     setRerender(!rerender);
-  };
+  }, [updatedUser]);
 
   useEffect(() => {
     setUpdatedUser(user);
@@ -27,7 +28,7 @@ export default function UserSettings({ user, setUser }) {
       const result = data.users.filter(({ id }) => id === user.id);
       setUser(result[0]);
     }
-  }, [loading, handleSave, setUser, data]);
+  }, [loading, handleSave, setUser, data, user.id]);
 
   if (loading) {
     return <Loader />;
@@ -106,6 +107,11 @@ export default function UserSettings({ user, setUser }) {
           </li>
           {salary && <li>salary: {salary}</li>}
         </ul>
+        {user.type === "company" && (
+          <button>
+            <NavLink to="/employees">Employees</NavLink>
+          </button>
+        )}
       </div>
     );
   }

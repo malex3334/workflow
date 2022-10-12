@@ -11,6 +11,7 @@ import ProjectList from "./pages/Projects/ProjectList";
 import NewProjectForm from "./pages/Projects/NewProjectForm";
 import EditProjectForm from "./pages/Projects/EditProjectForm";
 import NotLoggedIn from "./components/NotLoggedIn";
+import Employees from "./pages/Employees/Employees";
 
 function App() {
   const { user, setUser } = useGlobalContext();
@@ -44,6 +45,7 @@ function App() {
             element={user.type === "company" && <EditProjectForm />}
           />
           <Route path="*" element={<LandingPage />} />
+          <Route path="/employees" element={<Employees />} />
         </Routes>
       </div>
     </div>

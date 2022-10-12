@@ -141,7 +141,7 @@ export default function Dashboard() {
             {usersList &&
               usersList.map((user) => {
                 if (user === "undefined") return;
-                return <User user={user} />;
+                return <User user={user} key={user.id} />;
               })}
           </ul>
           <div className="btn">

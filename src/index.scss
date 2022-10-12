@@ -868,3 +868,58 @@
     color: white;
   }
 }
+
+.employees-container {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  .employees-background {
+    position: relative;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border-radius: 6px;
+    height: 30rem;
+    width: 20rem;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.178);
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+
+    &:hover {
+      scale: 1.05;
+    }
+
+    &:hover .details {
+      opacity: 1;
+    }
+  }
+
+  h4 {
+    color: white;
+  }
+  p {
+    color: $font-color-light-secondary;
+    font-size: 1.4rem;
+  }
+
+  .details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: $aside-bg;
+    padding: 1rem;
+    // translate: -500%;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    cursor: pointer;
+  }
+
+  .employees-background:hover + .details {
+    opacity: 1;
+    scale: 2;
+  }
+}
