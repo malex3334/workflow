@@ -12,10 +12,10 @@ export default function UserSettings({ user, setUser }) {
   const { data, loading, rerender, setRerender } = useFetch("users");
 
   const handleSave = useCallback(() => {
-    setEdit(false);
     updateData(user.id, "users", {
       ...updatedUser,
     });
+    setEdit(false);
     setRerender(!rerender);
   }, [updatedUser]);
 
@@ -53,21 +53,27 @@ export default function UserSettings({ user, setUser }) {
               <input
                 type="text"
                 value={updatedUser.name}
-                onChange={(e) => setUpdatedUser({ name: e.target.value })}
+                onChange={(e) =>
+                  setUpdatedUser({ ...updatedUser, name: e.target.value })
+                }
               />
             </li>
             <li>
               <input
                 type="text"
                 value={updatedUser.login}
-                onChange={(e) => setUpdatedUser({ login: e.target.value })}
+                onChange={(e) =>
+                  setUpdatedUser({ ...updatedUser, login: e.target.value })
+                }
               />
             </li>
             <li>
               <input
                 type="email"
                 value={updatedUser.email}
-                onChange={(e) => setUpdatedUser({ email: e.target.value })}
+                onChange={(e) =>
+                  setUpdatedUser({ ...updatedUser, email: e.target.value })
+                }
               />
             </li>
 
