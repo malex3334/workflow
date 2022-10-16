@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import User from "../../components/User";
 import useFetch from "../../hooks/useFetch";
+import { loginRestrictions } from "../../utils/helpers";
 
 export default function Edit({ user, rerender, setRerender }) {
   const { name, login, salary, img, type, email } = user;
@@ -30,7 +31,10 @@ export default function Edit({ user, rerender, setRerender }) {
             type="text"
             value={userData.login}
             onChange={(e) =>
-              setUserData({ ...userData, login: e.target.value })
+              setUserData({
+                ...userData,
+                login: loginRestrictions(e.target.value),
+              })
             }
           />
         </div>

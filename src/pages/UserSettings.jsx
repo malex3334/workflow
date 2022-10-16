@@ -3,6 +3,7 @@ import { FaEdit } from "react-icons/fa";
 import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
 import { NavLink } from "react-router-dom";
+import { loginRestrictions } from "../utils/helpers";
 
 export default function UserSettings({ user, setUser }) {
   const { name, login, img, type, salary, email } = user;
@@ -63,7 +64,10 @@ export default function UserSettings({ user, setUser }) {
                 type="text"
                 value={updatedUser.login}
                 onChange={(e) =>
-                  setUpdatedUser({ ...updatedUser, login: e.target.value })
+                  setUpdatedUser({
+                    ...updatedUser,
+                    login: loginRestrictions(e.target.value),
+                  })
                 }
               />
             </li>

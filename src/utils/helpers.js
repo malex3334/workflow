@@ -18,3 +18,7 @@ export const statusOptions = [
 
 // set priority - options
 export const priorityOptions = ["low", "normal", "high", "very high"];
+
+export const loginRestrictions = (string) => {
+  return (string = string.replace(/\s/g, "").substring(0, 14));
+};
