@@ -12,6 +12,7 @@ import NewProjectForm from "./pages/Projects/NewProjectForm";
 import EditProjectForm from "./pages/Projects/EditProjectForm";
 import NotLoggedIn from "./components/NotLoggedIn";
 import Employees from "./pages/Employees/Employees";
+import Footer from "./components/Footer";
 
 function App() {
   const { user, setUser } = useGlobalContext();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/employees" element={<Employees />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }
