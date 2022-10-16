@@ -84,7 +84,6 @@ export default function () {
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Dunder_Mifflin%2C_Inc.svg/1920px-Dunder_Mifflin%2C_Inc.svg.png",
         type: "company",
         email: "dunder@dunder.com",
-        salary: 1500,
       });
       let pam = server.create("user", {
         id: "5",

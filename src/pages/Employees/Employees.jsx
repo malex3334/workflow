@@ -6,12 +6,11 @@ import EmployeeCard from "./EmployeeCard";
 
 export default function Employees() {
   const { user } = useGlobalContext();
-  const { data, loading } = useFetch("users/");
+  const { data, loading, rerender, setRerender } = useFetch("users/");
 
   if (loading) {
     return <Loader />;
   }
-  console.log(data);
 
   if (user.type === "company") {
     return (
@@ -20,7 +19,13 @@ export default function Employees() {
         <ul className="employees-container">
           {data &&
             data.users.map((user) => {
-              return <EmployeeCard user={user} />;
+              return (
+                <EmployeeCard
+                  user={user}
+                  rerender={rerender}
+                  setRerender={setRerender}
+                />
+              );
             })}
         </ul>
         <div className="underline"></div>

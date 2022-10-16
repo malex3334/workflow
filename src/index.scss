@@ -897,6 +897,36 @@
     color: white;
   }
 }
+.editUser-modal {
+  padding: 2.5rem;
+  width: 40rem;
+
+  // height: 17rem;
+
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 2rem 0;
+  }
+
+  .btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  button {
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    color: white;
+  }
+}
 
 .employees-container {
   margin-top: 5rem;
