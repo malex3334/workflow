@@ -11,7 +11,7 @@ export default function EmployeeCard({ user, rerender, setRerender }) {
   if (user.id !== loggedUser.id) {
     return (
       <div
-        className="employees-background"
+        className="employees__background"
         style={{ background: `url(${img})` }}
         key={user.id}
       >

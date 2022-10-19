@@ -15,7 +15,7 @@ export default function TaskWrapper({
   return (
     <div
       id={status}
-      className="single-board"
+      className="dashboard-container__single-board"
       onDragLeave={(e) => {
         if (e.target.id !== "") {
           updateData(draggedItem.id, "tasks", {
@@ -25,11 +25,11 @@ export default function TaskWrapper({
         }
       }}
     >
-      <h3 id={status} className="board-title">
+      <h3 id={status} className="dashboard-container__board-title">
         {name}
       </h3>
       <div className="dashboard-underline"></div>
-      <ul id={status} className="tasks-list">
+      <ul id={status} className="dashboard-container__tasks-list">
         {data &&
           data.length > 0 &&
           data.map((task) => {

@@ -99,11 +99,11 @@ export default function SingleTask({
 
   return (
     <div className="singletask-container">
-      <header className="header">
+      <header className="singletask__header">
         {edit.title ? (
           <form>
             <input
-              className="title"
+              className="singletask__input--title"
               type="text"
               value={title}
               onChange={(e) => {
@@ -119,7 +119,7 @@ export default function SingleTask({
               }}
             ></input>
             <button
-              className="btn-save"
+              className="singletask__btn--save"
               onClick={(prev) => {
                 setEdit({ ...prev, title: false });
                 updateData(task.id, "tasks", {
@@ -143,7 +143,7 @@ export default function SingleTask({
           </form>
         ) : (
           <h2
-            className="title"
+            className="singletask__input--title"
             onClick={(prev) => {
               setEdit({ ...prev, title: true });
             }}
@@ -152,12 +152,11 @@ export default function SingleTask({
             {title ? `${title}` : "no title"}
           </h2>
         )}
-        <nav className="navigation">
+        <nav>
           <button
             className="del-btn"
             onClick={(e) => {
               setShowDeleteModal(true);
-              // handleDelete(task.id)
             }}
           >
             <FaTrash />
@@ -167,10 +166,10 @@ export default function SingleTask({
           </button>
         </nav>
       </header>
-      <div className="body">
-        <div className="left">
-          <div className="description">
-            <h3 className="subtitle">description</h3>
+      <div className="singletask__body">
+        <div className="singletask__left">
+          <div className="singletask__description">
+            <h3>description</h3>
             {edit.description ? (
               <form>
                 <textarea
@@ -183,7 +182,7 @@ export default function SingleTask({
                     });
                     setRerender(!rerender);
                   }}
-                  className="description-input"
+                  className="singletask__description--input"
                   type="text"
                   value={description}
                   onChange={(e) => {
@@ -191,7 +190,7 @@ export default function SingleTask({
                   }}
                 ></textarea>
                 <button
-                  className="btn-save"
+                  className="singletask__btn--save"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
                     updateData(task.id, "tasks", {
@@ -204,7 +203,7 @@ export default function SingleTask({
                   save
                 </button>
                 <button
-                  className="btn-cancel"
+                  className="singletask__btn--cancel"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
                     setShowModal(false);
@@ -215,7 +214,7 @@ export default function SingleTask({
               </form>
             ) : (
               <p
-                className="paragraph"
+                className="singletask__paragraph"
                 onClick={(prev) => {
                   setEdit({ ...prev, description: true });
                 }}
@@ -225,8 +224,8 @@ export default function SingleTask({
             )}
           </div>
         </div>
-        <div className="right">
-          <div className="status">
+        <div className="singletask__right">
+          <div className="singletask__status">
             <label htmlFor="">Status:</label>
             {/* <select onChange={updateTask(task.id, {})}> */}
             <select
@@ -268,7 +267,7 @@ export default function SingleTask({
               <option value="very high">very high</option>
             </select>
           </div>
-          <div className="timestamps">
+          <div className="singletask__timestamps">
             <p className="timestamp">created at: {timeStamp(task.createdAt)}</p>
             <p className="timestamp">modified: {timeStamp(task.updatedAt)}</p>
           </div>
@@ -351,19 +350,19 @@ export default function SingleTask({
               <h4>time tracking</h4>
             </div>
             <div
-              className="time-progressbar"
+              className="worktime__time-progressbar"
               onClick={() => {
                 setShowTimeReport(true);
               }}
             >
               <div
-                className="time-reported"
+                className="worktime__time-reported"
                 style={{
                   width: (reportedTime / estaminatedTime) * 100 + "%",
                 }}
               ></div>
             </div>
-            <div className="time-reported-info">
+            <div className="worktime__time-reported-info">
               {reportedTime}h logged / {estaminatedTime}h left
             </div>
           </div>

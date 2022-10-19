@@ -20,14 +20,17 @@ export default function SingleComment({
 }) {
   return (
     <div className="single-comment" key={comment.id}>
-      <div
-        className="user-info"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <div className="user-info">
-          <img className="user-avatar" src={comment.user.img} alt="" />
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <div className="single-comment__user--user-info">
+          <img
+            className="single-comment__user--user-avatar"
+            src={comment.user.img}
+            alt=""
+          />
           <h4>{comment.user.name}</h4>
-          <p className="timestamp">posted: {timeStamp(comment.createdAt)} </p>
+          <p className="single-comment__user--timestamp">
+            posted: {timeStamp(comment.createdAt)}{" "}
+          </p>
         </div>
         {comment.user.id === user.id && (
           <div>
@@ -44,13 +47,13 @@ export default function SingleComment({
           </div>
         )}
       </div>
-      <div className="text-container">
+      <div className="single-comment__text-container">
         <p>
           {edit.edit && edit.id === comment.id ? (
             <div style={{ display: "flex" }}>
               <textarea
                 rows="1"
-                className="comment-editedarea"
+                className="single-comment__comment-editedarea"
                 onChange={(e) => setEditedComment(e.target.value)}
                 onBlur={() => {
                   handleUpdateComment(comment.id);

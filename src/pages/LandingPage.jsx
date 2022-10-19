@@ -3,8 +3,8 @@ import React from "react";
 export default function LandingPage() {
   return (
     <div className="landing-container">
-      <h2 className="title">landing page</h2>
-      <div className="landing-body">
+      <h2 className="landing-container__title">landing page</h2>
+      <div className="landing-container__body">
         <div className="">
           <img
             className="img"
@@ -12,7 +12,7 @@ export default function LandingPage() {
             alt=""
           />
         </div>
-        <div className="paragraph">
+        <div className="landing-container__paragraph">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
           eaque consequatur adipisci provident atque ullam possimus odit.
           Consequuntur quis qui vel temporibus doloremque? Nemo repellat maiores

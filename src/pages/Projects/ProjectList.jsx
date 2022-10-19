@@ -69,19 +69,19 @@ export default function ProjectList() {
 
   return (
     <div className="project-list-container">
-      <h2 className="project-list-title">Your projects:</h2>
+      <h2 className="project-list__title">Your projects:</h2>
 
       <ul className="project-list">
         {filteredData &&
           filteredData.length > 0 &&
           filteredData.map((project) => {
             return (
-              <div key={project.id} className="project-list-item">
-                <div className="project-item-header">
+              <div key={project.id} className="project-list__item">
+                <div className="project-item__header">
                   <NavLink to={`projects/${project.id}`}>
                     <h3>{project.name}</h3>
                   </NavLink>
-                  <div className="btns">
+                  <div className="project-list__btns">
                     {/* #### edit project */}
                     {user.type === "company" && (
                       <button className="edit-btn">
@@ -106,19 +106,21 @@ export default function ProjectList() {
                 <NavLink to={`projects/${project.id}`}>
                   {project.img ? (
                     <img
-                      className="image"
+                      className="project-list__image"
                       src={project.img ? project.img : ""}
                       alt=""
                     />
                   ) : (
-                    <div className="noimage">
+                    <div className="project-list__noimage">
                       <span>no image</span>
                     </div>
                   )}
 
-                  <p className="description">{project.description}</p>
+                  <p className="project-list__description">
+                    {project.description}
+                  </p>
                 </NavLink>
-                <p className="project-timestamp">
+                <p className="project__timestamp">
                   {timeStamp(project.createdAt)}
                 </p>
 

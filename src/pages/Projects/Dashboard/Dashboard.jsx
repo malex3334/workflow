@@ -85,13 +85,13 @@ export default function Dashboard() {
       <div
         onDrag={(e) => setDraggedItem(item)}
         draggable
-        className="single-task"
+        className="dashboard-container__single-task"
         key={item.id}
         onClick={(e) => {
           handleOpenTask(item);
         }}
       >
-        <div className="task-header">
+        <div className="dashboard-container__task-header">
           <h4
             style={{ cursor: "pointer" }}
             onClick={(e) => {
@@ -100,7 +100,9 @@ export default function Dashboard() {
           >
             {item.task}
           </h4>
-          <p className="priority">{convertPriority(item.priority)}</p>
+          <p className="dashboard-container__priority">
+            {convertPriority(item.priority)}
+          </p>
         </div>
         <p>{sliceDescription(item.text)}</p>
         <div className="user-flex">
@@ -130,7 +132,7 @@ export default function Dashboard() {
   return (
     <div className="main-container">
       <Breadcrumbs data={projects} />
-      <div className="main-header">
+      <div className="main__header">
         <img src={projects.project.img} className="image" alt="" />
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
