@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { NavLink } from "react-router-dom";
 import { loginRestrictions } from "../utils/helpers";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 export default function UserSettings({ user, setUser }) {
   const { name, login, img, type, salary, email } = user;
@@ -52,8 +53,7 @@ export default function UserSettings({ user, setUser }) {
         <ul className="user-data">
           <form onSubmit={handleSave}>
             <li>
-              <input
-                type="text"
+              <Input
                 value={updatedUser.name}
                 onChange={(e) =>
                   setUpdatedUser({ ...updatedUser, name: e.target.value })
@@ -61,8 +61,7 @@ export default function UserSettings({ user, setUser }) {
               />
             </li>
             <li>
-              <input
-                type="text"
+              <Input
                 value={updatedUser.login}
                 onChange={(e) =>
                   setUpdatedUser({
@@ -73,7 +72,7 @@ export default function UserSettings({ user, setUser }) {
               />
             </li>
             <li>
-              <input
+              <Input
                 type="email"
                 value={updatedUser.email}
                 onChange={(e) =>

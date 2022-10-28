@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from "uuid";
 import TimeReport from "./TimeReport";
 import Loader from "../../../components/Loader";
 import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 
 const descr = { description: false, title: false };
 
@@ -102,9 +103,8 @@ export default function SingleTask({
       <header className="singletask__header">
         {edit.title ? (
           <form>
-            <input
+            <Input
               className="singletask__input--title"
-              type="text"
               value={title}
               onChange={(e) => {
                 setTitle(e.target.value);
@@ -117,8 +117,7 @@ export default function SingleTask({
                 });
                 setRerender(!rerender);
               }}
-            ></input>
-
+            />
             <Button
               name="save"
               classes="singletask__btn--save"

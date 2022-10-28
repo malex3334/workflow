@@ -3,6 +3,7 @@ import Loader from "../../../components/Loader";
 import useFetch from "../../../hooks/useFetch";
 import { FaUserClock } from "react-icons/fa";
 import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 
 export default function TimeReport({
   reportedTime,
@@ -64,7 +65,7 @@ export default function TimeReport({
       <form className="worktime__form" onSubmit={(e) => handleSetData(e)}>
         <div className="worktime-input-control">
           <label htmlFor="">time spent (hours):</label>
-          <input
+          <Input
             min="0"
             type="number"
             step="0.5"
@@ -76,7 +77,7 @@ export default function TimeReport({
         </div>
         <div className="worktime-input-control">
           <label htmlFor="">time left:</label>
-          <input
+          <Input
             min="0"
             type="number"
             step="0.5"

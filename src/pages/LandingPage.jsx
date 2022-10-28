@@ -3,7 +3,7 @@ import React from "react";
 export default function LandingPage() {
   return (
     <div className="landing-container">
-      <h2 className="landing-container__title">landing page</h2>
+      <h2 className="landing-container__title">Jira Clone Project</h2>
       <div className="landing-container__body">
         <div className="">
           <img
@@ -13,14 +13,13 @@ export default function LandingPage() {
           />
         </div>
         <div className="landing-container__paragraph">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-          eaque consequatur adipisci provident atque ullam possimus odit.
-          Consequuntur quis qui vel temporibus doloremque? Nemo repellat maiores
-          totam reprehenderit, earum quia. Provident voluptatum eius deserunt
-          unde assumenda laborum distinctio officiis quaerat similique,
-          temporibus dolorem, quis nemo enim sit ipsa fuga doloribus officia
-          quibusdam. Ad odit sequi ullam numquam, modi deleniti ratione! Fugit
-          quaerat repellat velit amet voluptatem labore odit nemo.
+          <h3>Hello!</h3>
+          <p>
+            Welcome on my Jira Clone training project. It was designed and made
+            for React practice purposes. Hope you like it! <br />
+            To test the app please click log in button and use one of testing
+            accounts.
+          </p>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../components/Button";
-import User from "../../components/User";
+import Input from "../../components/Input";
 import useFetch from "../../hooks/useFetch";
 import { loginRestrictions } from "../../utils/helpers";
 
@@ -28,8 +28,7 @@ export default function Edit({ user, rerender, setRerender }) {
         <h3>{name}</h3>
         <div>
           <label htmlFor="">login: </label>
-          <input
-            type="text"
+          <Input
             value={userData.login}
             onChange={(e) =>
               setUserData({
@@ -41,8 +40,7 @@ export default function Edit({ user, rerender, setRerender }) {
         </div>
         <div>
           <label htmlFor="">email: </label>
-          <input
-            type="text"
+          <Input
             value={userData.email}
             onChange={(e) =>
               setUserData({ ...userData, email: e.target.value })
@@ -51,7 +49,7 @@ export default function Edit({ user, rerender, setRerender }) {
         </div>
         <div>
           <label htmlFor="">salary: </label>
-          <input
+          <Input
             type="number"
             value={userData.salary}
             onChange={(e) =>

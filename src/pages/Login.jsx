@@ -6,6 +6,7 @@ import { useGlobalContext } from "../context";
 import useFetch from "../hooks/useFetch";
 import { PropTypes } from "prop-types";
 import Button from "../components/Button";
+import Input from "../components/Input";
 
 const testUser = {
   id: "2",
@@ -65,17 +66,14 @@ export default function Login() {
       <form className="form" onSubmit={(e) => handleSubmit(e)}>
         <h2>Login </h2>
 
-        <input
-          required
-          type="text"
+        <Input
           placeholder="login"
           value={login}
           onChange={(e) => {
             setLogin(e.target.value);
           }}
         />
-        <input
-          required
+        <Input
           type="password"
           placeholder="password"
           value={password}

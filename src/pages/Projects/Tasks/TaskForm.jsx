@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 import { useGlobalContext } from "../../../context";
 import { priorityOptions, statusOptions } from "../../../utils/helpers";
 
@@ -27,9 +28,7 @@ export default function TaskForm({ handleAddTask, id }) {
     <div className="new-project-container">
       <h2>New task:</h2>
       <form onSubmit={(e) => handleAdd(e)}>
-        <input
-          required
-          type="text"
+        <Input
           placeholder="task name"
           value={newObj.task}
           onChange={(e) => setNewObj({ ...newObj, task: e.target.value })}

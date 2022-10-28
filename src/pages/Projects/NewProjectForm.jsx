@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 import Loader from "../../components/Loader";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
@@ -67,18 +68,14 @@ export default function NewProjectForm() {
     <div className="new-project-container">
       <h2>New Project:</h2>
       <form onSubmit={(e) => handleSumbit(e)}>
-        <input
-          required
-          type="text"
+        <Input
           placeholder="name"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
           }}
         />
-        <input
-          required
-          type="text"
+        <Input
           placeholder="description"
           value={description}
           onChange={(e) => {
@@ -127,8 +124,7 @@ export default function NewProjectForm() {
             : "no users"}
         </ul>
 
-        <input
-          type="text"
+        <Input
           placeholder="paste image link"
           onChange={(e) => setImg(e.target.value)}
           value={img}
