@@ -5,6 +5,7 @@ import { IoSend } from "react-icons/io5";
 import DeleteModal from "../../../../components/DeleteModal";
 import SingleComment from "./SingleComment";
 import Loader from "../../../../components/Loader";
+import Button from "../../../../components/Button";
 
 export default function CommentWrapper({
   commentsList,
@@ -94,9 +95,9 @@ export default function CommentWrapper({
           value={commentText}
           onChange={(e) => setCommentText(e.target.value)}
         />
-        <button className="submit" onClick={handleSubmit}>
+        <Button classes="submit" onClick={handleSubmit}>
           <IoSend className="send-btn" />
-        </button>
+        </Button>
       </div>
     </div>
   );

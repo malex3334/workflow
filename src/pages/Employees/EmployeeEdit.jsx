@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Button from "../../components/Button";
 import User from "../../components/User";
 import useFetch from "../../hooks/useFetch";
 import { loginRestrictions } from "../../utils/helpers";
@@ -58,10 +59,7 @@ export default function Edit({ user, rerender, setRerender }) {
             }
           />
         </div>
-
-        <button type="submit" className="add-btn">
-          save
-        </button>
+        <Button name="save" classes="add-btn" type="submit" />
       </form>
     </div>
   );

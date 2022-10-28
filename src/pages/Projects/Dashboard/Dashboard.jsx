@@ -15,6 +15,7 @@ import { sliceDescription } from "../../../utils/helpers";
 import TaskWrapper from "./TaskWrapper";
 import Breadcrumbs from "../../../components/Breadcrumbs";
 import User from "../../../components/User";
+import Button from "../../../components/Button";
 
 const getUsers = (data, id) => {
   const filter = data.filter((relation) => relation.project === id);
@@ -138,11 +139,11 @@ export default function Dashboard() {
           <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
             <h2>{projects.project.name}</h2>
             {user.type === "company" && (
-              <button className="edit-btn">
+              <Button classes="edit-btn">
                 <NavLink to={`/editproject/${projects.project.id}`}>
                   <FaEdit className="del-btn" style={{ fontSize: "2.5rem" }} />
                 </NavLink>
-              </button>
+              </Button>
             )}
           </div>
           <p>{projects.project.description} </p>
@@ -155,13 +156,13 @@ export default function Dashboard() {
               })}
           </ul>
           <div className="btn">
-            <button
-              className="btn-hover-container"
+            <Button
+              classes="btn-hover-container"
               onClick={() => setShowModal(true)}
             >
               <IoAddCircle className="add-btn" />
               <span className="btn-text">Add new task</span>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

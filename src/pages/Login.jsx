@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { useGlobalContext } from "../context";
 import useFetch from "../hooks/useFetch";
 import { PropTypes } from "prop-types";
+import Button from "../components/Button";
 
 const testUser = {
   id: "2",
@@ -82,7 +83,7 @@ export default function Login() {
             setPassword(e.target.value);
           }}
         />
-        <button>Log in</button>
+        <Button name="Log in" />
         {error && (
           <span className="incorrect-password">
             incorrect login or password
@@ -105,27 +106,26 @@ export default function Login() {
           <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>user:</h4>
           <p>login: dwight</p>
           <p>password: dwight11</p>
-          <button
+          <Button
+            name="login as user"
             style={{ marginTop: "1rem" }}
             onClick={() => {
               setUser(testUser);
               navigate("/");
             }}
-          >
-            login as user
-          </button>
+          />
+
           <h4 style={{ fontWeight: "bold", margin: "1rem 0" }}>company:</h4>
           <p>login: dunder</p>
           <p>password: michael1</p>
-          <button
+          <Button
+            name="login as company"
             style={{ marginTop: "1rem" }}
             onClick={() => {
               setUser(testCompany);
               navigate("/");
             }}
-          >
-            login as company
-          </button>
+          />
         </div>
       </div>
     </div>

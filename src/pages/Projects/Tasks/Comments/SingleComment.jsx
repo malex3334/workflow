@@ -3,6 +3,7 @@ import { timeStamp } from "../../../../utils/time";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { IoSend } from "react-icons/io5";
 import Modal from "../../../../components/Modal";
+import Button from "../../../../components/Button";
 
 export default function SingleComment({
   comment,
@@ -34,16 +35,17 @@ export default function SingleComment({
         </div>
         {comment.user.id === user.id && (
           <div>
-            <button
+            <Button
               onClick={(e) => {
                 handleEdit(comment.id, comment.text);
               }}
             >
               <FaEdit />
-            </button>
-            <button onClick={(e) => setShowDeleteModal(true)}>
+            </Button>
+
+            <Button onClick={(e) => setShowDeleteModal(true)}>
               <FaTrash />
-            </button>
+            </Button>
           </div>
         )}
       </div>
@@ -61,15 +63,17 @@ export default function SingleComment({
                 }}
                 value={editedComment}
               ></textarea>
-              <button
-                className="submit"
+
+              <Button
+                classes="submit"
+                type="submit"
                 onClick={() => {
                   handleUpdateComment(comment.id);
                   setEdit({ edit: false });
                 }}
               >
                 <IoSend className="send-btn" />
-              </button>
+              </Button>
             </div>
           ) : (
             `${comment.text}`

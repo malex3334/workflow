@@ -11,6 +11,7 @@ import { timeStamp } from "../../utils/time";
 import NotLoggedIn from "../../components/NotLoggedIn";
 import Modal from "../../components/Modal";
 import DeleteModal from "../../components/DeleteModal";
+import Button from "../../components/Button";
 
 export default function ProjectList() {
   const { user } = useGlobalContext();
@@ -84,22 +85,20 @@ export default function ProjectList() {
                   <div className="project-list__btns">
                     {/* #### edit project */}
                     {user.type === "company" && (
-                      <button className="edit-btn">
+                      <Button classes="edit-btn">
                         <NavLink to={`/editproject/${project.id}`}>
                           <FaEdit className="del-btn" />
                         </NavLink>
-                      </button>
+                      </Button>
                     )}
                     {user.type === "company" && (
-                      <button
-                        // className="del-btn"
+                      <Button
                         onClick={(e) => {
-                          // handleDelete(project.id);
                           setShowDeleteModal(true);
                         }}
                       >
                         <FaTrash className="del-btn" />
-                      </button>
+                      </Button>
                     )}
                   </div>
                 </div>
@@ -141,12 +140,12 @@ export default function ProjectList() {
 
       {filteredData.length === 0 && <div>No projects to show</div>}
       {user.type === "company" && (
-        <button className="btn-hover-container">
+        <Button classes="btn-hover-container">
           <NavLink to="/newproject">
             <IoAddCircle className="add-btn" />
           </NavLink>
           <div className="btn-text">Add new project</div>
-        </button>
+        </Button>
       )}
     </div>
   );

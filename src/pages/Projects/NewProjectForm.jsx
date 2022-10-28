@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import { useGlobalContext } from "../../context";
 import useFetch from "../../hooks/useFetch";
@@ -133,10 +134,8 @@ export default function NewProjectForm() {
           value={img}
         />
         <div className="btns">
-          <button className="submit" type="submit">
-            submit
-          </button>
-          <button className="cancel">cancel</button>
+          <Button name="submit" classes="submit" type="submit" />
+          <Button name="cancel" classes="cancel" />
         </div>
       </form>
     </div>

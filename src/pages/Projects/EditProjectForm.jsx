@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import Button from "../../components/Button";
 import Loader from "../../components/Loader";
 import useFetch from "../../hooks/useFetch";
 
@@ -149,10 +150,8 @@ export default function EditProjectForm() {
           value={img}
         />
         <div className="btns">
-          <button className="submit" type="submit">
-            submit
-          </button>
-          <button className="cancel">cancel</button>
+          <Button name="submit" classes="submit" type="submit" />
+          <Button name="cancel" classes="cancel" />
         </div>
       </form>
     </div>

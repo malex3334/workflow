@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import Button from "../../../components/Button";
 import { useGlobalContext } from "../../../context";
 import { priorityOptions, statusOptions } from "../../../utils/helpers";
 
@@ -65,7 +66,7 @@ export default function TaskForm({ handleAddTask, id }) {
           </select>
         </div>
 
-        <button>submit</button>
+        <Button name="submit" type="submit" />
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../components/Button";
 
 export default function Signup() {
   return (
@@ -20,7 +21,7 @@ export default function Signup() {
         <input type="email" placeholder="email" />
         <input type="password" placeholder="password" />
         <input type="password" placeholder="repeat password" />
-        <button>Sign up</button>
+        <Button name="Sign up" type="submit" />
       </form>
     </div>
   );

@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 import Loader from "../components/Loader";
 import { NavLink } from "react-router-dom";
 import { loginRestrictions } from "../utils/helpers";
+import Button from "../components/Button";
 
 export default function UserSettings({ user, setUser }) {
   const { name, login, img, type, salary, email } = user;
@@ -82,9 +83,7 @@ export default function UserSettings({ user, setUser }) {
             </li>
 
             {salary && <li>salary: {salary}</li>}
-            <button className="btn-save" type="submit">
-              save
-            </button>
+            <Button name="save" classes="btn-save" type="submit" />
           </form>
         </ul>
       </div>
@@ -132,11 +131,11 @@ export default function UserSettings({ user, setUser }) {
           )}
         </ul>
         {user.type === "company" && (
-          <button className="btn-save">
+          <Button classes="btn-save">
             <NavLink to="/employees" style={{ color: "white" }}>
               Employees
             </NavLink>
-          </button>
+          </Button>
         )}
       </div>
     );

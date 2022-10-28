@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Loader from "../../../components/Loader";
 import useFetch from "../../../hooks/useFetch";
 import { FaUserClock } from "react-icons/fa";
+import Button from "../../../components/Button";
 
 export default function TimeReport({
   reportedTime,
@@ -83,9 +84,7 @@ export default function TimeReport({
             onChange={(e) => setEstTime(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn-save">
-          save
-        </button>
+        <Button name="save" type="submit" classes="btn-save" />
       </form>
     </div>
   );

@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import NotLoggedIn from "../../../components/NotLoggedIn";
 import useFetch from "../../../hooks/useFetch";
-// import CommentWrapper from "./CommentWrapper";
 import CommentWrapper from "./Comments/CommentWrapper";
 import Modal from "../../../components/Modal";
 import DeleteModal from "../../../components/DeleteModal";
@@ -16,6 +15,7 @@ import { IoAddCircle } from "react-icons/io5";
 import { v4 as uuidv4 } from "uuid";
 import TimeReport from "./TimeReport";
 import Loader from "../../../components/Loader";
+import Button from "../../../components/Button";
 
 const descr = { description: false, title: false };
 
@@ -118,8 +118,10 @@ export default function SingleTask({
                 setRerender(!rerender);
               }}
             ></input>
-            <button
-              className="singletask__btn--save"
+
+            <Button
+              name="save"
+              classes="singletask__btn--save"
               onClick={(prev) => {
                 setEdit({ ...prev, title: false });
                 updateData(task.id, "tasks", {
@@ -128,18 +130,15 @@ export default function SingleTask({
                 });
                 setRerender(!rerender);
               }}
-            >
-              save
-            </button>
-            <button
-              className="btn-cancel"
+            />
+
+            <Button
+              name="cancel"
               onClick={(prev) => {
                 setEdit({ ...prev, title: false });
                 setShowModal(false);
               }}
-            >
-              cancel
-            </button>
+            />
           </form>
         ) : (
           <h2
@@ -153,17 +152,17 @@ export default function SingleTask({
           </h2>
         )}
         <nav>
-          <button
-            className="del-btn"
+          <Button
+            classes="del-btn"
             onClick={(e) => {
               setShowDeleteModal(true);
             }}
           >
             <FaTrash />
-          </button>
-          <button className="del-btn" onClick={() => setShowModal(false)}>
+          </Button>
+          <Button classes="del-btn" onClick={() => setShowModal(false)}>
             <FaWindowClose />
-          </button>
+          </Button>
         </nav>
       </header>
       <div className="singletask__body">
@@ -189,8 +188,9 @@ export default function SingleTask({
                     setDescription(e.target.value);
                   }}
                 ></textarea>
-                <button
-                  className="singletask__btn--save"
+                <Button
+                  name="save"
+                  classes="singletask__btn--save"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
                     updateData(task.id, "tasks", {
@@ -199,18 +199,16 @@ export default function SingleTask({
                     });
                     setRerender(!rerender);
                   }}
-                >
-                  save
-                </button>
-                <button
-                  className="singletask__btn--cancel"
+                />
+
+                <Button
+                  name="cancel"
+                  classes="singletask__btn--cancel"
                   onClick={(prev) => {
                     setEdit({ ...prev, description: false });
                     setShowModal(false);
                   }}
-                >
-                  cancel
-                </button>
+                />
               </form>
             ) : (
               <p
@@ -325,23 +323,22 @@ export default function SingleTask({
                 })
               : "no users"}
             {!showAllUsers ? (
-              <button>
+              <Button>
                 <IoAddCircle
                   className="add-btn small"
                   onClick={() => setShowAllUsers(true)}
                 />
-              </button>
+              </Button>
             ) : (
-              <button
+              <Button
+                name="save"
                 onClick={(e) => {
                   handeSaveUsers(task.id, assignedUsers);
                   setShowAllUsers(false);
                 }}
                 className="add-btn"
                 style={{ fontSize: "1.5rem" }}
-              >
-                save
-              </button>
+              />
             )}
           </ul>
           <div className="worktime">
