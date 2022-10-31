@@ -39,7 +39,6 @@ export default function NewProjectForm() {
       updatedAt: Date.now(),
     };
 
-    // new version
     await postData("projects/", newObject);
     await postData("relations/", newRelation);
     navigate("/dashboard");
@@ -102,7 +101,7 @@ export default function NewProjectForm() {
               })
             : "no users"}
         </ul>
-        {/* show all users */}
+
         <ul className="users-list users-list-width">
           <h4>assigned users:</h4>
           {assignedUsers

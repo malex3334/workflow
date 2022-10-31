@@ -43,7 +43,6 @@ export default function ProjectList() {
     return newArray;
   };
 
-  // delete project
   const handleDelete = async (id) => {
     try {
       await fetch(`/api/projects/${id}`, {
@@ -83,7 +82,6 @@ export default function ProjectList() {
                     <h3>{project.name}</h3>
                   </NavLink>
                   <div className="project-list__btns">
-                    {/* #### edit project */}
                     {user.type === "company" && (
                       <Button classes="edit-btn">
                         <NavLink to={`/editproject/${project.id}`}>

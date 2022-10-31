@@ -88,7 +88,7 @@ export default function Login() {
           </span>
         )}
       </form>
-      {/* login shortcut for testing */}
+
       <div
         style={{
           display: "flex",

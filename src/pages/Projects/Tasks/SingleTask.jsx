@@ -54,7 +54,6 @@ export default function SingleTask({
     const result = user.map((single) => {
       return single.id;
     });
-    // setAssignedUsers()
     updateData(taskId, "tasks", { users: result });
     setRerender(!rerender);
   };
@@ -224,7 +223,6 @@ export default function SingleTask({
         <div className="singletask__right">
           <div className="singletask__status">
             <label htmlFor="">Status:</label>
-            {/* <select onChange={updateTask(task.id, {})}> */}
             <select
               value={select}
               onChange={(e) => {
@@ -272,7 +270,6 @@ export default function SingleTask({
             className="users-list users-list-width"
             style={{ padding: "0", height: "auto" }}
           >
-            {/* TODO - ADD USERS => SHOW ALL USERS IN PROJECT */}
             {showAllUsers && usersList
               ? usersList.map((user) => {
                   return (
@@ -295,7 +292,7 @@ export default function SingleTask({
                 })
               : ""}
           </ul>
-          {/* show all users */}
+
           <div className="section-title">
             <FaUserEdit className="title-icon" />
             <h4>assigned users:</h4>

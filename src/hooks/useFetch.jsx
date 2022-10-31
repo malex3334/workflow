@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-// function useFetch(dataFrom, methodType = "GET", bodyObj) {
 function useFetch(dataFrom) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);

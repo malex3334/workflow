@@ -26,7 +26,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={!user && <Login />} />
-          {/* TODO - REDIRECT IF LOGGED IN AND TRYING TO LOG IN */}
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/dashboard"

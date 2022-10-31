@@ -6,7 +6,6 @@ export const sliceDescription = (text) => {
   } else return text;
 };
 
-// select options
 export const statusOptions = [
   "backglog",
   "todo",
@@ -16,7 +15,6 @@ export const statusOptions = [
   "done",
 ];
 
-// set priority - options
 export const priorityOptions = ["low", "normal", "high", "very high"];
 
 export const loginRestrictions = (string) => {

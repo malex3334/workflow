@@ -39,11 +39,11 @@ export default function EditProjectForm() {
         (relation) => relation.project === id
       );
       setRelationId(result[0]);
-      const test = relations.users.filter(({ id }) =>
+      const filterResult = relations.users.filter(({ id }) =>
         result[0].users.includes(id)
       );
-      setAssignedUsers(test);
-      setUsers(test.map((user) => user.id));
+      setAssignedUsers(filterResult);
+      setUsers(filterResult.map((user) => user.id));
     }
   }, [id, relationsLoading, relations, loading, usersLoading]);
 
@@ -119,7 +119,7 @@ export default function EditProjectForm() {
               })
             : "no users"}
         </ul>
-        {/* show all users */}
+
         <ul className="users-list users-list-width">
           <h4>assigned users:</h4>
           {assignedUsers

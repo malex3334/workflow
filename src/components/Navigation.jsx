@@ -7,8 +7,6 @@ export default function Navigation() {
   const { user, setUser } = useGlobalContext();
   let navigate = useNavigate();
 
-  //           className={({ isActive }) => (isActive ? "active" : "inactive")}
-
   return (
     <nav className="nav">
       <div className="logo">
