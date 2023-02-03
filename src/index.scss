@@ -147,11 +147,14 @@
   }
 
   .landing-container__body {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
-    justify-items: center;
+    justify-content: center;
     gap: 2rem;
+
     img {
       max-width: 45rem;
       border-radius: 12px;
