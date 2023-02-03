@@ -10,7 +10,7 @@ export default function Navigation() {
   return (
     <nav className="nav">
       <div className="logo">
-        <a href="/">My Arij</a>
+        <NavLink to="/">My Arij</NavLink>
       </div>
       <ul className="nav-list">
         <NavLink to="/">start</NavLink>
