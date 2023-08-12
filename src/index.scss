@@ -136,12 +136,47 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    position: relative;
   }
   .nav-avatar {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
     border: $users-avatar-border;
+  }
+
+  .notifications {
+    width: 2.25rem;
+    height: 2.25rem;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -1rem;
+    bottom: -1rem;
+    background-color: $bg-green;
+    border-radius: 100%;
+    border: 0.2rem solid white;
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  .dropdown {
+    position: absolute;
+    opacity: 0;
+    font-size: 1.25rem;
+  }
+
+  .notifications:hover .dropdown {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    background-color: $nav-bg;
+    padding: 1rem;
+    min-width: 15rem;
+    min-height: 2rem;
+    bottom: -5.5rem;
   }
 }
 .main {

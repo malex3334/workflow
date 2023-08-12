@@ -2,9 +2,12 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useGlobalContext } from "../context";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Dropdown from "./Dropdown";
 
 export default function Navigation() {
   const { user, setUser } = useGlobalContext();
+  const [notifications, setNotifications] = useState(10);
   let navigate = useNavigate();
 
   return (
@@ -19,6 +22,18 @@ export default function Navigation() {
           <NavLink className="navlink-user" to="/user/">
             <span>{user.name}</span>
             <img className="nav-avatar" src={user.img} alt={user.name} />
+
+            <div
+              className="notifications"
+              style={
+                notifications > 0
+                  ? { background: "red" }
+                  : { background: "$bg-green" }
+              }
+            >
+              {notifications && notifications > 0 ? <>{notifications}</> : 0}
+              <Dropdown classes={"dropdown"} information={notifications} />
+            </div>
           </NavLink>
         )}
 
