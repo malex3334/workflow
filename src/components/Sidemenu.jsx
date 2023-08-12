@@ -10,6 +10,7 @@ export default function Sidemenu() {
 
   return (
     <aside className="aside-nav">
+      <div className="arrow">{"\u25B6"}</div>
       {user && (
         <>
           <img src={img} alt="" />

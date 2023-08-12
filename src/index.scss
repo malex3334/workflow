@@ -40,6 +40,10 @@
 
   &:hover {
     translate: 0;
+
+    .arrow {
+      transform: rotate(180deg) translateY(50%);
+    }
   }
 
   h2,
@@ -81,6 +85,21 @@
   .users {
     margin-left: 1rem;
     font-size: 3rem;
+  }
+  .arrow {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    transition: all 0.7s;
+
+    .close {
+      transform: rotate(180deg);
+      translate: rotate 1s;
+    }
   }
 }
 
