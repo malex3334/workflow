@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../context";
 
 export default function LandingPage() {
   let navigate = useNavigate();
+  const { user, setUser } = useGlobalContext();
 
   return (
     <div className="landing-container">
@@ -21,24 +23,35 @@ export default function LandingPage() {
           <p>
             Welcome on my Jira Clone training project. It was designed and made
             for React practice purposes. Hope you like it! <br />
-            <span className="warning">
-              To test the app please click log in button and use one of testing
-              accounts.
-            </span>
           </p>
-          <Button
-            classes="btn-save"
-            name="log in"
-            onClick={() => {
-              navigate("/login");
-            }}
-            style={{
-              fontSize: "2rem",
-              display: "block",
-              margin: "1rem auto 5rem auto",
-              padding: "1rem 2rem 1rem 2rem",
-            }}
-          />
+
+          {!user ? (
+            <div className="tips">
+              <span className="">
+                To test the app please click log in button and use one of
+                testing accounts.
+              </span>
+              <Button
+                classes="btn-save"
+                name="log in"
+                onClick={() => {
+                  navigate("/login");
+                }}
+                style={{
+                  fontSize: "2rem",
+                  display: "block",
+                  margin: "1rem auto 5rem auto",
+                  padding: "1rem 2rem 1rem 2rem",
+                }}
+              />
+            </div>
+          ) : (
+            <div className="tips">
+              <span className="">
+                Now please select one of the options from navbar above.
+              </span>
+            </div>
+          )}
         </div>
       </div>
     </div>
