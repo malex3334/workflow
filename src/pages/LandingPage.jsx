@@ -1,6 +1,10 @@
 import React from "react";
+import Button from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
+  let navigate = useNavigate();
+
   return (
     <div className="landing-container">
       <h2 className="landing-container__title">Jira Clone Project</h2>
@@ -17,9 +21,24 @@ export default function LandingPage() {
           <p>
             Welcome on my Jira Clone training project. It was designed and made
             for React practice purposes. Hope you like it! <br />
-            To test the app please click log in button and use one of testing
-            accounts.
+            <span className="warning">
+              To test the app please click log in button and use one of testing
+              accounts.
+            </span>
           </p>
+          <Button
+            classes="btn-save"
+            name="log in"
+            onClick={() => {
+              navigate("/login");
+            }}
+            style={{
+              fontSize: "2rem",
+              display: "block",
+              margin: "1rem auto 5rem auto",
+              padding: "1rem 2rem 1rem 2rem",
+            }}
+          />
         </div>
       </div>
     </div>
