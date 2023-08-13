@@ -173,10 +173,15 @@
 
     li {
       padding: 0.5rem;
-      border: 1px dotted rgba(0, 0, 0, 0.103);
+      border-bottom: 1px dotted rgba(0, 0, 0, 0.103);
+      border-top: 1px dotted rgba(0, 0, 0, 0.103);
       display: flex;
       align-items: baseline;
       justify-content: space-between;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.1);
+      }
 
       span {
         font-size: 1rem;

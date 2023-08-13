@@ -27,7 +27,7 @@ const testCompany = {
 };
 
 export default function Login() {
-  const { setUser } = useGlobalContext();
+  const { setUser, trigger, setTrigger } = useGlobalContext();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   let navigate = useNavigate();
@@ -109,6 +109,7 @@ export default function Login() {
             style={{ marginTop: "1rem" }}
             onClick={() => {
               setUser(testUser);
+              setTrigger(!trigger);
               navigate("/");
             }}
           />
@@ -121,6 +122,8 @@ export default function Login() {
             style={{ marginTop: "1rem" }}
             onClick={() => {
               setUser(testCompany);
+              setTrigger(!trigger);
+
               navigate("/");
             }}
           />

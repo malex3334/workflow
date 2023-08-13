@@ -3,8 +3,6 @@ import { NavLink } from "react-router-dom";
 import { timeStamp } from "../utils/time";
 
 export default function Dropdown({ information, classes, elements }) {
-  console.log(information);
-
   return (
     <div className={classes}>
       <span style={{ display: "block", marginBottom: "1rem" }}>
@@ -24,7 +22,15 @@ export default function Dropdown({ information, classes, elements }) {
           );
         })}
         {elements?.myTask.map((task) => {
-          return <li>✔ {task.task}</li>;
+          return (
+            <NavLink to={`/dashboard/projects/${task.projectId}`}>
+              <li onClick={() => console.log(task.projectId)}>
+                {" "}
+                🎇 {task.task}
+                <span> {timeStamp(task.updatedAt)}</span>
+              </li>
+            </NavLink>
+          );
         })}
       </ul>
     </div>
