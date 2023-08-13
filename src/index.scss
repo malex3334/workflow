@@ -171,6 +171,8 @@
     font-size: 1.25rem;
     border-radius: 8px;
     box-shadow: $single-card-shadow;
+    max-height: 90vh;
+    overflow: auto;
 
     li {
       padding: 0.5rem;

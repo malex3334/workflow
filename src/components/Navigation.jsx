@@ -78,6 +78,7 @@ export default function Navigation() {
       </div>
       <ul className="nav-list">
         <NavLink to="/">start</NavLink>
+        <NavLink to="/about">about</NavLink>
         {user && <NavLink to="/dashboard">projects</NavLink>}
         {user && (
           <NavLink className="navlink-user" to="/user/">

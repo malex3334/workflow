@@ -108,9 +108,11 @@ export default function Login() {
             name="login as user"
             style={{ marginTop: "1rem" }}
             onClick={() => {
-              setUser(testUser);
-              setTrigger(!trigger);
-              navigate("/");
+              setLoading(true);
+              setTimeout(() => {
+                setUser(testUser);
+                navigate("/");
+              }, 1500);
             }}
           />
 
@@ -121,10 +123,11 @@ export default function Login() {
             name="login as company"
             style={{ marginTop: "1rem" }}
             onClick={() => {
-              setUser(testCompany);
-              setTrigger(!trigger);
-
-              navigate("/");
+              setLoading(true);
+              setTimeout(() => {
+                setUser(testCompany);
+                navigate("/");
+              }, 1500);
             }}
           />
         </div>
