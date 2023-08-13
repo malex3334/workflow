@@ -146,14 +146,14 @@
   }
 
   .notifications {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2rem;
+    height: 2rem;
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    right: -1rem;
-    bottom: -1rem;
+    right: -0.5rem;
+    bottom: -0.5rem;
     background-color: $bg-green;
     border-radius: 100%;
     // border: 0.2rem solid white;
@@ -166,6 +166,7 @@
   .dropdown {
     position: absolute;
     z-index: 9999;
+    display: none;
     opacity: 0;
     font-size: 1.25rem;
     border-radius: 8px;
@@ -189,8 +190,21 @@
       }
     }
   }
+  label {
+    display: block;
+    padding: 1rem 0 1rem 0;
+    font-weight: bold;
+  }
+
+  .clear-btn {
+    padding: 1rem;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
 
   .notifications:hover .dropdown {
+    display: block;
     position: relative;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
@@ -198,7 +212,7 @@
     padding: 1rem;
     min-width: 40rem;
     min-height: 2rem;
-    transform: translateY(55%) translateX(-30%);
+    transform: translateY(52%) translateX(-30%);
     // bottom: -10rem;
   }
 }
