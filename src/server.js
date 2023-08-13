@@ -296,6 +296,17 @@ export default function () {
         updatedAt: 1664728152418,
         users: ["1", "100", "3"],
       });
+      server.create("task", {
+        id: "924",
+        projectId: "4",
+        task: "secret task for project",
+        text: "some text etc.",
+        status: "testing",
+        priority: "normal",
+        createdAt: 1664728152418,
+        updatedAt: 1664728152418,
+        users: ["1", "100", "3"],
+      });
 
       // comments
       server.create("comment", {

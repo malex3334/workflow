@@ -156,7 +156,7 @@
     bottom: -1rem;
     background-color: $bg-green;
     border-radius: 100%;
-    border: 0.2rem solid white;
+    // border: 0.2rem solid white;
     box-shadow: 1px 1px rgba(0, 0, 0, 0.3);
     color: rgb(255, 255, 255);
     font-size: 1rem;
@@ -165,18 +165,36 @@
 
   .dropdown {
     position: absolute;
+    z-index: 9999;
     opacity: 0;
     font-size: 1.25rem;
+    border-radius: 8px;
+    box-shadow: $single-card-shadow;
+
+    li {
+      padding: 0.5rem;
+      border: 1px dotted rgba(0, 0, 0, 0.103);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+
+      span {
+        font-size: 1rem;
+        font-style: italic;
+      }
+    }
   }
 
   .notifications:hover .dropdown {
+    position: relative;
     opacity: 1;
     transition: opacity 0.5s ease-in-out;
     background-color: $nav-bg;
     padding: 1rem;
-    min-width: 15rem;
+    min-width: 40rem;
     min-height: 2rem;
-    bottom: -5.5rem;
+    transform: translateY(55%) translateX(-30%);
+    // bottom: -10rem;
   }
 }
 .main {
