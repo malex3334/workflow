@@ -131,6 +131,15 @@
     gap: 2rem;
   }
 
+  a,
+  li {
+    transition: all 0.5s ease-in-out;
+
+    &:hover {
+      border-bottom: 2px solid $font-color-main;
+    }
+  }
+
   .navlink-user {
     display: flex;
     justify-content: center;
@@ -203,6 +212,7 @@
     margin: 0 auto;
     display: block;
     text-align: center;
+    font-style: italic;
   }
 
   .notifications:hover .dropdown {
